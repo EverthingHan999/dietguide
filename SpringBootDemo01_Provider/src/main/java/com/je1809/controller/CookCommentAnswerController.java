@@ -31,6 +31,8 @@ public class CookCommentAnswerController {
     public List<CookCommentAnswer> getAllCookCommentAnswers(){
         return cooKCommentAnswerService.selectByExample(null);
     }
+
+
     //将查询到的评论存入到redis中
     @ResponseBody
     @GetMapping("/provider/redisCookCommentAnswers")
