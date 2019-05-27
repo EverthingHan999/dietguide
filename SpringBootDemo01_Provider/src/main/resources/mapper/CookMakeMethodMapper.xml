@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.je1809.mapper.CookMakeMethodMapper" >
+  <resultMap id="BaseResultMap" type="com.je1809.pojo.CookMakeMethod" >
+    <id column="cmmid" property="cmmid" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="whichstep" property="whichstep" jdbcType="INTEGER" />
+    <result column="cookimg" property="cookimg" jdbcType="VARCHAR" />
+    <result column="descr" property="descr" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    cmmid, cid, whichstep, cookimg, descr, remarks
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.je1809.pojo.CookMakeMethodExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cook_make_method
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cook_make_method
+    where cmmid = #{cmmid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cook_make_method
+    where cmmid = #{cmmid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.je1809.pojo.CookMakeMethodExample" >
+    delete from cook_make_method
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.je1809.pojo.CookMakeMethod" >
+    insert into cook_make_method (cmmid, cid, whichstep, 
+      cookimg, descr, remarks
+      )
+    values (#{cmmid,jdbcType=INTEGER}, #{cid,jdbcType=INTEGER}, #{whichstep,jdbcType=INTEGER}, 
+      #{cookimg,jdbcType=VARCHAR}, #{descr,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.je1809.pojo.CookMakeMethod" >
+    insert into cook_make_method
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cmmid != null" >
+        cmmid,
+      </if>
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="whichstep != null" >
+        whichstep,
+      </if>
+      <if test="cookimg != null" >
+        cookimg,
+      </if>
+      <if test="descr != null" >
+        descr,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cmmid != null" >
+        #{cmmid,jdbcType=INTEGER},
+      </if>
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="whichstep != null" >
+        #{whichstep,jdbcType=INTEGER},
+      </if>
+      <if test="cookimg != null" >
+        #{cookimg,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null" >
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.je1809.pojo.CookMakeMethodExample" resultType="java.lang.Integer" >
+    select count(*) from cook_make_method
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cook_make_method
+    <set >
+      <if test="record.cmmid != null" >
+        cmmid = #{record.cmmid,jdbcType=INTEGER},
+      </if>
+      <if test="record.cid != null" >
+        cid = #{record.cid,jdbcType=INTEGER},
+      </if>
+      <if test="record.whichstep != null" >
+        whichstep = #{record.whichstep,jdbcType=INTEGER},
+      </if>
+      <if test="record.cookimg != null" >
+        cookimg = #{record.cookimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descr != null" >
+        descr = #{record.descr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cook_make_method
+    set cmmid = #{record.cmmid,jdbcType=INTEGER},
+      cid = #{record.cid,jdbcType=INTEGER},
+      whichstep = #{record.whichstep,jdbcType=INTEGER},
+      cookimg = #{record.cookimg,jdbcType=VARCHAR},
+      descr = #{record.descr,jdbcType=VARCHAR},
+      remarks = #{record.remarks,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.je1809.pojo.CookMakeMethod" >
+    update cook_make_method
+    <set >
+      <if test="cid != null" >
+        cid = #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="whichstep != null" >
+        whichstep = #{whichstep,jdbcType=INTEGER},
+      </if>
+      <if test="cookimg != null" >
+        cookimg = #{cookimg,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null" >
+        descr = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cmmid = #{cmmid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.je1809.pojo.CookMakeMethod" >
+    update cook_make_method
+    set cid = #{cid,jdbcType=INTEGER},
+      whichstep = #{whichstep,jdbcType=INTEGER},
+      cookimg = #{cookimg,jdbcType=VARCHAR},
+      descr = #{descr,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where cmmid = #{cmmid,jdbcType=INTEGER}
+  </update>
+</mapper>

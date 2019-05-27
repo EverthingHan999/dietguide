@@ -1,0 +1,18 @@
+server:
+  port: 80
+
+
+eureka:
+  client:
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://dietguide1.com:7001/eureka/,http://dietguide2.com:7002/eureka/
+
+spring:
+  thymeleaf:
+    cache: false
+    mode: LEGACYHTML5
+    encoding: utf-8
+    suffix: .html
+    prefix: classpath:/static/
+    content-type: text/html

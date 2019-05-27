@@ -1,0 +1,11 @@
+server:
+  port: 7001
+
+eureka:
+  instance:
+    hostname: dietguide1.com #eureka服务器端实例名称
+  client:
+    register-with-eureka: false  #表示不向注册中心注册自己
+    fetch-registry: true #自己就是注册中心，职责就是维护服务实例，不需要去检索
+    service-url:
+      defaultZone: http://dietguide2.com:7002/eureka/ #设置与eureka服务器交互的地址查询服务和注册服务都需要这个地址

@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.je1809.mapper.CookMapper" >
+  <resultMap id="BaseResultMap" type="com.je1809.pojo.Cook" >
+    <id column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="cimg" property="cimg" jdbcType="VARCHAR" />
+    <result column="descr" property="descr" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="copycount" property="copycount" jdbcType="INTEGER" />
+    <result column="lookcount" property="lookcount" jdbcType="INTEGER" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="cbtid" property="cbtid" jdbcType="INTEGER" />
+    <result column="cname" property="cname" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    cid, uid, cimg, descr, create_time, copycount, lookcount, remarks, cbtid, cname
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.je1809.pojo.CookExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cook
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cook
+    where cid = #{cid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cook
+    where cid = #{cid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.je1809.pojo.CookExample" >
+    delete from cook
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.je1809.pojo.Cook" >
+    insert into cook (cid, uid, cimg, 
+      descr, create_time, copycount, 
+      lookcount, remarks, cbtid, 
+      cname)
+    values (#{cid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{cimg,jdbcType=VARCHAR}, 
+      #{descr,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{copycount,jdbcType=INTEGER}, 
+      #{lookcount,jdbcType=INTEGER}, #{remarks,jdbcType=VARCHAR}, #{cbtid,jdbcType=INTEGER}, 
+      #{cname,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.je1809.pojo.Cook" >
+    insert into cook
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cid != null" >
+        cid,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="cimg != null" >
+        cimg,
+      </if>
+      <if test="descr != null" >
+        descr,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="copycount != null" >
+        copycount,
+      </if>
+      <if test="lookcount != null" >
+        lookcount,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="cbtid != null" >
+        cbtid,
+      </if>
+      <if test="cname != null" >
+        cname,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cid != null" >
+        #{cid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="cimg != null" >
+        #{cimg,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null" >
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="copycount != null" >
+        #{copycount,jdbcType=INTEGER},
+      </if>
+      <if test="lookcount != null" >
+        #{lookcount,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="cbtid != null" >
+        #{cbtid,jdbcType=INTEGER},
+      </if>
+      <if test="cname != null" >
+        #{cname,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.je1809.pojo.CookExample" resultType="java.lang.Integer" >
+    select count(*) from cook
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cook
+    <set >
+      <if test="record.cid != null" >
+        cid = #{record.cid,jdbcType=INTEGER},
+      </if>
+      <if test="record.uid != null" >
+        uid = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.cimg != null" >
+        cimg = #{record.cimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descr != null" >
+        descr = #{record.descr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.copycount != null" >
+        copycount = #{record.copycount,jdbcType=INTEGER},
+      </if>
+      <if test="record.lookcount != null" >
+        lookcount = #{record.lookcount,jdbcType=INTEGER},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cbtid != null" >
+        cbtid = #{record.cbtid,jdbcType=INTEGER},
+      </if>
+      <if test="record.cname != null" >
+        cname = #{record.cname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cook
+    set cid = #{record.cid,jdbcType=INTEGER},
+      uid = #{record.uid,jdbcType=INTEGER},
+      cimg = #{record.cimg,jdbcType=VARCHAR},
+      descr = #{record.descr,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      copycount = #{record.copycount,jdbcType=INTEGER},
+      lookcount = #{record.lookcount,jdbcType=INTEGER},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      cbtid = #{record.cbtid,jdbcType=INTEGER},
+      cname = #{record.cname,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.je1809.pojo.Cook" >
+    update cook
+    <set >
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="cimg != null" >
+        cimg = #{cimg,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null" >
+        descr = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="copycount != null" >
+        copycount = #{copycount,jdbcType=INTEGER},
+      </if>
+      <if test="lookcount != null" >
+        lookcount = #{lookcount,jdbcType=INTEGER},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="cbtid != null" >
+        cbtid = #{cbtid,jdbcType=INTEGER},
+      </if>
+      <if test="cname != null" >
+        cname = #{cname,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.je1809.pojo.Cook" >
+    update cook
+    set uid = #{uid,jdbcType=INTEGER},
+      cimg = #{cimg,jdbcType=VARCHAR},
+      descr = #{descr,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      copycount = #{copycount,jdbcType=INTEGER},
+      lookcount = #{lookcount,jdbcType=INTEGER},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      cbtid = #{cbtid,jdbcType=INTEGER},
+      cname = #{cname,jdbcType=VARCHAR}
+    where cid = #{cid,jdbcType=INTEGER}
+  </update>
+</mapper>

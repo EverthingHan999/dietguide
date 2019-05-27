@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.je1809.mapper.StuffDescrMapper" >
+  <resultMap id="BaseResultMap" type="com.je1809.pojo.StuffDescr" >
+    <id column="sdid" property="sdid" jdbcType="INTEGER" />
+    <result column="cbtid" property="cbtid" jdbcType="INTEGER" />
+    <result column="sdtype" property="sdtype" jdbcType="VARCHAR" />
+    <result column="count" property="count" jdbcType="INTEGER" />
+    <result column="descr" property="descr" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    sdid, cbtid, sdtype, count, descr, remarks
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.je1809.pojo.StuffDescrExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from stuff_descr
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from stuff_descr
+    where sdid = #{sdid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from stuff_descr
+    where sdid = #{sdid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.je1809.pojo.StuffDescrExample" >
+    delete from stuff_descr
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.je1809.pojo.StuffDescr" >
+    insert into stuff_descr (sdid, cbtid, sdtype, 
+      count, descr, remarks
+      )
+    values (#{sdid,jdbcType=INTEGER}, #{cbtid,jdbcType=INTEGER}, #{sdtype,jdbcType=VARCHAR}, 
+      #{count,jdbcType=INTEGER}, #{descr,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.je1809.pojo.StuffDescr" >
+    insert into stuff_descr
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sdid != null" >
+        sdid,
+      </if>
+      <if test="cbtid != null" >
+        cbtid,
+      </if>
+      <if test="sdtype != null" >
+        sdtype,
+      </if>
+      <if test="count != null" >
+        count,
+      </if>
+      <if test="descr != null" >
+        descr,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sdid != null" >
+        #{sdid,jdbcType=INTEGER},
+      </if>
+      <if test="cbtid != null" >
+        #{cbtid,jdbcType=INTEGER},
+      </if>
+      <if test="sdtype != null" >
+        #{sdtype,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        #{count,jdbcType=INTEGER},
+      </if>
+      <if test="descr != null" >
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.je1809.pojo.StuffDescrExample" resultType="java.lang.Integer" >
+    select count(*) from stuff_descr
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update stuff_descr
+    <set >
+      <if test="record.sdid != null" >
+        sdid = #{record.sdid,jdbcType=INTEGER},
+      </if>
+      <if test="record.cbtid != null" >
+        cbtid = #{record.cbtid,jdbcType=INTEGER},
+      </if>
+      <if test="record.sdtype != null" >
+        sdtype = #{record.sdtype,jdbcType=VARCHAR},
+      </if>
+      <if test="record.count != null" >
+        count = #{record.count,jdbcType=INTEGER},
+      </if>
+      <if test="record.descr != null" >
+        descr = #{record.descr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update stuff_descr
+    set sdid = #{record.sdid,jdbcType=INTEGER},
+      cbtid = #{record.cbtid,jdbcType=INTEGER},
+      sdtype = #{record.sdtype,jdbcType=VARCHAR},
+      count = #{record.count,jdbcType=INTEGER},
+      descr = #{record.descr,jdbcType=VARCHAR},
+      remarks = #{record.remarks,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.je1809.pojo.StuffDescr" >
+    update stuff_descr
+    <set >
+      <if test="cbtid != null" >
+        cbtid = #{cbtid,jdbcType=INTEGER},
+      </if>
+      <if test="sdtype != null" >
+        sdtype = #{sdtype,jdbcType=VARCHAR},
+      </if>
+      <if test="count != null" >
+        count = #{count,jdbcType=INTEGER},
+      </if>
+      <if test="descr != null" >
+        descr = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sdid = #{sdid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.je1809.pojo.StuffDescr" >
+    update stuff_descr
+    set cbtid = #{cbtid,jdbcType=INTEGER},
+      sdtype = #{sdtype,jdbcType=VARCHAR},
+      count = #{count,jdbcType=INTEGER},
+      descr = #{descr,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where sdid = #{sdid,jdbcType=INTEGER}
+  </update>
+</mapper>

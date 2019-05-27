@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.je1809.mapper.CookbookThirdMapper" >
+  <resultMap id="BaseResultMap" type="com.je1809.pojo.CookbookThird" >
+    <id column="cbtid" property="cbtid" jdbcType="INTEGER" />
+    <result column="cbtname" property="cbtname" jdbcType="VARCHAR" />
+    <result column="cbtimg" property="cbtimg" jdbcType="VARCHAR" />
+    <result column="descr" property="descr" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="cbsid" property="cbsid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    cbtid, cbtname, cbtimg, descr, remarks, cbsid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.je1809.pojo.CookbookThirdExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cookbook_third
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cookbook_third
+    where cbtid = #{cbtid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cookbook_third
+    where cbtid = #{cbtid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.je1809.pojo.CookbookThirdExample" >
+    delete from cookbook_third
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.je1809.pojo.CookbookThird" >
+    insert into cookbook_third (cbtid, cbtname, cbtimg, 
+      descr, remarks, cbsid
+      )
+    values (#{cbtid,jdbcType=INTEGER}, #{cbtname,jdbcType=VARCHAR}, #{cbtimg,jdbcType=VARCHAR}, 
+      #{descr,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{cbsid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.je1809.pojo.CookbookThird" >
+    insert into cookbook_third
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cbtid != null" >
+        cbtid,
+      </if>
+      <if test="cbtname != null" >
+        cbtname,
+      </if>
+      <if test="cbtimg != null" >
+        cbtimg,
+      </if>
+      <if test="descr != null" >
+        descr,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="cbsid != null" >
+        cbsid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cbtid != null" >
+        #{cbtid,jdbcType=INTEGER},
+      </if>
+      <if test="cbtname != null" >
+        #{cbtname,jdbcType=VARCHAR},
+      </if>
+      <if test="cbtimg != null" >
+        #{cbtimg,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null" >
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="cbsid != null" >
+        #{cbsid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.je1809.pojo.CookbookThirdExample" resultType="java.lang.Integer" >
+    select count(*) from cookbook_third
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cookbook_third
+    <set >
+      <if test="record.cbtid != null" >
+        cbtid = #{record.cbtid,jdbcType=INTEGER},
+      </if>
+      <if test="record.cbtname != null" >
+        cbtname = #{record.cbtname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cbtimg != null" >
+        cbtimg = #{record.cbtimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descr != null" >
+        descr = #{record.descr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cbsid != null" >
+        cbsid = #{record.cbsid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cookbook_third
+    set cbtid = #{record.cbtid,jdbcType=INTEGER},
+      cbtname = #{record.cbtname,jdbcType=VARCHAR},
+      cbtimg = #{record.cbtimg,jdbcType=VARCHAR},
+      descr = #{record.descr,jdbcType=VARCHAR},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      cbsid = #{record.cbsid,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.je1809.pojo.CookbookThird" >
+    update cookbook_third
+    <set >
+      <if test="cbtname != null" >
+        cbtname = #{cbtname,jdbcType=VARCHAR},
+      </if>
+      <if test="cbtimg != null" >
+        cbtimg = #{cbtimg,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null" >
+        descr = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="cbsid != null" >
+        cbsid = #{cbsid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where cbtid = #{cbtid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.je1809.pojo.CookbookThird" >
+    update cookbook_third
+    set cbtname = #{cbtname,jdbcType=VARCHAR},
+      cbtimg = #{cbtimg,jdbcType=VARCHAR},
+      descr = #{descr,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      cbsid = #{cbsid,jdbcType=INTEGER}
+    where cbtid = #{cbtid,jdbcType=INTEGER}
+  </update>
+</mapper>

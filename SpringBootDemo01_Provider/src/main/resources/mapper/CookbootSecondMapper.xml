@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.je1809.mapper.CookbootSecondMapper" >
+  <resultMap id="BaseResultMap" type="com.je1809.pojo.CookbootSecond" >
+    <id column="cbsid" property="cbsid" jdbcType="INTEGER" />
+    <result column="cbname" property="cbname" jdbcType="VARCHAR" />
+    <result column="cbimg" property="cbimg" jdbcType="VARCHAR" />
+    <result column="descr" property="descr" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <result column="cbid" property="cbid" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    cbsid, cbname, cbimg, descr, remarks, cbid
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.je1809.pojo.CookbootSecondExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from cookboot_second
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from cookboot_second
+    where cbsid = #{cbsid,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from cookboot_second
+    where cbsid = #{cbsid,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.je1809.pojo.CookbootSecondExample" >
+    delete from cookboot_second
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.je1809.pojo.CookbootSecond" >
+    insert into cookboot_second (cbsid, cbname, cbimg, 
+      descr, remarks, cbid
+      )
+    values (#{cbsid,jdbcType=INTEGER}, #{cbname,jdbcType=VARCHAR}, #{cbimg,jdbcType=VARCHAR}, 
+      #{descr,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR}, #{cbid,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.je1809.pojo.CookbootSecond" >
+    insert into cookboot_second
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cbsid != null" >
+        cbsid,
+      </if>
+      <if test="cbname != null" >
+        cbname,
+      </if>
+      <if test="cbimg != null" >
+        cbimg,
+      </if>
+      <if test="descr != null" >
+        descr,
+      </if>
+      <if test="remarks != null" >
+        remarks,
+      </if>
+      <if test="cbid != null" >
+        cbid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cbsid != null" >
+        #{cbsid,jdbcType=INTEGER},
+      </if>
+      <if test="cbname != null" >
+        #{cbname,jdbcType=VARCHAR},
+      </if>
+      <if test="cbimg != null" >
+        #{cbimg,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null" >
+        #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="cbid != null" >
+        #{cbid,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.je1809.pojo.CookbootSecondExample" resultType="java.lang.Integer" >
+    select count(*) from cookboot_second
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update cookboot_second
+    <set >
+      <if test="record.cbsid != null" >
+        cbsid = #{record.cbsid,jdbcType=INTEGER},
+      </if>
+      <if test="record.cbname != null" >
+        cbname = #{record.cbname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cbimg != null" >
+        cbimg = #{record.cbimg,jdbcType=VARCHAR},
+      </if>
+      <if test="record.descr != null" >
+        descr = #{record.descr,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null" >
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cbid != null" >
+        cbid = #{record.cbid,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update cookboot_second
+    set cbsid = #{record.cbsid,jdbcType=INTEGER},
+      cbname = #{record.cbname,jdbcType=VARCHAR},
+      cbimg = #{record.cbimg,jdbcType=VARCHAR},
+      descr = #{record.descr,jdbcType=VARCHAR},
+      remarks = #{record.remarks,jdbcType=VARCHAR},
+      cbid = #{record.cbid,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.je1809.pojo.CookbootSecond" >
+    update cookboot_second
+    <set >
+      <if test="cbname != null" >
+        cbname = #{cbname,jdbcType=VARCHAR},
+      </if>
+      <if test="cbimg != null" >
+        cbimg = #{cbimg,jdbcType=VARCHAR},
+      </if>
+      <if test="descr != null" >
+        descr = #{descr,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null" >
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="cbid != null" >
+        cbid = #{cbid,jdbcType=INTEGER},
+      </if>
+    </set>
+    where cbsid = #{cbsid,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.je1809.pojo.CookbootSecond" >
+    update cookboot_second
+    set cbname = #{cbname,jdbcType=VARCHAR},
+      cbimg = #{cbimg,jdbcType=VARCHAR},
+      descr = #{descr,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR},
+      cbid = #{cbid,jdbcType=INTEGER}
+    where cbsid = #{cbsid,jdbcType=INTEGER}
+  </update>
+</mapper>
