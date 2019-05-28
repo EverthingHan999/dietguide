@@ -13,5 +13,6 @@
         <module name="SpringBootDemo01_Provider" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="8" />
   </component>
 </project>
