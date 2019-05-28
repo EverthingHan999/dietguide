@@ -1,13 +1,12 @@
-package com.je1809.mapper;
+package com.je1809.service;
 
 import com.je1809.pojo.CookbootSecond;
 import com.je1809.pojo.CookbootSecondExample;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-@Mapper
-public interface CookbootSecondMapper {
+
+public interface CookBookSecondService {
     int countByExample(CookbootSecondExample example);
 
     int deleteByExample(CookbootSecondExample example);

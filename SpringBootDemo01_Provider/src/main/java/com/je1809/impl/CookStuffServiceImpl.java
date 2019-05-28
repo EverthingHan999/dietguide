@@ -15,27 +15,27 @@ public class CookStuffServiceImpl implements CookStuffService {
     private CookStuffMapper cookStuffMapper;
     @Override
     public int countByExample(CookStuffExample example) {
-        return 0;
+        return cookStuffMapper.countByExample(example);
     }
 
     @Override
     public int deleteByExample(CookStuffExample example) {
-        return 0;
+        return cookStuffMapper.deleteByExample(example);
     }
 
     @Override
     public int deleteByPrimaryKey(Integer cstid) {
-        return 0;
+        return cookStuffMapper.deleteByPrimaryKey(cstid);
     }
 
     @Override
     public int insert(CookStuff record) {
-        return 0;
+        return cookStuffMapper.insert(record);
     }
 
     @Override
     public int insertSelective(CookStuff record) {
-        return 0;
+        return cookStuffMapper.insertSelective(record);
     }
 
     @Override
@@ -45,26 +45,26 @@ public class CookStuffServiceImpl implements CookStuffService {
 
     @Override
     public CookStuff selectByPrimaryKey(Integer cstid) {
-        return null;
+        return cookStuffMapper.selectByPrimaryKey(cstid);
     }
 
     @Override
     public int updateByExampleSelective(CookStuff record, CookStuffExample example) {
-        return 0;
+        return cookStuffMapper.updateByExampleSelective(record, example);
     }
 
     @Override
     public int updateByExample(CookStuff record, CookStuffExample example) {
-        return 0;
+        return cookStuffMapper.updateByExample(record, example);
     }
 
     @Override
     public int updateByPrimaryKeySelective(CookStuff record) {
-        return 0;
+        return cookStuffMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
     public int updateByPrimaryKey(CookStuff record) {
-        return 0;
+        return cookStuffMapper.updateByPrimaryKey(record);
     }
 }

@@ -16,27 +16,27 @@ public class CookCommentServiceAnswerImpl implements CooKCommentAnswerService {
     private CookCommentAnswerMapper cookCommentAnswerMapper;
     @Override
     public int countByExample(CookCommentAnswerExample example) {
-        return 0;
+        return cookCommentAnswerMapper.countByExample(example);
     }
 
     @Override
     public int deleteByExample(CookCommentAnswerExample example) {
-        return 0;
+        return cookCommentAnswerMapper.deleteByExample(example);
     }
 
     @Override
     public int deleteByPrimaryKey(Integer ckcaid) {
-        return 0;
+        return cookCommentAnswerMapper.deleteByPrimaryKey(ckcaid);
     }
 
     @Override
     public int insert(CookCommentAnswer record) {
-        return 0;
+        return cookCommentAnswerMapper.insert(record);
     }
 
     @Override
     public int insertSelective(CookCommentAnswer record) {
-        return 0;
+        return cookCommentAnswerMapper.insertSelective(record);
     }
 
     @Override
@@ -46,26 +46,26 @@ public class CookCommentServiceAnswerImpl implements CooKCommentAnswerService {
 
     @Override
     public CookCommentAnswer selectByPrimaryKey(Integer ckcaid) {
-        return null;
+        return cookCommentAnswerMapper.selectByPrimaryKey(ckcaid);
     }
 
     @Override
     public int updateByExampleSelective(CookCommentAnswer record, CookCommentAnswerExample example) {
-        return 0;
+        return cookCommentAnswerMapper.updateByExampleSelective(record, example);
     }
 
     @Override
     public int updateByExample(CookCommentAnswer record, CookCommentAnswerExample example) {
-        return 0;
+        return cookCommentAnswerMapper.updateByExample(record, example);
     }
 
     @Override
     public int updateByPrimaryKeySelective(CookCommentAnswer record) {
-        return 0;
+        return cookCommentAnswerMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
     public int updateByPrimaryKey(CookCommentAnswer record) {
-        return 0;
+        return cookCommentAnswerMapper.updateByPrimaryKey(record);
     }
 }
