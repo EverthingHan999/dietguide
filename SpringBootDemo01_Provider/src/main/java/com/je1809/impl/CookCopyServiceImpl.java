@@ -21,27 +21,27 @@ public class CookCopyServiceImpl implements CookCopyService {
 
     @Override
     public int countByExample(CookCopyExample example) {
-        return 0;
+        return cookCopyMapper.countByExample(example);
     }
 
     @Override
     public int deleteByExample(CookCopyExample example) {
-        return 0;
+        return cookCopyMapper.deleteByExample(example);
     }
 
     @Override
     public int deleteByPrimaryKey(Integer ccid) {
-        return 0;
+        return cookCopyMapper.deleteByPrimaryKey(ccid);
     }
 
     @Override
     public int insert(CookCopy record) {
-        return 0;
+        return cookCopyMapper.insert(record);
     }
 
     @Override
     public int insertSelective(CookCopy record) {
-        return 0;
+        return cookCopyMapper.insertSelective(record);
     }
 
     @Override
@@ -51,26 +51,26 @@ public class CookCopyServiceImpl implements CookCopyService {
 
     @Override
     public CookCopy selectByPrimaryKey(Integer ccid) {
-        return null;
+        return cookCopyMapper.selectByPrimaryKey(ccid);
     }
 
     @Override
     public int updateByExampleSelective(CookCopy record, CookCopyExample example) {
-        return 0;
+        return cookCopyMapper.updateByExampleSelective(record,example);
     }
 
     @Override
     public int updateByExample(CookCopy record, CookCopyExample example) {
-        return 0;
+        return cookCopyMapper.updateByExample(record,example);
     }
 
     @Override
     public int updateByPrimaryKeySelective(CookCopy record) {
-        return 0;
+        return cookCopyMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
     public int updateByPrimaryKey(CookCopy record) {
-        return 0;
+        return cookCopyMapper.updateByPrimaryKey(record);
     }
 }

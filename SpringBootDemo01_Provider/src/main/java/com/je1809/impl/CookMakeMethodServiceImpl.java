@@ -14,27 +14,27 @@ public class CookMakeMethodServiceImpl implements CookMakeMethodService {
     private CookMakeMethodMapper cookMakeMethodMapper;
     @Override
     public int countByExample(CookMakeMethodExample example) {
-        return 0;
+        return cookMakeMethodMapper.countByExample(example);
     }
 
     @Override
     public int deleteByExample(CookMakeMethodExample example) {
-        return 0;
+        return cookMakeMethodMapper.deleteByExample(example);
     }
 
     @Override
     public int deleteByPrimaryKey(Integer cmmid) {
-        return 0;
+        return cookMakeMethodMapper.deleteByPrimaryKey(cmmid);
     }
 
     @Override
     public int insert(CookMakeMethod record) {
-        return 0;
+        return cookMakeMethodMapper.insert(record);
     }
 
     @Override
     public int insertSelective(CookMakeMethod record) {
-        return 0;
+        return cookMakeMethodMapper.insertSelective(record);
     }
 
     @Override
@@ -44,26 +44,26 @@ public class CookMakeMethodServiceImpl implements CookMakeMethodService {
 
     @Override
     public CookMakeMethod selectByPrimaryKey(Integer cmmid) {
-        return null;
+        return cookMakeMethodMapper.selectByPrimaryKey(cmmid);
     }
 
     @Override
     public int updateByExampleSelective(CookMakeMethod record, CookMakeMethodExample example) {
-        return 0;
+        return cookMakeMethodMapper.updateByExampleSelective(record,example);
     }
 
     @Override
     public int updateByExample(CookMakeMethod record, CookMakeMethodExample example) {
-        return 0;
+        return cookMakeMethodMapper.updateByExample(record, example);
     }
 
     @Override
     public int updateByPrimaryKeySelective(CookMakeMethod record) {
-        return 0;
+        return cookMakeMethodMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
     public int updateByPrimaryKey(CookMakeMethod record) {
-        return 0;
+        return cookMakeMethodMapper.updateByPrimaryKey(record);
     }
 }

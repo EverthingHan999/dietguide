@@ -18,27 +18,27 @@ public class CookSeasoningServiceImpl implements CookSeasoningService {
 
     @Override
     public int countByExample(CookSeasoningExample example) {
-        return 0;
+        return cookSeasoningMapper.countByExample(example);
     }
 
     @Override
     public int deleteByExample(CookSeasoningExample example) {
-        return 0;
+        return cookSeasoningMapper.deleteByExample(example);
     }
 
     @Override
     public int deleteByPrimaryKey(Integer ckseid) {
-        return 0;
+        return cookSeasoningMapper.deleteByPrimaryKey(ckseid);
     }
 
     @Override
     public int insert(CookSeasoning record) {
-        return 0;
+        return cookSeasoningMapper.insert(record);
     }
 
     @Override
     public int insertSelective(CookSeasoning record) {
-        return 0;
+        return cookSeasoningMapper.insertSelective(record);
     }
 
     @Override
@@ -48,26 +48,26 @@ public class CookSeasoningServiceImpl implements CookSeasoningService {
 
     @Override
     public CookSeasoning selectByPrimaryKey(Integer ckseid) {
-        return null;
+        return cookSeasoningMapper.selectByPrimaryKey(ckseid);
     }
 
     @Override
     public int updateByExampleSelective(CookSeasoning record, CookSeasoningExample example) {
-        return 0;
+        return cookSeasoningMapper.updateByExampleSelective(record, example);
     }
 
     @Override
     public int updateByExample(CookSeasoning record, CookSeasoningExample example) {
-        return 0;
+        return cookSeasoningMapper.updateByExample(record, example);
     }
 
     @Override
     public int updateByPrimaryKeySelective(CookSeasoning record) {
-        return 0;
+        return cookSeasoningMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
     public int updateByPrimaryKey(CookSeasoning record) {
-        return 0;
+        return cookSeasoningMapper.updateByPrimaryKey(record);
     }
 }
