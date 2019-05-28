@@ -2,6 +2,7 @@ package com.je1809.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.je1809.pojo.Menu;
+import com.je1809.pojo.MenuExample;
 import com.je1809.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -18,6 +19,11 @@ public class MenuController {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    private static MenuExample example;
+    static {
+        example = new MenuExample();
+    }
+    //获取所有的
     @ResponseBody
     @GetMapping("/provider/getAllMenu")
     public List<Menu> getAllMenu(){
