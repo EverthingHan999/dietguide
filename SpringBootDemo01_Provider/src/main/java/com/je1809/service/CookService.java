@@ -1,13 +1,12 @@
-package com.je1809.mapper;
+package com.je1809.service;
 
 import com.je1809.pojo.Cook;
 import com.je1809.pojo.CookExample;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-@Mapper
-public interface CookMapper {
+
+public interface CookService {
+
     int countByExample(CookExample example);
 
     int deleteByExample(CookExample example);
@@ -22,11 +21,12 @@ public interface CookMapper {
 
     Cook selectByPrimaryKey(Integer cid);
 
-    int updateByExampleSelective(@Param("record") Cook record, @Param("example") CookExample example);
+    int updateByExampleSelective(Cook record, CookExample example);
 
-    int updateByExample(@Param("record") Cook record, @Param("example") CookExample example);
+    int updateByExample(Cook record,CookExample example);
 
     int updateByPrimaryKeySelective(Cook record);
 
     int updateByPrimaryKey(Cook record);
+
 }

@@ -2,10 +2,11 @@ package com.je1809.mapper;
 
 import com.je1809.pojo.CookComment;
 import com.je1809.pojo.CookCommentExample;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
+@Mapper
 public interface CookCommentMapper {
     int countByExample(CookCommentExample example);
 

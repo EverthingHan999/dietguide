@@ -1,13 +1,13 @@
-package com.je1809.mapper;
+package com.je1809.service;
 
 import com.je1809.pojo.CookCopy;
 import com.je1809.pojo.CookCopyExample;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-@Mapper
-public interface CookCopyMapper {
+
+public interface CookCopyService {
+
     int countByExample(CookCopyExample example);
 
     int deleteByExample(CookCopyExample example);
@@ -29,4 +29,5 @@ public interface CookCopyMapper {
     int updateByPrimaryKeySelective(CookCopy record);
 
     int updateByPrimaryKey(CookCopy record);
+
 }

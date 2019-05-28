@@ -1,13 +1,12 @@
-package com.je1809.mapper;
+package com.je1809.service;
 
 import com.je1809.pojo.ArticleDescr;
 import com.je1809.pojo.ArticleDescrExample;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-@Mapper
-public interface ArticleDescrMapper {
+
+public interface ArticleDescrService {
+
     int countByExample(ArticleDescrExample example);
 
     int deleteByExample(ArticleDescrExample example);
@@ -22,11 +21,12 @@ public interface ArticleDescrMapper {
 
     ArticleDescr selectByPrimaryKey(Integer adid);
 
-    int updateByExampleSelective(@Param("record") ArticleDescr record, @Param("example") ArticleDescrExample example);
+    int updateByExampleSelective(ArticleDescr record, ArticleDescrExample example);
 
-    int updateByExample(@Param("record") ArticleDescr record, @Param("example") ArticleDescrExample example);
+    int updateByExample(ArticleDescr record, ArticleDescrExample example);
 
     int updateByPrimaryKeySelective(ArticleDescr record);
 
     int updateByPrimaryKey(ArticleDescr record);
+
 }

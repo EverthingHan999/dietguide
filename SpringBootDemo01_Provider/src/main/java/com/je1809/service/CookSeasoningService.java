@@ -1,13 +1,15 @@
-package com.je1809.mapper;
+package com.je1809.service;
 
+import com.je1809.pojo.CookMakeMethod;
+import com.je1809.pojo.CookMakeMethodExample;
 import com.je1809.pojo.CookSeasoning;
 import com.je1809.pojo.CookSeasoningExample;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-@Mapper
-public interface CookSeasoningMapper {
+
+public interface CookSeasoningService {
+
     int countByExample(CookSeasoningExample example);
 
     int deleteByExample(CookSeasoningExample example);
