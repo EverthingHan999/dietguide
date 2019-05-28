@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 @Controller
 public class UsersController {
@@ -35,6 +36,7 @@ public class UsersController {
             List<Users> usersList = usersService.selectByExample(null);
             String s = JSON.toJSONString(usersList);
             redisTemplate.opsForValue().set("users",s);
+            redisTemplate.expire("users",10000, TimeUnit.MILLISECONDS);
             return usersList;
         }
 
