@@ -14,30 +14,29 @@ import java.util.List;
 public class CookCommentServiceAnswerImpl implements CooKCommentAnswerService {
     @Resource
     private CookCommentAnswerMapper cookCommentAnswerMapper;
-
     @Override
     public int countByExample(CookCommentAnswerExample example) {
-        return cookCommentAnswerMapper.countByExample(example);
+        return 0;
     }
 
     @Override
     public int deleteByExample(CookCommentAnswerExample example) {
-        return cookCommentAnswerMapper.deleteByExample(example);
+        return 0;
     }
 
     @Override
     public int deleteByPrimaryKey(Integer ckcaid) {
-        return cookCommentAnswerMapper.deleteByPrimaryKey(ckcaid);
+        return 0;
     }
 
     @Override
     public int insert(CookCommentAnswer record) {
-        return cookCommentAnswerMapper.insert(record);
+        return 0;
     }
 
     @Override
     public int insertSelective(CookCommentAnswer record) {
-        return cookCommentAnswerMapper.insertSelective(record);
+        return 0;
     }
 
     @Override
@@ -47,26 +46,26 @@ public class CookCommentServiceAnswerImpl implements CooKCommentAnswerService {
 
     @Override
     public CookCommentAnswer selectByPrimaryKey(Integer ckcaid) {
-        return cookCommentAnswerMapper.selectByPrimaryKey(ckcaid);
+        return null;
     }
 
     @Override
     public int updateByExampleSelective(CookCommentAnswer record, CookCommentAnswerExample example) {
-        return cookCommentAnswerMapper.updateByExampleSelective(record,example);
+        return 0;
     }
 
     @Override
     public int updateByExample(CookCommentAnswer record, CookCommentAnswerExample example) {
-        return cookCommentAnswerMapper.updateByExample(record, example);
+        return 0;
     }
 
     @Override
     public int updateByPrimaryKeySelective(CookCommentAnswer record) {
-        return cookCommentAnswerMapper.updateByPrimaryKeySelective(record);
+        return 0;
     }
 
     @Override
     public int updateByPrimaryKey(CookCommentAnswer record) {
-        return cookCommentAnswerMapper.updateByPrimaryKey(record);
+        return 0;
     }
 }

@@ -1,13 +1,11 @@
-package com.je1809.mapper;
+package com.je1809.service;
 
 import com.je1809.pojo.Article;
 import com.je1809.pojo.ArticleExample;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-@Mapper
-public interface ArticleMapper {
+
+public interface ArticleService {
     int countByExample(ArticleExample example);
 
     int deleteByExample(ArticleExample example);
@@ -22,11 +20,12 @@ public interface ArticleMapper {
 
     Article selectByPrimaryKey(Integer aid);
 
-    int updateByExampleSelective(@Param("record") Article record, @Param("example") ArticleExample example);
+    int updateByExampleSelective(Article record, ArticleExample example);
 
-    int updateByExample(@Param("record") Article record, @Param("example") ArticleExample example);
+    int updateByExample(Article record, ArticleExample example);
 
     int updateByPrimaryKeySelective(Article record);
 
     int updateByPrimaryKey(Article record);
+
 }
