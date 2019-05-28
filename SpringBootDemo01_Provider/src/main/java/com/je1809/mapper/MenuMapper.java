@@ -2,10 +2,11 @@ package com.je1809.mapper;
 
 import com.je1809.pojo.Menu;
 import com.je1809.pojo.MenuExample;
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-
+@Mapper
 public interface MenuMapper {
     int countByExample(MenuExample example);
 
