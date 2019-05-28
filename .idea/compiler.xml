@@ -13,6 +13,8 @@
         <module name="SpringBootDemo01_Provider" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel target="8" />
+    <bytecodeTargetLevel target="8">
+      <module name="dietguide" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>

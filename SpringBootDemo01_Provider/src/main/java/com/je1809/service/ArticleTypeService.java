@@ -19,6 +19,8 @@ public interface ArticleTypeService {
 
     List<ArticleType> selectByExample(ArticleTypeExample example);
 
+    List<ArticleType> selectByExampleConnect(ArticleTypeExample example);
+
     ArticleType selectByPrimaryKey(Integer atid);
 
     int updateByExampleSelective(ArticleType record, ArticleTypeExample example);

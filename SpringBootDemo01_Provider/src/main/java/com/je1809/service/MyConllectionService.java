@@ -1,13 +1,12 @@
-package com.je1809.mapper;
+package com.je1809.service;
 
 import com.je1809.pojo.MyConllection;
 import com.je1809.pojo.MyConllectionExample;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-@Mapper
-public interface MyConllectionMapper {
+
+public interface MyConllectionService {
     int countByExample(MyConllectionExample example);
 
     int deleteByExample(MyConllectionExample example);

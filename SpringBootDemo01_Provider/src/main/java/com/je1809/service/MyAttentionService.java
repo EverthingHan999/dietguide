@@ -1,13 +1,13 @@
-package com.je1809.mapper;
+package com.je1809.service;
+
 
 import com.je1809.pojo.MyAttention;
 import com.je1809.pojo.MyAttentionExample;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-@Mapper
-public interface MyAttentionMapper {
+
+public interface MyAttentionService {
     int countByExample(MyAttentionExample example);
 
     int deleteByExample(MyAttentionExample example);

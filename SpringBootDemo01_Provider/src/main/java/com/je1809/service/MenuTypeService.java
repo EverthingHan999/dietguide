@@ -1,13 +1,12 @@
-package com.je1809.mapper;
+package com.je1809.service;
 
 import com.je1809.pojo.MenuType;
 import com.je1809.pojo.MenuTypeExample;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-@Mapper
-public interface MenuTypeMapper {
+
+public interface MenuTypeService {
     int countByExample(MenuTypeExample example);
 
     int deleteByExample(MenuTypeExample example);

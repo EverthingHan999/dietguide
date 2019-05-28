@@ -46,6 +46,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public List<Article> selectByAtid(Integer atid) {
+        return articleMapper.selectByAtid(atid);
+    }
+
+    @Override
     public Article selectByPrimaryKey(Integer aid) {
         return articleMapper.selectByPrimaryKey(aid);
     }

@@ -46,6 +46,11 @@ public class ArticleTypeServiceImpl implements ArticleTypeService {
     }
 
     @Override
+    public List<ArticleType> selectByExampleConnect(ArticleTypeExample example) {
+        return articleTypeMapper.selectByExampleConnect(example);
+    }
+
+    @Override
     public ArticleType selectByPrimaryKey(Integer atid) {
         return articleTypeMapper.selectByPrimaryKey(atid);
     }

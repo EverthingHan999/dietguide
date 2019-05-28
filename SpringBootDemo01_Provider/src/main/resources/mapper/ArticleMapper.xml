@@ -92,6 +92,12 @@
     from article
     where aid = #{aid,jdbcType=INTEGER}
   </select>
+  <select id="selectByAtid" resultMap="BaseResultMapConnect" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from article
+    where atid = #{atid,jdbcType=INTEGER}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from article
     where aid = #{aid,jdbcType=INTEGER}
@@ -255,4 +261,17 @@
       remarks = #{remarks,jdbcType=VARCHAR}
     where aid = #{aid,jdbcType=INTEGER}
   </update>
+  <resultMap id="BaseResultMapConnect" type="com.je1809.pojo.Article" >
+    <id column="aid" property="aid" jdbcType="INTEGER" />
+    <result column="atid" property="atid" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="aname" property="aname" jdbcType="VARCHAR" />
+    <result column="aimg" property="aimg" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="lookcount" property="lookcount" jdbcType="INTEGER" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <association property="users" column="uid" select="com.je1809.mapper.UsersMapper.selectByPrimaryKey" />
+    <collection property="articleDescrList" column="aid" ofType="com.je1809.pojo.ArticleDescr"
+                select="com.je1809.mapper.ArticleDescrMapper.selectByAid" />
+  </resultMap>
 </mapper>

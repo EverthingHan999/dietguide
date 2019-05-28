@@ -1,13 +1,12 @@
-package com.je1809.mapper;
+package com.je1809.service;
 
 import com.je1809.pojo.StuffDescr;
 import com.je1809.pojo.StuffDescrExample;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
-@Mapper
-public interface StuffDescrMapper {
+
+public interface StuffDescrService {
     int countByExample(StuffDescrExample example);
 
     int deleteByExample(StuffDescrExample example);

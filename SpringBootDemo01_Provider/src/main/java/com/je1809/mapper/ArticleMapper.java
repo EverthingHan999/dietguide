@@ -20,6 +20,8 @@ public interface ArticleMapper {
 
     List<Article> selectByExample(ArticleExample example);
 
+    List<Article> selectByAtid(Integer atid);
+
     Article selectByPrimaryKey(Integer aid);
 
     int updateByExampleSelective(@Param("record") Article record, @Param("example") ArticleExample example);
