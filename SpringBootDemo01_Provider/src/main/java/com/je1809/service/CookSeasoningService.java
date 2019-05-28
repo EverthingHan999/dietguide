@@ -2,31 +2,33 @@ package com.je1809.service;
 
 import com.je1809.pojo.CookMakeMethod;
 import com.je1809.pojo.CookMakeMethodExample;
+import com.je1809.pojo.CookSeasoning;
+import com.je1809.pojo.CookSeasoningExample;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
 public interface CookSeasoningService {
 
-    int countByExample(CookMakeMethodExample example);
+    int countByExample(CookSeasoningExample example);
 
-    int deleteByExample(CookMakeMethodExample example);
+    int deleteByExample(CookSeasoningExample example);
 
-    int deleteByPrimaryKey(Integer cmmid);
+    int deleteByPrimaryKey(Integer ckseid);
 
-    int insert(CookMakeMethod record);
+    int insert(CookSeasoning record);
 
-    int insertSelective(CookMakeMethod record);
+    int insertSelective(CookSeasoning record);
 
-    List<CookMakeMethod> selectByExample(CookMakeMethodExample example);
+    List<CookSeasoning> selectByExample(CookSeasoningExample example);
 
-    CookMakeMethod selectByPrimaryKey(Integer cmmid);
+    CookSeasoning selectByPrimaryKey(Integer ckseid);
 
-    int updateByExampleSelective(@Param("record") CookMakeMethod record, @Param("example") CookMakeMethodExample example);
+    int updateByExampleSelective(@Param("record") CookSeasoning record, @Param("example") CookSeasoningExample example);
 
-    int updateByExample(@Param("record") CookMakeMethod record, @Param("example") CookMakeMethodExample example);
+    int updateByExample(@Param("record") CookSeasoning record, @Param("example") CookSeasoningExample example);
 
-    int updateByPrimaryKeySelective(CookMakeMethod record);
+    int updateByPrimaryKeySelective(CookSeasoning record);
 
-    int updateByPrimaryKey(CookMakeMethod record);
+    int updateByPrimaryKey(CookSeasoning record);
 }
