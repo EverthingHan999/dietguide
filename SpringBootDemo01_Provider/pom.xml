@@ -107,6 +107,8 @@
                 <configuration>
                     <fork>true</fork>
                     <addResources>true</addResources>
+                    <!--修改乱码-->
+                    <jvmArguments>-Dfile.encoding=UTF-8</jvmArguments>
                 </configuration>
             </plugin>
             <plugin>
