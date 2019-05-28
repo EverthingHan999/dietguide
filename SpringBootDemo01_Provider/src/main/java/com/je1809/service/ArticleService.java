@@ -18,6 +18,8 @@ public interface ArticleService {
 
     List<Article> selectByExample(ArticleExample example);
 
+    List<Article> selectByAtid(Integer atid);
+
     Article selectByPrimaryKey(Integer aid);
 
     int updateByExampleSelective(Article record, ArticleExample example);

@@ -19,6 +19,8 @@ public interface ArticleDescrService {
 
     List<ArticleDescr> selectByExample(ArticleDescrExample example);
 
+    List<ArticleDescr> selectByAid(Integer aid);
+
     ArticleDescr selectByPrimaryKey(Integer adid);
 
     int updateByExampleSelective(ArticleDescr record, ArticleDescrExample example);

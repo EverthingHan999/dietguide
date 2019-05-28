@@ -46,6 +46,11 @@ public class ArticleDescrServiceImpl implements ArticleDescrService {
     }
 
     @Override
+    public List<ArticleDescr> selectByAid(Integer aid) {
+        return articleDescrMapper.selectByAid(aid);
+    }
+
+    @Override
     public ArticleDescr selectByPrimaryKey(Integer adid) {
         return articleDescrMapper.selectByPrimaryKey(adid);
     }

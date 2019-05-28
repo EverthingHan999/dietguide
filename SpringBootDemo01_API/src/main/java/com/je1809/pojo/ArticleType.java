@@ -1,6 +1,7 @@
 package com.je1809.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class ArticleType implements Serializable {
     private Integer atid;
@@ -9,7 +10,17 @@ public class ArticleType implements Serializable {
 
     private String remarks;
 
+    private List<Article> articleList;
+
     private static final long serialVersionUID = 1L;
+
+    public List<Article> getArticleList() {
+        return articleList;
+    }
+
+    public void setArticleList(List<Article> articleList) {
+        this.articleList = articleList;
+    }
 
     public Integer getAtid() {
         return atid;

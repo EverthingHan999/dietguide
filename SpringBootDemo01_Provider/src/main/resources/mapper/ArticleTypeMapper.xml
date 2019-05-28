@@ -178,4 +178,25 @@
       remarks = #{remarks,jdbcType=VARCHAR}
     where atid = #{atid,jdbcType=INTEGER}
   </update>
+  <resultMap id="BaseResultMapConnect" type="com.je1809.pojo.ArticleType" >
+    <id column="atid" property="atid" jdbcType="INTEGER" />
+    <result column="atname" property="atname" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <collection property="articleList" column="atid" ofType="com.je1809.pojo.Article"
+                select="com.je1809.mapper.ArticleMapper.selectByAtid" />
+  </resultMap>
+  <select id="selectByExampleConnect" resultMap="BaseResultMapConnect" parameterType="com.je1809.pojo.ArticleTypeExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from article_type
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
 </mapper>

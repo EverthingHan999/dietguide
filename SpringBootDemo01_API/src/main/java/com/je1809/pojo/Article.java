@@ -2,6 +2,7 @@ package com.je1809.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class Article implements Serializable {
     private Integer aid;
@@ -20,7 +21,27 @@ public class Article implements Serializable {
 
     private String remarks;
 
+    private Users users;
+
+    private List<ArticleDescr> articleDescrList;
+
     private static final long serialVersionUID = 1L;
+
+    public List<ArticleDescr> getArticleDescrList() {
+        return articleDescrList;
+    }
+
+    public void setArticleDescrList(List<ArticleDescr> articleDescrList) {
+        this.articleDescrList = articleDescrList;
+    }
+
+    public Users getUsers() {
+        return users;
+    }
+
+    public void setUsers(Users users) {
+        this.users = users;
+    }
 
     public Integer getAid() {
         return aid;
