@@ -27,4 +27,10 @@ public class UsersController {
     public String index(){
         return "index";
     }
+
+    @GetMapping("/consumer/abc")
+    @ResponseBody
+    public String index1(){
+        return "abc";
+    }
 }

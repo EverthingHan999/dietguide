@@ -16,3 +16,4 @@ spring:
     suffix: .html
     prefix: classpath:/static/
     content-type: text/html
+
