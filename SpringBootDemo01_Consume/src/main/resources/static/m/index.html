@@ -1,0 +1,131 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <?php foreach ($menber as $men) { $username=$men['uname']; } ?>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title><?php echo $username; ?>的厨房,<?php echo $username; ?>的美食博客,<?php echo $username; ?>的菜谱_饮食web</title>
+    <meta name="keywords"
+          content="<?php echo $username; ?>的美食博客,<?php echo $username; ?>的个人主页,<?php echo $username; ?>的厨房,<?php echo $username; ?>的博客,饮食web"/>
+    <meta name="description"
+          content="欢迎来到<?php echo $username; ?>的厨房主页，<?php echo $username; ?>的美食博客，在这里都是<?php echo $username; ?>的菜谱和美食心得，大家可以更好的和<?php echo $username; ?>交流美食，以厨交友，多多益善，这里有全部关于<?php echo $username; ?>的信息动态"/>
+    <script type="text/javascript">
+        try {
+            var urlhash = window.location.hash;
+            if (!urlhash.match("fromapp")) {
+                if ((navigator.userAgent.match(/(iPhone|iPod|Android|ios|iPad)/i))) {
+                    window.location = "http://m.yinshiweb.com/user/<?php echo $id; ?>";
+                }
+            }
+        } catch (err) {
+        }
+    </script>
+    <?php include(DEDEMEMBER."/templets/u_head.htm"); ?>
+
+    <div id="container">
+        <div id="mainContent">
+            <script src="../plus/ad_js.php-aid=32.js" language='javascript'></script>
+            <div id="m_header">
+
+                <div id="guanzhu">
+
+                    <div id="newdigg<?php echo $id; ?>">
+                    </div>
+                    <script language="javascript" type="text/javascript">getDigg( < ? php echo
+                    $id;
+                        ?
+                    >)
+                    ;</script>
+                </div>
+
+                <img class="userblur"
+                     src="--php foreach ($menber as $men) { if(!$men[%27face%27]==%27%27) { echo $men[%27face%27]; }else {echo %27-member-templets-images-dfboy.png%27; }} --"
+                     alt="<?php echo $username; ?>的厨房背景"/>
+
+                <img class="imgtou"
+                     src="--php foreach ($menber as $men) { if(!$men[%27face%27]==%27%27) { echo $men[%27face%27]; }else {echo %27-member-templets-images-dfboy.png%27; }} --"
+                     alt="<?php echo $username; ?>的厨房"/>
+                <h2><?php echo $username; ?>'s 厨房</h2>
+                <p><a>http://www.yinshiweb.com/m/<?php echo $id; ?></a></p>
+
+            </div>
+
+
+            <div id="leftBox">
+                <div id="m_box">
+                    <div id="m_muse">
+                        <li id="mu2"><a class="hover">厨房首页</a></li>
+                        <li><a>TA的食谱</a></li>
+                        <li><a>TA的收藏</a></li>
+                        <li><a>TA关注的</a></li>
+                        <li><a>关注TA的</a></li>
+                    </div>
+
+                    <div class="stow_new">
+                        <ul>
+                            <h3>TA发布的食谱</h3>
+                            <?php
+foreach ($shipus as $shipu) {
+echo "<li>
+                            <div class='stow_img'><a id'].".html'><img src="-.$shipu[" litpic2']."'
+                                alt='".$shipu['title']."' /></a></div>
+                            <p><a id'].".html'>".$shipu['title']."</a><br/><span>on ".strftime("%Y/%m/%d",$shipu['pubdate'])."</span>
+                            </p></li>";
+                            }
+                            ?>
+                        </ul>
+                    </div>
+
+                    <script>h9703();</script>
+
+                    <div class="stow_new">
+                        <h3>TA收藏的食谱</h3>
+                        <ul>
+                            <?php
+foreach ($stows as $stow) {
+echo "<li>
+                            <div class='stow_img'><a aid'].".html'><img src="-.$stow[" litpic2']."'
+                                alt='".$stow['title']."' /></a></div>
+                            <p><a aid'].".html'>".$stow['title']."</a><br/><span>by <a href="-.$stow[" sid']."'>".$stow['writer']."</a></span>
+                            </p></li>";
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                    <div class="fried_new">
+                        <h3>关注TA的厨友</h3>
+                        <?php
+foreach ($friends as $fri) {
+echo "<li><a mid']."'><img src="-;if(!$fri[" face']=='') {
+                        echo $fri['face']; }else {
+                        echo '/member/templets/images/dfboy.png'; }
+                        echo "' alt='".$fri['uname']."' /></a><a mid']."'>".$fri['uname']."</a><br/><span>On ".strftime("%m/%d",$fri['addtime'])."</span></li>
+                        ";
+                        }
+                        ?>
+                    </div>
+                    <div class="fried_new">
+                        <h3>TA关注的厨友</h3>
+                        <?php
+foreach ($friendsto as $frito) {
+echo "<li><a mid']."'><img src="-;if(!$frito[" face']=='') {
+                        echo $frito['face']; }else {
+                        echo '/member/templets/images/dfboy.png'; }
+                        echo "' alt='".$frito['uname']."' /></a><a mid']."'>".$frito['uname']."</a><br/><span>On  ".strftime("%m/%d",$frito['addtime'])."</span></li>
+                        ";
+                        }
+                        ?>
+                    </div>
+
+                </div>
+
+            </div>
+
+            <script>h9701();</script>
+
+
+        </div>
+    </div>
+    <?php include(DEDEMEMBER."/templets/u_foot.htm"); ?>
+    </body>
+</html>
