@@ -20,6 +20,8 @@ public interface ArticleTypeMapper {
 
     List<ArticleType> selectByExample(ArticleTypeExample example);
 
+    List<ArticleType> selectByExampleConnect(ArticleTypeExample example);
+
     ArticleType selectByPrimaryKey(Integer atid);
 
     int updateByExampleSelective(@Param("record") ArticleType record, @Param("example") ArticleTypeExample example);

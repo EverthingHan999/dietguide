@@ -20,6 +20,8 @@ public interface ArticleDescrMapper {
 
     List<ArticleDescr> selectByExample(ArticleDescrExample example);
 
+    List<ArticleDescr> selectByAid(Integer aid);
+
     ArticleDescr selectByPrimaryKey(Integer adid);
 
     int updateByExampleSelective(@Param("record") ArticleDescr record, @Param("example") ArticleDescrExample example);
