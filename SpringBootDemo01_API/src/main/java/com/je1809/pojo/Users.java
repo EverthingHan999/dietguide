@@ -1,6 +1,7 @@
 package com.je1809.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class Users implements Serializable {
     private Integer uid;
@@ -18,6 +19,36 @@ public class Users implements Serializable {
     private Integer attentionCount;
 
     private Integer utype;
+
+    private List<Cook> cooks;
+
+    private List<MyConllection> myConllections;
+
+    private List<MyAttention> myAttentions;
+
+    public List<Cook> getCooks() {
+        return cooks;
+    }
+
+    public void setCooks(List<Cook> cooks) {
+        this.cooks = cooks;
+    }
+
+    public List<MyConllection> getMyConllections() {
+        return myConllections;
+    }
+
+    public void setMyConllections(List<MyConllection> myConllections) {
+        this.myConllections = myConllections;
+    }
+
+    public List<MyAttention> getMyAttentions() {
+        return myAttentions;
+    }
+
+    public void setMyAttentions(List<MyAttention> myAttentions) {
+        this.myAttentions = myAttentions;
+    }
 
     private static final long serialVersionUID = 1L;
 

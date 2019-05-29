@@ -7,7 +7,12 @@ $(document).ready(function(){
 		height: 300,                 // set editor height
 		minHeight: null,             // set minimum height of editor
 		maxHeight: null,             // set maximum height of editor
-		focus: true
+		focus: true,
+        callbacks:{
+            onImageUpload:function (files,editor,$editable) {
+                alert(123456);
+            }
+        }
 	});
 });
 

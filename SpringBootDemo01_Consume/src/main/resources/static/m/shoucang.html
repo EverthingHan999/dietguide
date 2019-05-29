@@ -7,7 +7,8 @@
     <meta name="keywords" content="我的厨房,管理中心"/>
     <meta name="description" content="这是我的厨房，用户的管理中心。"/>
     <link href="../img/layout.css" rel="stylesheet" type="text/css"/>
-    <script language="javascript" type="text/javascript" src="/static/include/dedeajax2.js"></script>
+    <script language="javascript" type="text/javascript" src="../include/dedeajax2.js"></script>
+
 </head>
 <body>
 
@@ -104,7 +105,7 @@
         </div>
         <div id="longindiv">
             <div id="userlogin">
-                <span><a href="/consumer/logout" rel="nofollow">注销</a></span>
+                <span><a href="">注销</a></span>
             </div>
         </div>
     </div>
@@ -114,96 +115,30 @@
     <div id="mainContent">
         <div id="member">
             <div id="caidan">
-                <h2>用户管理中心</h2>
+                <h2>我收藏的菜谱</h2>
                 <ul>
-                    <li><a class="caidanhover" href='../m/index.html'>主页</a></li>
+                    <li><a href='../m/index.html'>主页</a></li>
                     <li><a href='../m/caipu.html'>菜谱</a></li>
                     <li><a href='../m/zuopin.html'>作品</a></li>
                     <li><a href='../m/wenzhang.html'>文章</a></li>
-                    <li><a href='../m/shoucang.html'>收藏</a></li>
+                    <li><a class="caidanhover" href='../m/shoucang.html'>收藏</a></li>
                     <li><a href='../m/guanzhu.html'>关注</a></li>
                 </ul>
             </div>
             <div id="welcome">
-                <img src="/member/templets/images/dfboy.png"/>
-                <ul>
-                    <li><a href='/member/content_list.php?channelid=2'>发布您的原创食谱</a></li>
-                    <li><a href="/zuofa/">找找您钟意的食谱</a></li>
-                </ul>
-                <p>从今天起，做一个幸福的人<br/>
-                    喂马，劈柴，周游世界<br/>
-                    从今天起，关心粮食和蔬菜...</p>
+                <img src='/member/templets/images/dfboy.png'/>    <ul>
+                <li><a href='/member/content_list.php?channelid=2'>发布您的原创食谱</a></li>
+                <li><a href="/zuofa/">找找您钟意的食谱</a></li>
+            </ul>
+                <p>亲，收藏自己喜欢吃的食谱，收藏家里人喜欢的食谱，自己动动手，让每一顿饭变得更完美。</p>
             </div>
             <div class="admin_new">
-                <h3>我最近发布的食谱...</h3>
-                <ul></ul>
+                <h3>我收藏的菜谱...</h3>
+                <ul>    </ul>
             </div>
-            <style>
-                .riji_new {
-                    width: 635px;
-                    float: left;
-                    padding: 0 0 26px 20px;
-                    font-size: 13px;
-                }
-
-                .riji_new h3 {
-                    font-size: 15px;
-                    margin-bottom: 18px;
-                    font-weight: normal;
-                    color: #54821e;
-                }
-
-                .riji_new li {
-                    float: left;
-                    width: 605px;
-                    line-height: 2em;
-                    padding: 8px 0;
-                    border-bottom: dashed 1px #ddd;
-                }
-
-                .rijibiaoti {
-                    float: left;
-                    width: 480px;
-                    font-size: 14px;
-                }
-
-                .rijitime {
-                    float: left;
-                    width: 120px;
-                    color: #999;
-                    text-align: right;
-                }
-            </style>
-            <div class="riji_new">
-                <h3>我发布的生活文章...</h3>
-                <ul></ul>
+            <div class="pagelistbox">
+                <span>共 0 页/0条记录</span>
             </div>
-            <div class="admin_new">
-                <h3>我最近收藏的食谱...</h3>
-                <ul></ul>
-            </div>
-            <div class="admin_new">
-                <h3>大家最近发的食谱...</h3>
-                <ul>
-                    <li><span><a href='/shipu/258845.html' target='_blank'><img
-                        src="/uploads/allimg/190318/1552T94a1IZ-33cR-lp.jpg"/></a></span>
-                        <p><a href='/shipu/258845.html' target='_blank'>煎元宵</a></p>
-                        <p>2019/05/15</p></li>
-                    <li><span><a href='/shipu/258844.html' target='_blank'><img
-                        src="/uploads/allimg/190318/1552T94934cZ-221U7-lp.jpg"/></a></span>
-                        <p><a href='/shipu/258844.html' target='_blank'>高汤白菜</a></p>
-                        <p>2019/03/18</p></li>
-                    <li><span><a href='/shipu/258843.html' target='_blank'><img
-                        src="/uploads/allimg/190318/1552T94RH230-32Q08-lp.jpg"/></a></span>
-                        <p><a href='/shipu/258843.html' target='_blank'>西红柿刀削面</a></p>
-                        <p>2019/03/18</p></li>
-                    <li><span><a href='/shipu/258842.html' target='_blank'><img
-                        src="/uploads/allimg/190318/1552T94N3S30-1962T-lp.jpg"/></a></span>
-                        <p><a href='/shipu/258842.html' target='_blank'>萝卜煲</a></p>
-                        <p>2019/03/18</p></li>
-                </ul>
-            </div>
-
         </div>
 
         <div id="rightBox">
@@ -249,12 +184,4 @@
     </div>
 </div>
 </body>
-<script type="text/javascript" src="/static/pro/js/jquery-2.1.1.min.js"/>
-<script type="text/javascript">
-    $(function () {
-        function xianshi() {
-            $.post("");
-        }
-    })
-</script>
 </html>
