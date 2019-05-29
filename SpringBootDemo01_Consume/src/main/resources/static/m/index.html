@@ -2,7 +2,6 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <?php foreach ($menber as $men) { $username=$men['uname']; } ?>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title><?php echo $username; ?>的厨房,<?php echo $username; ?>的美食博客,<?php echo $username; ?>的菜谱_饮食web</title>
     <meta name="keywords"
@@ -20,7 +19,7 @@
         } catch (err) {
         }
     </script>
-    <?php include(DEDEMEMBER."/templets/u_head.htm"); ?>
+</head>
 
     <div id="container">
         <div id="mainContent">
@@ -126,6 +125,5 @@ echo "<li><a mid']."'><img src="-;if(!$frito[" face']=='') {
 
         </div>
     </div>
-    <?php include(DEDEMEMBER."/templets/u_foot.htm"); ?>
     </body>
 </html>
