@@ -1,5 +1,4 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -40,8 +39,8 @@
             <ul>
                 <li><a href="../index.html"><span id="wuico">网站首页</span></a></li>
                 <li><a href="index.html"><span id="fenlei_hover">菜谱大全</span></a>
-                    <div class="subNav">
-                        <ul>
+                    <div class="subNav" id="cpdq">
+                       <!-- <ul>
                             <h4><a href="32-1.html">家常食材</a></h4>
                             <a href="33-1.html">肉类</a>
                             <a href="35-1.html">蔬菜</a>
@@ -73,7 +72,7 @@
                             <a href="../chuju/weiboluzuocai/index.html">微波炉</a>
                             <a href="../chuju/dianfanguozuocai/index.html">电饭锅</a>
                             <a href="../chuju/shaguocaipu/index.html">砂锅</a></ul>
-                        <h2><a href="../daquan/index.html">全部分类</a></h2>
+                        <h2><a href="../daquan/index.html">全部分类</a></h2>-->
                     </div>
                 </li>
                 <li><a href="../caidan/index.html"><span>菜单</span></a></li>
@@ -336,7 +335,7 @@
         </div>
 
         <div id="rightBox" class="rightBox_list">
-            <script>h3001();</script>
+
 
             <div class="right_list">
                 <h4>热门菜谱</h4>
@@ -374,7 +373,7 @@
 
                 </ul>
             </div>
-            <script>h3002();</script>
+
             <div class="right_list">
                 <h4>热门文章</h4>
                 <ul>
@@ -393,7 +392,7 @@
 
                 </ul>
             </div>
-            <script>h3003();</script>
+
             <div id="xiangguanyuedu">
                 <h3>推荐图文</h3>
                 <li><a href="../zhishi/227623.html" class='lwenk'><img src="../img/grey.gif"
@@ -482,7 +481,7 @@
 <script type="text/javascript" src="../img/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="../img/jquery.lazyload.min.js"></script>
 <script language="javascript" type="text/javascript">
-    CheckLogina();
+
     $(function () {
         $("img").lazyload({threshold: 80, failure_limit: 50});
     })
@@ -513,6 +512,75 @@
         var s = document.getElementsByTagName("script")[0];
         s.parentNode.insertBefore(hm, s);
     })();
+</script>
+<script type="text/javascript">
+    $(function () {
+        $.get("/consume/getCookBookByCbid",function (data) {
+            /* data[0].cookbootSeconds ;*/
+            // console.log(data[0].cbname)
+            //  console.log(data[0].cookbootSeconds[0].cbname)
+            var ul = $("<ul></ul>");
+            var h4 = $("<h4><a href='#'>" + data[0].cbname + "</a></h4>");
+            var list1 = data[0].cookbootSeconds;
+            var a1 = ""
+            for (var key in list1) {
+                console.log(list1[key].cbname);
+                a1 += "<a href=''>" + list1[key].cbname + "</a>"
+
+            }
+            ul.append(h4);
+            ul.append(a1);
+
+            var ul2 = $("<ul></ul>");
+            console.log(data[1].cbname);
+            var h42 = $("<h4><a href='#'>" + data[1].cbname + "</a></h4>");
+            var list2 = data[1].cookbootSeconds;
+            var a2 = ""
+            for (var key in list2) {
+                console.log(list2[key].cbname);
+                a2 += "<a href='33-1.html'>" + list2[key].cbname + "</a>"
+
+            }
+            ul2.append(h42);
+            ul2.append(a2);
+
+
+            var ul3 = $("<ul></ul>");
+            console.log(data[2].cbname);
+            var h43 = $("<h4><a href='#'>" + data[2].cbname + "</a></h4>");
+            var list3 = data[2].cookbootSeconds;
+            var a3 = ""
+            for (var key in list3) {
+                console.log(list3[key].cbname);
+                a3 += "<a href='33-1.html'>" + list3[key].cbname + "</a>"
+
+            }
+            ul3.append(h43);
+            ul3.append(a3);
+
+            var ul4 = $("<ul></ul>");
+            console.log(data[3].cbname);
+            var h44 = $("<h4><a href='#'>" + data[3].cbname + "</a></h4>");
+            var list4 = data[3].cookbootSeconds;
+            var a4 = ""
+            for (var key in list4) {
+                console.log(list4[key].cbname);
+                a4 += "<a href='33-1.html'>" + list4[key].cbname + "</a>"
+
+            }
+            ul4.append(h44);
+            ul4.append(a4);
+
+            var h2 = $("<h2><a href='../daquan/index.html'>全部分类</a></h2>");
+
+
+            $("#cpdq").append(ul);
+            $("#cpdq").append(ul2);
+            $("#cpdq").append(ul3);
+            $("#cpdq").append(ul4);
+            $("#cpdq").append(h2);
+        });
+    })
 </script>
 </body>
 </html>

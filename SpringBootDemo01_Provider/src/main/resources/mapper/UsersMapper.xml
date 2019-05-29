@@ -255,4 +255,10 @@
       utype = #{utype,jdbcType=INTEGER}
     where uid = #{uid,jdbcType=INTEGER}
   </update>
+    <select id="cook2" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from users
+        where uid=#{uid}
+    </select>
 </mapper>

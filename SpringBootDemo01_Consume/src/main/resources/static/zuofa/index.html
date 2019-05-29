@@ -115,19 +115,19 @@
             <div id="famenu">
                 <a href="../index.html">网站首页</a> > <a href="index.html">菜谱大全</a> > 按食材名称分类
             </div>
-            <ul>
-                <li><a href="33-1.html">肉类</a></li>
-                <li><a href="35-1.html">蔬菜</a></li>
+            <ul id="d2">
+                <!--<li><a href="33-1.html">肉类</a></li>-->
+                <!--<li><a href="35-1.html">蔬菜</a></li>
                 <li><a href="36-1.html">海鲜水产</a></li>
                 <li><a>菌菇花朵</a></li>
                 <li><a>水果干果</a></li>
                 <li><a>米面淀粉</a></li>
-                <li><a href="413-1.html">蛋奶豆</a></li>
+                <li><a href="413-1.html">蛋奶豆</a></li>-->
             </ul>
         </div>
         <div class="clearfix"></div>
-        <div class="chaocai">
-            <li>
+        <div class="chaocai" id="sc">
+            <!--<li>
                 <a><img src="../img/grey.gif" data-original="/uploads/userup/1692/1551a20U-2H5-lp.jpg"
                         alt="港式脆皮烧肉"/></a>
                 <p><a>港式脆皮烧肉</a><br/>by <a class="zuozhe">小美</a></p></li>
@@ -167,7 +167,7 @@
                 <a href="../shipu/253772.html"><img src="../img/grey.gif"
                                                     data-original="/uploads/userup/2042/154635KD-6355-lp.jpg"
                                                     alt="橙汁牛肉"/></a>
-                <p><a href="../shipu/253772.html">橙汁牛肉</a><br/>by <a class="zuozhe">小蝶</a></p></li>
+                <p><a href="../shipu/253772.html">橙汁牛肉</a><br/>by <a class="zuozhe">小蝶</a></p></li>-->
 
         </div>
 
@@ -616,7 +616,7 @@
               var a1=""
               for (var key in list1){
                   console.log(list1[key].cbname);
-                   a1 += "<a href='33-1.html'>"+list1[key].cbname+"</a>"
+                   a1 += "<a href=''>"+list1[key].cbname+"</a>"
                     
               }
               ul.append(h4);
@@ -671,9 +671,33 @@
               $("#cpdq").append(ul4);
               $("#cpdq").append(h2);
 
+
+               var twos = data[0].cookbootSeconds;
+               var li = "";
+               for (var key in twos) {
+                   li += "<li><a href='33-1.html'>" + twos[key].cbname + "</a></li>"
+                   console.log(twos[key].cbname)
+               }
+               $("#d2").append(li)
            });
        }
        getType();
+
+       $.get("/consume/redisCookUser",function (data) {
+           /*var img ="";
+           var p ="";*/
+           for (var key in data) {
+               var li = $("<li></li>");
+               var imgs = data[key].cimg;
+               var img = $("<a><img src='img/+" + imgs + ".jpg' data-original='/uploads/userup/1692/1551a20U-2H5-lp.jpg' alt='港式脆皮烧肉'/></a>");
+               var p = $("<p><a>"+data[key].cname+"</a><br/>by <a class='zuozhe'>"+data[key].cookuser[0].uname+"</a></p>");
+               li.append(img);
+               li.append(p);
+
+               $("#sc").append(li);
+           }
+       });
+
    });
 </script>
 </body>
