@@ -56,6 +56,11 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
+    public Article selectByPrimaryKeyConnect(Integer aid) {
+        return articleMapper.selectByPrimaryKeyConnect(aid);
+    }
+
+    @Override
     public int updateByExampleSelective(Article record, ArticleExample example) {
         return articleMapper.updateByExampleSelective(record,example);
     }

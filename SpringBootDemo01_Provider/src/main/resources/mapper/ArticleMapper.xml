@@ -274,4 +274,10 @@
     <collection property="articleDescrList" column="aid" ofType="com.je1809.pojo.ArticleDescr"
                 select="com.je1809.mapper.ArticleDescrMapper.selectByAid" />
   </resultMap>
+  <select id="selectByPrimaryKeyConnect" resultMap="BaseResultMapConnect" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from article
+    where aid = #{aid,jdbcType=INTEGER}
+  </select>
 </mapper>

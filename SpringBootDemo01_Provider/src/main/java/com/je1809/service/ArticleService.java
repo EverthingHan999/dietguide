@@ -22,6 +22,8 @@ public interface ArticleService {
 
     Article selectByPrimaryKey(Integer aid);
 
+    Article selectByPrimaryKeyConnect(Integer aid);
+
     int updateByExampleSelective(Article record, ArticleExample example);
 
     int updateByExample(Article record, ArticleExample example);
