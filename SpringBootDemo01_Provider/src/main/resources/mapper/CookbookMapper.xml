@@ -193,4 +193,16 @@
       remarks = #{remarks,jdbcType=VARCHAR}
     where cbid = #{cbid,jdbcType=INTEGER}
   </update>
+  <resultMap id="cookbook" type="com.je1809.pojo.Cookbook" >
+    <id column="cbid" property="cbid" jdbcType="INTEGER" />
+    <result column="cbname" property="cbname" jdbcType="VARCHAR" />
+    <result column="descr" property="descr" jdbcType="VARCHAR" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <collection property="cookbootSeconds" column="cbid" select="com.je1809.mapper.CookbootSecondMapper.cookboot2"/>
+  </resultMap>
+  <select id="cookboot3" resultMap="cookbook" >
+    select
+    <include refid="Base_Column_List" />
+    from cookbook
+  </select>
 </mapper>

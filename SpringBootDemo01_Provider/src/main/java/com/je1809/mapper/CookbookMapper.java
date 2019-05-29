@@ -29,4 +29,6 @@ public interface CookbookMapper {
     int updateByPrimaryKeySelective(Cookbook record);
 
     int updateByPrimaryKey(Cookbook record);
+
+    List<Cookbook> cookboot3();
 }

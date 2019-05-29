@@ -45,7 +45,7 @@ public class CookBookServiceImpl implements CookBookService {
 
     @Override
     public Cookbook selectByPrimaryKey(Integer cbid) {
-        return null;
+        return cookBookMapper.selectByPrimaryKey(cbid);
     }
 
     @Override
@@ -66,5 +66,10 @@ public class CookBookServiceImpl implements CookBookService {
     @Override
     public int updateByPrimaryKey(Cookbook record) {
         return 0;
+    }
+
+    @Override
+    public List<Cookbook> cookboot3() {
+        return cookBookMapper.cookboot3();
     }
 }

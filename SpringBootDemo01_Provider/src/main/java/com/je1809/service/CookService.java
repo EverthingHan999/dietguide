@@ -29,4 +29,6 @@ public interface CookService {
 
     int updateByPrimaryKey(Cook record);
 
+    List<Cook> cook3();
+
 }
