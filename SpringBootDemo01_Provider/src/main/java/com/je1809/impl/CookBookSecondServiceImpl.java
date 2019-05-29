@@ -44,7 +44,7 @@ public class CookBookSecondServiceImpl implements CookBookSecondService {
 
     @Override
     public CookbootSecond selectByPrimaryKey(Integer cbsid) {
-        return null;
+        return cookbootSecondMapper.selectByPrimaryKey(cbsid);
     }
 
     @Override
