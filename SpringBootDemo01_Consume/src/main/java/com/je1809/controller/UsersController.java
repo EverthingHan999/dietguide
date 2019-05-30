@@ -49,10 +49,11 @@ public class UsersController {
         }
     }
 
+    @ResponseBody
     @GetMapping("/consumer/logout")
-    public String userLogout(HttpSession session){
+    public int userLogout(HttpSession session){
         session.setAttribute("user",null);
-        return "/login/login";
+        return 1;
     }
 
     @ResponseBody
@@ -62,6 +63,17 @@ public class UsersController {
         HashMap<String, String> map = new HashMap<>();
         map.put("uname",uname);
         Users user = restTemplate.getForObject(REST_URL_PREFIX + "/provider/getIndexInfo?uname={uname}", Users.class, map);
+        if (user != null){
+            return user;
+        }else {
+            return null;
+        }
+    }
+
+    @ResponseBody
+    @PostMapping("/consumer/getUserInfo")
+    public Users getUserInfo(HttpSession session){
+        Users user = (Users)session.getAttribute("user");
         if (user != null){
             return user;
         }else {

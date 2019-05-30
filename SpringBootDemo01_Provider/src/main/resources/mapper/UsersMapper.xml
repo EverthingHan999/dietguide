@@ -273,7 +273,7 @@
         <result column="utype" property="utype" jdbcType="INTEGER" />
         <collection property="cooks" column="uid" select="com.je1809.mapper.CookMapper.selectCookByUid"/>
         <collection property="myConllections" column="uid" select="com.je1809.mapper.MyConllectionMapper.selectCoollectionByUid"/>
-        <collection property="myAttentions" column="uid" select="com.je1809.mapper.MyAttentionMapper.selectAttentionByUid"/>
+        <collection property="articles" column="uid" select="com.je1809.mapper.ArticleMapper.selectByUid"/>
     </resultMap>
     <select id="selectIndexByUserName" resultMap="BaseResultMap2">
         select

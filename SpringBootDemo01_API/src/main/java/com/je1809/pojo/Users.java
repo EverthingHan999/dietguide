@@ -24,7 +24,7 @@ public class Users implements Serializable {
 
     private List<MyConllection> myConllections;
 
-    private List<MyAttention> myAttentions;
+    private List<Article> articles;
 
     public List<Cook> getCooks() {
         return cooks;
@@ -42,12 +42,12 @@ public class Users implements Serializable {
         this.myConllections = myConllections;
     }
 
-    public List<MyAttention> getMyAttentions() {
-        return myAttentions;
+    public List<Article> getArticles() {
+        return articles;
     }
 
-    public void setMyAttentions(List<MyAttention> myAttentions) {
-        this.myAttentions = myAttentions;
+    public void setArticles(List<Article> articles) {
+        this.articles = articles;
     }
 
     private static final long serialVersionUID = 1L;
