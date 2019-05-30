@@ -69,4 +69,9 @@ public class UsersServiceImpl implements UsersService {
     public int updateByPrimaryKey(Users record) {
         return 0;
     }
+
+    @Override
+    public Users selectIndexByUserName(String uname) {
+        return usersMapper.selectIndexByUserName(uname);
+    }
 }

@@ -28,4 +28,6 @@ public interface UsersService {
     int updateByPrimaryKeySelective(Users record);
 
     int updateByPrimaryKey(Users record);
+
+    Users selectIndexByUserName(String uname);
 }

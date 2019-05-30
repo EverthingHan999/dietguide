@@ -11,6 +11,16 @@ public class MyConllection implements Serializable {
 
     private String remarks;
 
+    private Cook cook;
+
+    public Cook getCook() {
+        return cook;
+    }
+
+    public void setCook(Cook cook) {
+        this.cook = cook;
+    }
+
     private static final long serialVersionUID = 1L;
 
     public Integer getUcid() {

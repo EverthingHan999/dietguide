@@ -193,4 +193,20 @@
       remarks = #{remarks,jdbcType=VARCHAR}
     where maid = #{maid,jdbcType=INTEGER}
   </update>
+    <!--通过用户查询最近关注的人，显示前三条-->
+    <resultMap id="BaseResultMap2" type="com.je1809.pojo.MyAttention" >
+        <id column="maid" property="maid" jdbcType="INTEGER" />
+        <result column="myuid" property="myuid" jdbcType="INTEGER" />
+        <result column="uid" property="uid" jdbcType="INTEGER" />
+        <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+        <association property="users" column="uid" select="com.je1809.mapper.UsersMapper.selectByPrimaryKey"/>
+    </resultMap>
+    <select id="selectAttentionByUid" resultMap="BaseResultMap2">
+        select
+        <include refid="Base_Column_List"/>
+        from my_attention
+        where myuid = #{uid}
+        order by maid
+        limit 0,3
+    </select>
 </mapper>
