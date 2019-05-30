@@ -97,6 +97,7 @@
     <include refid="Base_Column_List" />
     from article
     where atid = #{atid,jdbcType=INTEGER}
+    order by lookcount desc
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from article
