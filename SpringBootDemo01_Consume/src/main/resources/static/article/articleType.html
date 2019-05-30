@@ -100,7 +100,27 @@
         </div>
 
         <div class="clearfix"></div>
-        <div id="leftbox1">
+        <div id="leftbox">
+
+            <div id="tuwenbox">
+                <h1 id="h1type"></h1>
+                <div id="tuwen_list">
+
+
+                </div>
+                <div id="listpages">
+                    <ul id="pageUl">
+
+
+
+                    </ul>
+                </div>
+
+            </div>
+
+
+
+        </div>
 
 
 
@@ -137,44 +157,122 @@
 <script type="text/javascript" src="/static/img/jquery-1.8.3.min.js" tppabs="http://www.yinshiweb.com/img/jquery-1.8.3.min.js"></script>
 <script type="text/javascript" src="/static/img/jquery.lazyload.min.js" tppabs="http://www.yinshiweb.com/img/jquery.lazyload.min.js"></script>
 <script language="javascript" type="text/javascript">
+    function parseUrl(){
+        var url=location.href;
+        var i=url.indexOf('?');
+        if(i==-1)return;
+        var querystr=url.substr(i+1);
+        var arr1=querystr.split('&');
+        var arr2=new Object();
+        for  (i in arr1){
+            var ta=arr1[i].split('=');
+            arr2[ta[0]]=ta[1];
+        }
+        return arr2;
+    }
+
+    function timefamt(time) {
+        var str = "";
+        str += time.getFullYear();
+        if (time.getMonth()<9){
+            str+= "/0"+(time.getMonth()+1);
+        }else {
+            str+= "/"+(time.getMonth()+1);
+        }
+        if (time.getDate()<10){
+            str+= "/0"+time.getDate();
+        }else {
+            str+= "/"+time.getDate();
+        }
+        return str;
+    }
+
+    var v = parseUrl();
+    var atid = v["atid"];
+    var listlength;
     $.ajax({
-        url:"/consumer/articleTypesAll",
+        url:"/consumer/articlesByAtid",
         type:"post",
+        data:{atid:atid},
         dataType:"json",
         success:function (data) {
-            var dataList = eval(data);
-            for (var key in dataList){
-                var li = "<li><a href=''>"+dataList[key].atname+"</a></li>";
-                $("#selectUl").append(li);
-
-                var divArticle = $("<div class=\"tuwen_box\"></div>");
-                var h2 = "<h2>"+dataList[key].atname+"<span><a href='/static/article/articleType.html?atid="+dataList[key].atid+"'>全部</a></span></h2>";
-                var ul = $("<ul></ul>");
-                var divup = $("<div class=\"index_tuwen\"></div>");
-                var divdown = $("<div class=\"index_wens\"></div>");
-
-                var dataListKey = dataList[key].articleList;
-                var count = 0;
-                var count1 = 0;
-                for (var key2 in dataListKey){
-                    console.log();
-                    if (dataListKey[key2].aimg != null && count<4){
-                        var li2 = "<li><a href='/static/article/article_descr.html?aid="+dataListKey[key2].aid+"' ><img src='"+dataListKey[key2].aimg+"'/></a><h3><a href='/static/article/article_descr.html?aid="+dataListKey[key2].aid+"'>"+dataListKey[key2].aname+"</a></h3><span>"+dataListKey[key2].lookcount+"次浏览</span></li>";
-                        divup.append(li2);
-                        count++;
-                    } else if (count1 < 10) {
-                        var li2 = "<li><a href='/static/article/article_descr.html?aid="+dataListKey[key2].aid+"'>"+dataListKey[key2].aname+"</a></li>";
-                        divdown.append(li2);
-                    }
-                    ul.append(divup);
-                    ul.append(divdown);
+            var obj = eval(data);
+            listlength = data.length;
+            var count;
+            if (data.length%6!=0){
+                count = parseInt(data.length/6)+1;
+            } else {
+                count = parseInt(data.length/6);
+            }
+            for (var i=1;i<=count;i++){
+                if (i == 1){
+                    var li = $("<li class=\"thisclass\"><a>"+i+"</a>");
+                    $("#pageUl").append(li);
+                } else {
+                    var li = $("<li><a>"+i+"</a>");
+                    $("#pageUl").append(li);
                 }
-                divArticle.append(h2);
-                divArticle.append(ul);
-                $("#leftbox1").append(divArticle);
+            }
+
+            $.ajax({
+                url:"/consumer/articleTypeByAtid",
+                type:"post",
+                data:{atid:atid},
+                dataType:"json",
+                success:function (data) {
+                    var obj = eval(data);
+                    $("#famenu").append("> <a>"+obj.atname+"</a>");
+                    $("#selectUl").append("<li><a>"+obj.atname+"</a></li>");
+                    $("#h1type").append(obj.atname+"<em id='countem'></em>");
+                    $("#countem").append("（共"+listlength+"条数据）");
+                }
+            });
+
+        }
+    });
+
+
+    $.ajax({
+        url:"/consumer/articlesByAtidBylimit",
+        type:"post",
+        data:{atid:atid,page:1,limit:6},
+        dataType:"json",
+        success:function (data) {
+            var obj = eval(data);
+            $("#countem").append("（共"+data.length+"条数据）");
+            for (var key in obj) {
+                var descr = obj[key].remarks;
+                var arr = new Array();
+                arr = descr.split("<img");
+                var str = "";
+                str += arr[0];
+                if (arr.length > 1) {
+                    for (var i=0;i<arr.length;i++){
+                      if (i>0){
+                          str += arr[i].substring(arr[i].indexOf(";\">")+3);
+                      }
+                    }
+                }
+                var newStr = str.replace(/<[^>]+>/g,"").substring(0,140)+"...";
+                var li = $("<li></li>");
+                var h3 = $("<h3><b><a href='/static/article/article_descr.html?aid="+obj[key].aid+"'>"+obj[key].aname+"</a></b></h3>");
+                li.append(h3);
+                var p1 = $("<p></p>");
+                if (obj[key].aimg!=null){
+                    var imga = $("<a href='/static/article/article_descr.html?aid="+obj[key].aid+"'><img style='width: 157px;height: 157px' src='"+obj[key].aimg+"'/></a>");
+                    p1.append(imga);
+                }
+                p1.append(newStr);
+                var time = new Date(obj[key].createTime);
+                var time1 = timefamt(time);
+                var span = $("<span>"+time1+"发布 "+obj[key].lookcount+"人浏览</span>");
+                p1.append(span);
+                li.append(p1);
+                $("#tuwen_list").append(li);
             }
         }
     });
+
     $.ajax({
         url:"/consumer/articlesAllOrderByLookcount",
         type:"post",
@@ -186,7 +284,7 @@
                 if (count<6 && list[key].aimg != null){
                     $("#hotArticle").append("<li class=\"host_img\">\n" +
                         "                        <div class=\"rl_img\">\n" +
-                        "                            <a href='/static/article/article_descr.html?aid="+list[key].aid+"' ><img style='width: 140px;height: 130px' src='"+list[key].aimg+"' /></a>\n" +
+                        "                            <a href='/static/article/article_descr.html?aid="+list[key].aid+"' ><img src='"+list[key].aimg+"' /></a>\n" +
                         "                        </div>\n" +
                         "                        <a href='/static/article/article_descr.html?aid="+list[key].aid+"' >"+list[key].aname+"</a>\n" +
                         "                    </li>");

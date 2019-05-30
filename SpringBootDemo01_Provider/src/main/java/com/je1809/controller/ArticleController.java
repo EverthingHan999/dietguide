@@ -118,4 +118,16 @@ public class ArticleController {
 
         return articleService.insert(article) > 0;
     }
+
+    @GetMapping("/provider/articlesByAtid/{atid}")
+    @ResponseBody
+    public List<Article> articlesByAtid(@PathVariable int atid){
+        return articleService.selectByAtid(atid);
+    }
+
+    @GetMapping("/provider/articleTypeByAtid/{atid}")
+    @ResponseBody
+    public ArticleType articleTypeByAtid(@PathVariable int atid){
+        return articleTypeService.selectByPrimaryKey(atid);
+    }
 }
