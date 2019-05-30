@@ -2,6 +2,7 @@ package com.je1809.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 public class Cook implements Serializable {
     private Integer cid;
@@ -23,6 +24,16 @@ public class Cook implements Serializable {
     private Integer cbtid;
 
     private String cname;
+
+    private List<Users> cookuser;
+
+    public List<Users> getCookuser() {
+        return cookuser;
+    }
+
+    public void setCookuser(List<Users> cookuser) {
+        this.cookuser = cookuser;
+    }
 
     private static final long serialVersionUID = 1L;
 
