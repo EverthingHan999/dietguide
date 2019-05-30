@@ -1,10 +1,7 @@
 package com.je1809.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.je1809.pojo.Article;
-import com.je1809.pojo.ArticleDescr;
-import com.je1809.pojo.ArticleDescrExample;
-import com.je1809.pojo.ArticleType;
+import com.je1809.pojo.*;
 import com.je1809.service.ArticleDescrService;
 import com.je1809.service.ArticleService;
 import com.je1809.service.ArticleTypeService;
@@ -13,9 +10,11 @@ import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -48,9 +47,30 @@ public class ArticleController {
     }
 
     @ResponseBody
+    @GetMapping("/provider/redisArticlesAllOrderByLookcount")
+    public List<Article> redisArticlesAllOrderByLookcount(){
+        String cookbook = redisTemplate.opsForValue().get("articlesAllOrderByLookcount");
+        if( cookbook != null){
+            List<Article> list = (List<Article>) JSON.parse(cookbook);
+            return list;
+        }else {
+            ArticleExample articleExample = new ArticleExample();
+            articleExample.setOrderByClause("lookcount desc");
+            List<Article> articles = articleService.selectByExample(articleExample);
+
+            String s = JSON.toJSONString(articles);
+            redisTemplate.opsForValue().set("articlesAllOrderByLookcount",s);
+            redisTemplate.expire("articlesAllOrderByLookcount",11000, TimeUnit.MILLISECONDS);
+            return articles;
+        }
+    }
+
+    @ResponseBody
     @GetMapping("/provider/articleByAid/{aid}")
     public Article redisArticleByAid(@PathVariable int aid){
-
+        Article article = articleService.selectByPrimaryKeyConnect(aid);
+        article.setLookcount(article.getLookcount()+1);
+        articleService.updateByPrimaryKey(article);
         return articleService.selectByPrimaryKeyConnect(aid);
     }
 
@@ -64,5 +84,38 @@ public class ArticleController {
         articleDescrExample.setOrderByClause("count");
 
         return articleDescrService.selectByExample(articleDescrExample);
+    }
+
+    @GetMapping("/provider/getRealPath")
+    @ResponseBody
+    public String getRealPath(HttpServletRequest request){
+
+        String realPath = request.getServletContext().getRealPath("");
+        return  realPath;
+    }
+
+    @PostMapping("/provider/addArticle")
+    @ResponseBody
+    public boolean addArticle(HttpServletRequest request){
+        int atid = Integer.parseInt(request.getParameter("atid"));
+        String title = request.getParameter("title");
+        String descr = request.getParameter("descr");
+
+        Article article = new Article();
+
+        article.setAtid(atid);
+        article.setUid(1);
+        article.setAname(title);
+        if (descr.contains("<img")){
+            String substring = descr.substring(descr.indexOf("src=")+5, descr.indexOf(".jpg")+4);
+            System.out.println(substring);
+            article.setAimg(substring);
+        }
+        Date date = new Date();
+        article.setCreateTime(date);
+        article.setLookcount(0);
+        article.setRemarks(descr);
+
+        return articleService.insert(article) > 0;
     }
 }
