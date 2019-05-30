@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.je1809.pojo.Users;
 import com.je1809.pojo.UsersExample;
 import com.je1809.service.UsersService;
+import com.sun.tools.internal.xjc.reader.xmlschema.bindinfo.BIConversion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
@@ -58,6 +59,12 @@ public class UsersController {
         }else {
             return usersList.get(0);
         }
+    }
+
+    @ResponseBody
+    @GetMapping("/provider/getIndexInfo")
+    public Users getIndexInfo(String uname){
+        return usersService.selectIndexByUserName(uname);
     }
 
 

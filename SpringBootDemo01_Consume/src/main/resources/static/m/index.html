@@ -1,27 +1,34 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
     <title>我的厨房 -饮食web</title>
-    <meta name="keywords" content="我的厨房,管理中心"/>
-    <meta name="description" content="这是我的厨房，用户的管理中心。"/>
-    <link href="../img/layout.css" rel="stylesheet" type="text/css"/>
-    <script language="javascript" type="text/javascript" src="/static/include/dedeajax2.js"></script>
+    <meta name="keywords" content="我的厨房,管理中心" />
+    <meta name="description" content="这是我的厨房，用户的管理中心。" />
+    <link href="/static/img/layout.css" rel="stylesheet" type="text/css" />
+    <script language="javascript" type="text/javascript" src="/include/dedeajax2.js"></script>
+    <!--<script type="text/javascript" src="/static/"-->
 </head>
+<script type="text/javascript">
+    $(function () {
+        window.onload=function () {
+            alert(1111111111);
+        }
+    })
+</script>
 <body>
 
 <div id="headerbox">
 
     <div class="header">
         <div id="logo">
-            <a href="http://www.yinshiweb.com"><img src="/img/logo.png" width="160" height="60" alt="饮食web"/></a>
+            <a href="http://www.yinshiweb.com"><img src="/img/logo.png" width="160"  height="60" alt="饮食web" /></a>
         </div>
 
         <div id="search">
             <form action="/search.php" method="GET">
-                <input type="text" id="txt" onFocus="oninp()" onblur="outinp()" class="search" placeholder="菜谱名或食材名"
-                       name="q">
+                <input type="text" id="txt" onFocus="oninp()" onblur="outinp()" class="search" placeholder="菜谱名或食材名" name="q">
                 <button id="sbutton">搜 索</button>
             </form>
         </div>
@@ -41,58 +48,52 @@
                             <a href="/zuofa/358-1.html">米面</a>
                             <a href="/zuofa/424-1.html">豆制品</a>
                             <a href="/zuofa/383-1.html">坚果</a>
-                        </ul>
-                        <ul>
-                            <h4>菜色菜品</h4>
-                            <a href="/zuofa/563-1.html">凉菜</a>
-                            <a href="/zuofa/649-1.html">粥羹</a>
-                            <a href="/zuofa/626-1.html">甜品</a>
-                            <a href="/zuofa/595-1.html">煲汤</a>
-                            <a href="/zuofa/575-1.html">饼类</a>
-                            <a href="/zuofa/693-1.html">烘焙</a>
-                            <a href='/baobaofushi/'>宝宝</a>
-                            <a href="/zuofa/725-1.html">炒菜</a>
-                        </ul>
-                        <ul>
-                            <h4><a href="/caixi/">菜系分类</a></h4>
-                            <a href="/caixi/774-1.html">川菜</a>
-                            <a href="/caixi/775-1.html">粤菜</a>
-                            <a href="/caixi/779-1.html">湘菜</a>
-                            <h4><a href="/chuju/">厨房厨具</a></h4>
-                            <a href="/chuju/kaoxiangshipu/">烤箱</a>
-                            <a href="/chuju/weiboluzuocai/">微波炉</a>
-                            <a href="/chuju/dianfanguozuocai/">电饭锅</a>
-                            <a href="/chuju/shaguocaipu/">砂锅</a>
-                        </ul>
+                        </ul><ul>
+                        <h4>菜色菜品</h4>
+                        <a href="/zuofa/563-1.html">凉菜</a>
+                        <a href="/zuofa/649-1.html">粥羹</a>
+                        <a href="/zuofa/626-1.html">甜品</a>
+                        <a href="/zuofa/595-1.html">煲汤</a>
+                        <a href="/zuofa/575-1.html">饼类</a>
+                        <a href="/zuofa/693-1.html">烘焙</a>
+                        <a href='/baobaofushi/'>宝宝</a>
+                        <a href="/zuofa/725-1.html">炒菜</a>
+                    </ul><ul>
+                        <h4><a href="/caixi/">菜系分类</a></h4>
+                        <a href="/caixi/774-1.html">川菜</a>
+                        <a href="/caixi/775-1.html">粤菜</a>
+                        <a href="/caixi/779-1.html">湘菜</a>
+                        <h4><a href="/chuju/">厨房厨具</a></h4>
+                        <a href="/chuju/kaoxiangshipu/">烤箱</a>
+                        <a href="/chuju/weiboluzuocai/">微波炉</a>
+                        <a href="/chuju/dianfanguozuocai/">电饭锅</a>
+                        <a href="/chuju/shaguocaipu/">砂锅</a>
+                    </ul>
                         <h2><a href="/daquan/">全部分类</a></h2>
-                    </div>
-                </li>
+                    </div></li>
                 <li><a href="/caidan/"><span>菜单</span></a></li>
                 <li><a href="/zuopin/"><span>作品</span></a></li>
                 <li><a href="/zhishi/"><span>生活读刊</span></a></li>
                 <script language="javascript">
-                    var nav = document.getElementById("menu").getElementsByTagName("li");
-                    for (i = 0; i < nav.length; i++) {
-                        nav[i].onmouseover = function () {
-                            this.style.overflow = "visible";
+                    var nav=document.getElementById("menu").getElementsByTagName("li");
+                    for(i=0;i<nav.length;i++){
+                        nav[i].onmouseover=function(){
+                            this.style.overflow="visible";
                         }
-                        nav[i].onmouseout = function () {
-                            this.style.overflow = "hidden";
+                        nav[i].onmouseout=function(){
+                            this.style.overflow="hidden";
                         }
                     }
-
                     function ucaidan() {
-                        var users = document.getElementById("uinfo");
-                        users.style.display = "block";
+                        var users=document.getElementById("uinfo");
+                        users.style.display="block";
                     }
-
                     function ucaidans() {
-                        var users = document.getElementById("uinfo");
-                        users.style.display = "none";
+                        var users=document.getElementById("uinfo");
+                        users.style.display="none";
                     }
-
                     var _hmt = _hmt || [];
-                    (function () {
+                    (function() {
                         var hm = document.createElement("script");
                         hm.src = "https://hm.baidu.com/hm.js?e206e9bed3460b679e5f0986d1965342";
                         var s = document.getElementsByTagName("script")[0];
@@ -104,10 +105,18 @@
         </div>
         <div id="longindiv">
             <div id="userlogin">
-                <span><a href="/consumer/logout" rel="nofollow">注销</a></span>
-            </div>
+    <span><a href="/member/index_do.php?fmdo=user&dopost=regnew" rel="nofollow">注册</a>
+ <a href="javascript:denglu()" rel="nofollow">登陆</a></span>
+            </div><script language="javascript" type="text/javascript">CheckLogina();</script>
         </div>
     </div>
+
+
+
+</div>
+
+
+
 </div>
 <div class="clearfix"></div>
 <div id="container">
@@ -116,12 +125,12 @@
             <div id="caidan">
                 <h2>用户管理中心</h2>
                 <ul>
-                    <li><a class="caidanhover" href='../m/index.html'>主页</a></li>
-                    <li><a href='../m/caipu.html'>菜谱</a></li>
-                    <li><a href='../m/zuopin.html'>作品</a></li>
-                    <li><a href='../m/wenzhang.html'>文章</a></li>
-                    <li><a href='../m/shoucang.html'>收藏</a></li>
-                    <li><a href='../m/guanzhu.html'>关注</a></li>
+                    <li><a  class="caidanhover"  href='/member/index.php'>主页</a></li>
+                    <li><a href='/member/caipu_list.php'>菜谱</a></li>
+                    <li><a href='/member/zuopin_list.php'>作品</a></li>
+                    <li><a href='/member/riji_list.php'>文章</a></li>
+                    <li><a href='/member/mystow.php'>收藏</a></li>
+                    <li><a href='/member/myfriend.php'>关注</a></li>
                 </ul>
             </div>
             <div id="welcome">
@@ -130,13 +139,12 @@
                     <li><a href='/member/content_list.php?channelid=2'>发布您的原创食谱</a></li>
                     <li><a href="/zuofa/">找找您钟意的食谱</a></li>
                 </ul>
-                <p>从今天起，做一个幸福的人<br/>
-                    喂马，劈柴，周游世界<br/>
+                <p>从今天起，做一个幸福的人<br />
+                    喂马，劈柴，周游世界<br />
                     从今天起，关心粮食和蔬菜...</p>
             </div>
             <div class="admin_new">
-                <h3>我最近发布的食谱...</h3>
-                <ul></ul>
+                <h3>我最近发布的食谱...</h3><ul></ul>
             </div>
             <style>
                 .riji_new {
@@ -145,63 +153,39 @@
                     padding: 0 0 26px 20px;
                     font-size: 13px;
                 }
-
                 .riji_new h3 {
                     font-size: 15px;
                     margin-bottom: 18px;
                     font-weight: normal;
                     color: #54821e;
                 }
-
                 .riji_new li {
-                    float: left;
+                    float:left;
                     width: 605px;
-                    line-height: 2em;
-                    padding: 8px 0;
-                    border-bottom: dashed 1px #ddd;
+                    line-height:2em;
+                    padding:8px 0;
+                    border-bottom:dashed 1px #ddd;
                 }
-
                 .rijibiaoti {
-                    float: left;
+                    float:left;
                     width: 480px;
                     font-size: 14px;
                 }
-
                 .rijitime {
-                    float: left;
+                    float:left;
                     width: 120px;
-                    color: #999;
-                    text-align: right;
+                    color:#999;
+                    text-align:right;
                 }
             </style>
             <div class="riji_new">
-                <h3>我发布的生活文章...</h3>
-                <ul></ul>
+                <h3>我发布的生活文章...</h3><ul></ul>
             </div>
             <div class="admin_new">
-                <h3>我最近收藏的食谱...</h3>
-                <ul></ul>
+                <h3>我最近收藏的食谱...</h3><ul><li><span><a href='/shipu/258842.html' target='_blank'><img src="/uploads/allimg/190318/1552T94N3S30-1962T-lp.jpg"/></a></span><p><a href='/shipu/258842.html' target='_blank'>萝卜煲</a></p><p>2019/03/18</p></li><li><span><a href='/shipu/254331.html' target='_blank'><img src="/uploads/userup/2042/154F23112-3424-lp.jpg"/></a></span><p><a href='/shipu/254331.html' target='_blank'>姜母鸭</a></p><p>2019/01/09</p></li></ul>
             </div>
             <div class="admin_new">
-                <h3>大家最近发的食谱...</h3>
-                <ul>
-                    <li><span><a href='/shipu/258845.html' target='_blank'><img
-                        src="/uploads/allimg/190318/1552T94a1IZ-33cR-lp.jpg"/></a></span>
-                        <p><a href='/shipu/258845.html' target='_blank'>煎元宵</a></p>
-                        <p>2019/05/15</p></li>
-                    <li><span><a href='/shipu/258844.html' target='_blank'><img
-                        src="/uploads/allimg/190318/1552T94934cZ-221U7-lp.jpg"/></a></span>
-                        <p><a href='/shipu/258844.html' target='_blank'>高汤白菜</a></p>
-                        <p>2019/03/18</p></li>
-                    <li><span><a href='/shipu/258843.html' target='_blank'><img
-                        src="/uploads/allimg/190318/1552T94RH230-32Q08-lp.jpg"/></a></span>
-                        <p><a href='/shipu/258843.html' target='_blank'>西红柿刀削面</a></p>
-                        <p>2019/03/18</p></li>
-                    <li><span><a href='/shipu/258842.html' target='_blank'><img
-                        src="/uploads/allimg/190318/1552T94N3S30-1962T-lp.jpg"/></a></span>
-                        <p><a href='/shipu/258842.html' target='_blank'>萝卜煲</a></p>
-                        <p>2019/03/18</p></li>
-                </ul>
+                <h3>大家最近发的食谱...</h3><ul><li><span><a href='/shipu/258845.html' target='_blank'><img src="/uploads/allimg/190318/1552T94a1IZ-33cR-lp.jpg"/></a></span><p><a href='/shipu/258845.html' target='_blank'>煎元宵</a></p><p>2019/05/15</p></li><li><span><a href='/shipu/258844.html' target='_blank'><img src="/uploads/allimg/190318/1552T94934cZ-221U7-lp.jpg"/></a></span><p><a href='/shipu/258844.html' target='_blank'>高汤白菜</a></p><p>2019/03/18</p></li><li><span><a href='/shipu/258843.html' target='_blank'><img src="/uploads/allimg/190318/1552T94RH230-32Q08-lp.jpg"/></a></span><p><a href='/shipu/258843.html' target='_blank'>西红柿刀削面</a></p><p>2019/03/18</p></li><li><span><a href='/shipu/258842.html' target='_blank'><img src="/uploads/allimg/190318/1552T94N3S30-1962T-lp.jpg"/></a></span><p><a href='/shipu/258842.html' target='_blank'>萝卜煲</a></p><p>2019/03/18</p></li></ul>
             </div>
 
         </div>
@@ -210,18 +194,18 @@
             <div id="admin">
                 <img src="/member/templets/images/dfboy.png"/>
                 <span><a href="/m/2091">asdqweqwe</a></span>
-                <span>592445269@qq.com<br/>2019-05-29加入</span>
+                <span>592445269@qq.com<br />2019-05-29加入</span>
             </div>
             <div id="admin_b">
                 <ul>
-                    <li><a href="" id="glsp" title="管理食谱">0</a><br/>食谱数</li>
-                    <li><a href="" id="scj" title="收藏夹">0</a><br/>收藏数</li>
-                    <li><a href="" id="gz" title="关注的厨友">0</a><br/>关注数</li>
+                    <li><a href="content_list.php?channelid=2" title="管理食谱">0</a><br />食谱数</li>
+                    <li><a href="mystow.php" title="收藏夹">2</a><br />收藏数</li>
+                    <li><a href="myfriend.php" title="关注的厨友">0</a><br />关注数</li>
                 </ul>
             </div>
             <div id="admin_a">
                 <ul>
-                    <li><a class="edit" href='/member/album_add.php'>发布原创食谱</a></li>
+                    <li><a href='/member/album_add.php'>发布原创食谱</a></li>
                     <li><a href='/member/zuopin_add.php'>发布美食作品</a></li>
                     <li><a href='/member/article_add.php'>发布生活文章</a></li>
                     <li><a href='/member/edit_face.php'>上传个人头像</a></li>
@@ -245,16 +229,7 @@
         <a href="/new/">最新更新</a>
     </div>
     <div id="copys">
-        &#169; www.yinshiweb.com All Rights Reserved. 苏ICP备17020194号-2.
+        &#169; www.yinshiweb.com  All Rights Reserved. 苏ICP备17020194号-2.
     </div>
-</div>
-</body>
-<script type="text/javascript" src="/static/pro/js/jquery-2.1.1.min.js"/>
-<script type="text/javascript">
-    $(function () {
-        function xianshi() {
-            $.post("");
-        }
-    })
-</script>
+</div></body>
 </html>

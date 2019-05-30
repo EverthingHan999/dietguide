@@ -27,100 +27,40 @@
 </head>
 <body>
 <!-- top + banner 开始 -->
-<div id="headerbox">
-    <div class="header">
-        <div id="logo">
-            <a href="index.html" title="欢迎访问饮食web"><img src="img/logo.png"
-
-                                                        width="160" height="60"
-                                                        alt="饮食web"/>
-                <h1>饮食web:提供食谱家常菜,家常菜菜谱大全等</h1></a>
-        </div>
-
-        <div id="search">
-            <form action="http://www.yinshiweb.com/search.php" method="GET">
-                <input type="text" id="bdcsMain" onFocus="oninp()" onblur="outinp()" class="search"
-                       placeholder="菜谱名或食材名" name="q">
-                <button id="sbutton">搜 索</button>
-            </form>
-        </div>
-
-        <div id="menu">
-            <ul>
-                <li><a href="index.html"><span id="wuico">网站首页</span></a></li>
-                <li><a href="zuofa/index.html"><span
-                    id="fenlei_hover">菜谱大全</span></a>
-                    <div class="subNav">
-                        <ul>
-                            <h4><a href="zuofa/32-1.html">家常食材</a>
-                            </h4>
-                            <a href="zuofa/33-1.html">肉类</a>
-                            <a href="zuofa/35-1.html">蔬菜</a>
-                            <a href="zuofa/36-1.html">水产</a>
-                            <a href="zuofa/158-1.html">菌菇</a>
-                            <a href="zuofa/135-1.html">水果</a>
-                            <a href="zuofa/358-1.html">米面</a>
-                            <a href="zuofa/424-1.html">豆制品</a>
-                            <a href="zuofa/383-1.html">坚果</a>
-                        </ul>
-                        <ul>
-                            <h4><a href="zuofa/436-1.html">菜品菜名</a>
-                            </h4>
-                            <a href="zuofa/563-1.html">凉菜</a>
-                            <a href="zuofa/649-1.html">粥羹</a>
-                            <a href="zuofa/626-1.html">甜品</a>
-                            <a href="zuofa/595-1.html">煲汤</a>
-                            <a href="zuofa/575-1.html">饼类</a>
-                            <a href="zuofa/693-1.html">烘焙</a>
-                            <a href="baobaofushi/index.html">宝宝</a>
-                            <a href="zuofa/725-1.html">炒菜</a>
-                        </ul>
-                        <ul>
-                            <h4><a href="caixi/index.html">菜系分类</a></h4>
-                            <a href="caixi/774-1.html">川菜</a>
-                            <a href="caixi/775-1.html">粤菜</a>
-                            <a href="caixi/779-1.html">湘菜</a>
-                            <h4><a href="chuju/index.html">厨房厨具</a></h4>
-                            <a href="chuju/kaoxiangshipu/index.html"
-                            >烤箱</a>
-                            <a href="chuju/weiboluzuocai/index.html"
-                            >微波炉</a>
-                            <a href="chuju/dianfanguozuocai/index.html"
-                            >电饭锅</a>
-                            <a href="chuju/shaguocaipu/index.html">砂锅</a>
-                        </ul>
-                        <h2><a href="daquan/index.html">全部分类</a></h2>
-                    </div>
-                </li>
-                <li><a href="caidan/index.html"><span>菜单</span></a></li>
-                <li><a href="zuopin/index.html"><span>作品</span></a></li>
-                <li><a href="zhishi/index.html"><span id="sh_hover">生活读刊</span></a>
-                    <div class="subNav">
-                        <a href="zhishi/22-1.html">饮食健康</a>
-                        <a href="jianfei/index.html">健康减肥</a>
-                        <a href="zhishi/24-1.html">厨房技巧</a>
-                        <a href="zhishi/29-1.html">生活贴士</a>
-                        <a href="zhishi/739_1.html">病理医疗</a>
-                        <a href="zhishi/23-1.html">美食故事</a>
-                        <a href="zhishi/686-1.html">两性保健</a>
-                        <a href="zhishi/687-1.html">生活科技</a>
-                        <a href="zhishi/741-1.html">生活娱乐</a>
-                        <a href="shehui/index.html">社会生活</a>
-                        <a href="bazisuanming/index.html">八字算命</a>
-                        <a href="shicai/index.html">食材大全</a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div id="longindiv">
-            <div id="userlogin">
-    <span><a href="member/index.html"
-             rel="nofollow">注册</a>
- <a href="/static/member/index.html" rel="nofollow">登陆</a></span>
-            </div>
-        </div>
-    </div>
+<div class="container-fluid cfh_top">
+  <div class="container"> 某经融公司首页&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;官方咨询电话：***-***-****
+    <ul class="list-inline">
+      <li><a href="index.html" target="_self">某某某网</a></li>
+      <li><a href="https://nxseason.taobao.com/" target="_blank">某某某网</a></li>
+      <li id="register" onMouseMove="login_but_bg(1)" onMouseOut="login_but_bg(2)"><a href="" target="_blank">&nbsp;注册&nbsp;</a></li>
+      <li id="login" onMouseMove="login_but_bg(3)" onMouseOut="login_but_bg(4)"><a href="member_center.html" target="_blank">&nbsp;登录&nbsp;</a></li>
+    </ul>
+  </div>
 </div>
+<div class="container-fluid cfh_banner">
+  <div class="container"> <img src="img/index/logo.png">
+    <ul class="list-inline">
+      <li><a href="index.html" target="_self">首页</a></li>
+      <li><a href="list_page.html" target="_self">创业项目</a></li>
+      <li><a href="investor_page.html" target="_self">投资人</a></li>
+      <li><a href="" target="_self">平台公示</a></li>
+      <li><a href="service_page.html" target="_self">服务</a></li>
+      <li><a href="" target="_self">新手指南</a></li>
+    </ul>
+    <div class="cfh_banner_search">
+      <div onClick="cfh_banner_search_select(0)" class="cfh_banner_search_select">
+        <font id="cfh_banner_search_select_span">请选择</font>
+          <ul id="cfh_banner_search_select_ul">
+            <li onClick="cfh_banner_search_select1('项目')">项目</li>
+            <li onClick="cfh_banner_search_select1('投资人')">投资人</li>
+            <li onClick="cfh_banner_search_select1('平台公示')">平台公示</li>
+            <li onClick="cfh_banner_search_select1('指南')">指南 </li>
+          </ul>
+          <input id="cfh_banner_search_select_hideinput" type="hidden" value="">
+      </div>
+      <input type="text">
+      <span><a href="search.html" target="_self">搜索</a></span> </div>
+  </div>
 </div>
 <!-- top + banner 结束 --> 
 <!-- 核心 开始 --> 

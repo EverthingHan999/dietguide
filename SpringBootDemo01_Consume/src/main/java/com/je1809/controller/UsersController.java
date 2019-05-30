@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
@@ -52,6 +53,20 @@ public class UsersController {
     public String userLogout(HttpSession session){
         session.setAttribute("user",null);
         return "/login/login";
+    }
+
+    @ResponseBody
+    @GetMapping("/consumer/getIndexInfo")
+    public Users getIndexInfo(HttpServletRequest request){
+        String uname = request.getParameter("uname");
+        HashMap<String, String> map = new HashMap<>();
+        map.put("uname",uname);
+        Users user = restTemplate.getForObject(REST_URL_PREFIX + "/provider/getIndexInfo?uname={uname}", Users.class, map);
+        if (user != null){
+            return user;
+        }else {
+            return null;
+        }
     }
 
 }
