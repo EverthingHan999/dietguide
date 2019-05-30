@@ -1,5 +1,6 @@
 package com.je1809.mapper;
 
+import com.je1809.pojo.Menu;
 import com.je1809.pojo.MenuCook;
 import com.je1809.pojo.MenuCookExample;
 import org.apache.ibatis.annotations.Mapper;
@@ -29,4 +30,6 @@ public interface MenuCookMapper {
     int updateByPrimaryKeySelective(MenuCook record);
 
     int updateByPrimaryKey(MenuCook record);
+
+    List<MenuCook> getMenu(Integer mid);
 }

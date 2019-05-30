@@ -14,27 +14,27 @@ public class MenuServiceImpl implements MenuService {
     private MenuMapper menuMapper;
     @Override
     public int countByExample(MenuExample example) {
-        return 0;
+        return menuMapper.countByExample(example);
     }
 
     @Override
     public int deleteByExample(MenuExample example) {
-        return 0;
+        return menuMapper.deleteByExample(example);
     }
 
     @Override
     public int deleteByPrimaryKey(Integer mid) {
-        return 0;
+        return menuMapper.deleteByPrimaryKey(mid);
     }
 
     @Override
     public int insert(Menu record) {
-        return 0;
+        return menuMapper.insert(record);
     }
 
     @Override
     public int insertSelective(Menu record) {
-        return 0;
+        return menuMapper.insertSelective(record);
     }
 
     @Override
@@ -44,26 +44,26 @@ public class MenuServiceImpl implements MenuService {
 
     @Override
     public Menu selectByPrimaryKey(Integer mid) {
-        return null;
+        return menuMapper.selectByPrimaryKey(mid);
     }
 
     @Override
     public int updateByExampleSelective(Menu record, MenuExample example) {
-        return 0;
+        return menuMapper.updateByExampleSelective(record, example);
     }
 
     @Override
     public int updateByExample(Menu record, MenuExample example) {
-        return 0;
+        return menuMapper.updateByExample(record, example);
     }
 
     @Override
     public int updateByPrimaryKeySelective(Menu record) {
-        return 0;
+        return menuMapper.updateByPrimaryKeySelective(record);
     }
 
     @Override
     public int updateByPrimaryKey(Menu record) {
-        return 0;
+        return menuMapper.updateByPrimaryKey(record);
     }
 }
