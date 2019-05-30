@@ -24,6 +24,8 @@ public interface ArticleMapper {
 
     Article selectByPrimaryKey(Integer aid);
 
+    Article selectByPrimaryKeyConnect(Integer aid);
+
     int updateByExampleSelective(@Param("record") Article record, @Param("example") ArticleExample example);
 
     int updateByExample(@Param("record") Article record, @Param("example") ArticleExample example);

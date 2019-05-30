@@ -69,4 +69,9 @@ public class CookServiceImpl implements CookService {
     public int updateByPrimaryKey(Cook record) {
         return cookMapper.updateByPrimaryKey(record);
     }
+
+    @Override
+    public List<Cook> cook3() {
+        return cookMapper.cook3();
+    }
 }

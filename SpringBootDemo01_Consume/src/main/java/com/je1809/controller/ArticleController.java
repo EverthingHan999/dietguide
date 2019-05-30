@@ -1,14 +1,25 @@
 package com.je1809.controller;
 
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.je1809.pojo.Article;
+import com.je1809.pojo.ArticleDescr;
 import com.je1809.pojo.ArticleType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.LinkedMultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
-import java.util.List;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.File;
+import java.io.IOException;
+import java.util.*;
 
 @Controller
 public class ArticleController {
@@ -24,8 +35,86 @@ public class ArticleController {
     }
 
     @PostMapping("/consumer/articleTypesAll")
+    @ResponseBody
     public List<ArticleType> getArticleTypesAll(){
-        return null;
+        return restTemplate.getForObject(REST_URL_PREFIX + "/provider/redisArticleTypesAll",List.class);
     }
+
+    @PostMapping("/consumer/getArticleByAid")
+    @ResponseBody
+    public Article getArticleByAid(HttpServletRequest request){
+        int aid = Integer.parseInt(request.getParameter("aid"));
+        return restTemplate.getForObject(REST_URL_PREFIX + "/provider/articleByAid/"+aid,Article.class);
+    }
+
+    @PostMapping("/consumer/articleDescrsByAid")
+    @ResponseBody
+    public List<ArticleDescr> articleDescrsByAid(HttpServletRequest request){
+        int aid = Integer.parseInt(request.getParameter("aid"));
+        return restTemplate.getForObject(REST_URL_PREFIX + "/provider/articleDescrsByAid/"+aid,List.class);
+    }
+
+    @PostMapping("/consumer/articlesAllOrderByLookcount")
+    @ResponseBody
+    public List<Article> articlesAllOrderByLookcount(){
+        return restTemplate.getForObject(REST_URL_PREFIX + "/provider/redisArticlesAllOrderByLookcount/",List.class);
+    }
+
+    @PostMapping("/articleImgUpLoad")
+    @ResponseBody
+    public synchronized Map<String, Object> articleImgUpLoad(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        MultipartHttpServletRequest mr = (MultipartHttpServletRequest) request;
+        Map<String, Object> map = new HashMap<>();
+        Iterator<String> iterator = mr.getFileNames();
+        while (iterator.hasNext()) {
+            MultipartFile multipartFile = mr.getFile(iterator.next());
+            // 原文件名
+            String oldFileName = multipartFile.getOriginalFilename();
+
+            // 文件后缀
+            String suffix = oldFileName.substring(oldFileName.lastIndexOf("."));
+
+            String sj = UUID.randomUUID().toString();
+            String replace = sj.replace("-", "");
+            String newFileName = replace + suffix;
+
+            String forObject = restTemplate.getForObject(REST_URL_PREFIX + "/provider/getRealPath", String.class);
+            //D:\AAA\stsTest\SpringBootDemo01\SpringBootDemo01_Consume\src\main\resources\static\article\img
+            forObject = forObject.substring(0,forObject.lastIndexOf("SpringBootDemo01_Provider"))+"SpringBootDemo01_Consume\\src\\main\\resources\\static\\article\\img\\";
+
+            String realPath = forObject + newFileName;
+
+            System.out.println(realPath);
+
+            File file = new File(realPath);
+
+            String loadPath = "http://localhost/static/article/img/"+newFileName;
+
+            multipartFile.transferTo(file);
+
+            map.put("oldFileName", oldFileName);
+            map.put("newFileName", newFileName);
+
+            map.put("path", loadPath);
+        }
+        return map;
+    }
+
+    @PostMapping("/addArticle")
+    @ResponseBody
+    public boolean addArticle(HttpServletRequest request){
+        String atid = request.getParameter("atid");
+        String title = request.getParameter("title");
+        String descr = request.getParameter("descr");
+
+        LinkedMultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+
+        map.add("atid",atid);
+        map.add("title",title);
+        map.add("descr",descr);
+
+        return restTemplate.postForObject(REST_URL_PREFIX + "/provider/addArticle",map,boolean.class);
+    }
+
 
 }

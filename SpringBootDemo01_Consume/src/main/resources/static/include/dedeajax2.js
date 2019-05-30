@@ -1,5 +1,4 @@
-<
-!--
+
 
 var _hmt = _hmt || [];
 (function () {
@@ -188,8 +187,8 @@ function DedeAjax(gcontainer, mShowError, mShowWait, mErrCon, mErrDisplay, mWait
                 DedeXHTTP.setRequestHeader(this.rkeys[i], this.rvalues[i]);
             }
         }
-        ��if (this.rtype == 'binary') {
-        ��DedeXHTTP.setRequestHeader("Content-Type", "multipart/form-data");
+        if (this.rtype == 'binary') {
+        DedeXHTTP.setRequestHeader("Content-Type", "multipart/form-data");
         } else {
             DedeXHTTP.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         }

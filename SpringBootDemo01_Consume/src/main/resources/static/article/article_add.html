@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文章编辑</title>
+    <link href="/static/img/style.css" tppabs="http://www.yinshiweb.com/img/style.css" rel="stylesheet" type="text/css"/>
+    <script language="javascript" type="text/javascript" src="/static/include/dedeajax2.js"
+            tppabs="http://www.yinshiweb.com/include/dedeajax2.js"></script>
+</head>
+<body>
+<div id="headerbox">
+    <div class="header">
+        <div id="logo">
+            <a href="../index.html" tppabs="http://www.yinshiweb.com/" title="饮食web"><img src="../img/logo.png"
+                                                                                          tppabs="http://www.yinshiweb.com/img/logo.png"
+                                                                                          width="160" height="60"
+                                                                                          alt="饮食web"/></a>
+        </div>
+        <div id="search">
+            <form action="http://www.yinshiweb.com/search.php" method="GET">
+                <input type="text" id="bdcsMain" onFocus="oninp()" onblur="outinp()" class="search"
+                       placeholder="菜谱名或食材名" name="q">
+                <button id="sbutton">搜 索</button>
+            </form>
+        </div>
+        <div id="menu">
+            <ul>
+                <li><a href="../index.html" tppabs="http://www.yinshiweb.com/"><span id="wuico">网站首页</span></a></li>
+                <li><a href="../zuofa/index.html" tppabs="http://www.yinshiweb.com/zuofa/"><span
+                        id="fenlei_hover">菜谱大全</span></a>
+                    <div class="subNav">
+                        <ul>
+                            <h4><a href="../zuofa/32-1.html" tppabs="http://www.yinshiweb.com/zuofa/32-1.html">家常食材</a>
+                            </h4>
+                            <a href="../zuofa/33-1.html" tppabs="http://www.yinshiweb.com/zuofa/33-1.html">肉类</a>
+                            <a href="../zuofa/35-1.html" tppabs="http://www.yinshiweb.com/zuofa/35-1.html">蔬菜</a>
+                            <a href="../zuofa/36-1.html" tppabs="http://www.yinshiweb.com/zuofa/36-1.html">水产</a>
+                            <a href="../zuofa/158-1.html" tppabs="http://www.yinshiweb.com/zuofa/158-1.html">菌菇</a>
+                            <a href="../zuofa/135-1.html" tppabs="http://www.yinshiweb.com/zuofa/135-1.html">水果</a>
+                            <a href="../zuofa/358-1.html" tppabs="http://www.yinshiweb.com/zuofa/358-1.html">米面</a>
+                            <a href="../zuofa/424-1.html" tppabs="http://www.yinshiweb.com/zuofa/424-1.html">豆制品</a>
+                            <a href="../zuofa/383-1.html" tppabs="http://www.yinshiweb.com/zuofa/383-1.html">坚果</a>
+                        </ul>
+                        <ul>
+                            <h4><a href="../zuofa/436-1.html"
+                                   tppabs="http://www.yinshiweb.com/zuofa/436-1.html">菜品菜名</a></h4>
+                            <a href="../zuofa/563-1.html" tppabs="http://www.yinshiweb.com/zuofa/563-1.html">凉菜</a>
+                            <a href="../zuofa/649-1.html" tppabs="http://www.yinshiweb.com/zuofa/649-1.html">粥羹</a>
+                            <a href="../zuofa/626-1.html" tppabs="http://www.yinshiweb.com/zuofa/626-1.html">甜品</a>
+                            <a href="../zuofa/595-1.html" tppabs="http://www.yinshiweb.com/zuofa/595-1.html">煲汤</a>
+                            <a href="../zuofa/575-1.html" tppabs="http://www.yinshiweb.com/zuofa/575-1.html">饼类</a>
+                            <a href="../zuofa/693-1.html" tppabs="http://www.yinshiweb.com/zuofa/693-1.html">烘焙</a>
+                            <a href="../baobaofushi/index.html" tppabs="http://www.yinshiweb.com/baobaofushi/">宝宝</a>
+                            <a href="../zuofa/725-1.html" tppabs="http://www.yinshiweb.com/zuofa/725-1.html">炒菜</a>
+                        </ul>
+                        <ul>
+                            <h4><a href="../caixi/index.html" tppabs="http://www.yinshiweb.com/caixi/">菜系分类</a></h4>
+                            <a href="../caixi/774-1.html" tppabs="http://www.yinshiweb.com/caixi/774-1.html">川菜</a>
+                            <a href="../caixi/775-1.html" tppabs="http://www.yinshiweb.com/caixi/775-1.html">粤菜</a>
+                            <a href="../caixi/779-1.html" tppabs="http://www.yinshiweb.com/caixi/779-1.html">湘菜</a>
+                            <h4><a href="../chuju/index.html" tppabs="http://www.yinshiweb.com/chuju/">厨房厨具</a></h4>
+                            <a href="../chuju/kaoxiangshipu/index.html"
+                               tppabs="http://www.yinshiweb.com/chuju/kaoxiangshipu/">烤箱</a>
+                            <a href="../chuju/weiboluzuocai/index.html"
+                               tppabs="http://www.yinshiweb.com/chuju/weiboluzuocai/">微波炉</a>
+                            <a href="../chuju/dianfanguozuocai/index.html"
+                               tppabs="http://www.yinshiweb.com/chuju/dianfanguozuocai/">电饭锅</a>
+                            <a href="../chuju/shaguocaipu/index.html"
+                               tppabs="http://www.yinshiweb.com/chuju/shaguocaipu/">砂锅</a></ul>
+                        <h2><a href="../daquan/index.html" tppabs="http://www.yinshiweb.com/daquan/">全部分类</a></h2>
+                    </div>
+                </li>
+                <li><a href="../caidan/index.html" tppabs="http://www.yinshiweb.com/caidan/"><span>菜单</span></a></li>
+                <li><a href="../zuopin/index.html" tppabs="http://www.yinshiweb.com/zuopin/"><span>作品</span></a></li>
+                <li><a href="../zhishi/index.html" tppabs="http://www.yinshiweb.com/zhishi/"><span
+                        id="sh_hover">生活读刊</span></a>
+                    <div class="subNav">
+                        <a href="../zhishi/22-1.html" tppabs="http://www.yinshiweb.com/zhishi/22-1.html">饮食健康</a>
+                        <a href="../jianfei/index.html" tppabs="http://www.yinshiweb.com/jianfei/">健康减肥</a>
+                        <a href="../zhishi/24-1.html" tppabs="http://www.yinshiweb.com/zhishi/24-1.html">厨房技巧</a>
+                        <a href="../zhishi/29-1.html" tppabs="http://www.yinshiweb.com/zhishi/29-1.html">生活贴士</a>
+                        <a href="../zhishi/739_1.html" tppabs="http://www.yinshiweb.com/zhishi/739_1.html">病理医疗</a>
+                        <a href="../zhishi/23-1.html" tppabs="http://www.yinshiweb.com/zhishi/23-1.html">美食故事</a>
+                        <a href="../zhishi/686-1.html" tppabs="http://www.yinshiweb.com/zhishi/686-1.html">两性保健</a>
+                        <a href="../zhishi/687-1.html" tppabs="http://www.yinshiweb.com/zhishi/687-1.html">生活科技</a>
+                        <a href="../zhishi/741-1.html" tppabs="http://www.yinshiweb.com/zhishi/741-1.html">生活娱乐</a>
+                        <a href="../shehui/index.html" tppabs="http://www.yinshiweb.com/shehui/">社会生活</a>
+                        <a href="../bazisuanming/index.html" tppabs="http://www.yinshiweb.com/bazisuanming/">八字算命</a>
+                        <a href="../shicai/index.html" tppabs="http://www.yinshiweb.com/shicai/">食材大全</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div id="longindiv">
+            <div id="userlogin">
+    <span><a href="../member/index_do.php-fmdo=user&dopost=regnew.htm"
+             tppabs="http://www.yinshiweb.com/member/index_do.php?fmdo=user&dopost=regnew" rel="nofollow">注册</a>
+ <a href="javascript:denglu()" rel="nofollow">登陆</a></span>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+</div>
+<div class="clearfix"></div>
+<div id="container">
+    <div id="mainContent">
+        <div id="cimenu">
+            <div id="famenu">
+                <a href="" >网站首页</a> > <a href="">生活读刊</a> > <a href="" >文章编辑</a> >
+            </div>
+        </div>
+        <script>h9702();</script>
+        <div class="clearfix"></div>
+        <div>
+            <div id="wentext" style="width: 900px;margin-left: 20px">
+                <h1 style="width: 900px;color: gray">
+                    文章类型：
+                    <select id="selectUl" style="color:black;border-top-width:0px; border-right-width:0px; border-bottom-width:1px;border-left-width: 0px"></select>
+                    请输入标题：
+                    <input id="titleinput" type="text" style="color:black;font-size:1.2em;width:20em;height:1.2em;border:solid #c8cccf;border-top-width:0px; border-right-width:0px; border-bottom-width:1px;border-left-width: 0px"/></h1>
+
+            </div>
+
+        </div>
+        <script>h9702();</script>
+
+
+    </div>
+    <link href="/static/pro/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/pro/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/pro/css/summernote.css" rel="stylesheet">
+
+    <div id="inputdiv">
+
+    </div>
+    <div class="make_head_but text-center">
+        <input type="submit" id="submit" class="btn btn-primary" value="提 交" >
+    </div>
+</div>
+
+<div id="footer">
+    <div id="zhiding">
+        <a class="noborder" rel="nofollow"
+           href="javascript:if(confirm(%27http://www.yinshiweb.com/info/3050.html  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.yinshiweb.com/info/3050.html%27"
+           tppabs="http://www.yinshiweb.com/info/3050.html">关于饮食web</a>
+        <a rel="nofollow"
+           href="javascript:if(confirm(%27http://www.yinshiweb.com/info/18573.html  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.yinshiweb.com/info/18573.html%27"
+           tppabs="http://www.yinshiweb.com/info/18573.html">使用协议</a>
+        <a rel="nofollow"
+           href="javascript:if(confirm(%27http://www.yinshiweb.com/info/3048.html  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.yinshiweb.com/info/3048.html%27"
+           tppabs="http://www.yinshiweb.com/info/3048.html">版权免责</a>
+        <a rel="nofollow"
+           href="javascript:if(confirm(%27http://www.yinshiweb.com/info/18572.html  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.yinshiweb.com/info/18572.html%27"
+           tppabs="http://www.yinshiweb.com/info/18572.html">隐私权政策</a>
+        <a rel="nofollow"
+           href="javascript:if(confirm(%27http://www.yinshiweb.com/info/3049.html  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.yinshiweb.com/info/3049.html%27"
+           tppabs="http://www.yinshiweb.com/info/3049.html">联系我们</a>
+        <a href="../zuofa/index.html" tppabs="http://www.yinshiweb.com/zuofa/">菜谱大全</a>
+        <a href="../shicai/index.html" tppabs="http://www.yinshiweb.com/shicai/">食材大全</a>
+        <a href="javascript:if(confirm(%27http://www.yinshiweb.com/new/  \n\nThis file was not retrieved by Teleport Pro, because it was unavailable, or its retrieval was aborted, or the project was stopped too soon.  \n\nDo you want to open it from the server?%27))window.location=%27http://www.yinshiweb.com/new/%27"
+           tppabs="http://www.yinshiweb.com/new/">最新更新</a>
+    </div>
+    <div id="copys">
+        Copyright &#169; www.yinshiweb.com All Rights Reserved. 从餐桌<a href="../index.html"
+                                                                      tppabs="http://www.yinshiweb.com/"
+                                                                      target='_blank'>家常菜</a>到产地，中国最大的<a
+            href="../index.html" tppabs="http://www.yinshiweb.com/" target='_blank'>饮食</a>交流社区。苏ICP备17020194号-2.
+    </div>
+</div>
+<script type="text/javascript" src="/static/img/jquery.lazyload.min.js"
+        tppabs="http://www.yinshiweb.com/img/jquery.lazyload.min.js"></script>
+<script src="/static/pro/js/jquery-2.1.1.min.js"></script>
+<script language="javascript" type="text/javascript">
+
+    $.ajax({
+        url: "/consumer/articleTypesAll",
+        type: "post",
+        dataType: "json",
+        success: function (data) {
+            var dataList = eval(data);
+            for (var key in dataList) {
+                var op = "<option value='"+dataList[key].atid+"' style='border:solid #c8cccf;color:#6a6f77;'>"+dataList[key].atname+"</option>";
+                $("#selectUl").append(op);
+            }
+        }
+    });
+</script>
+<script src="/static/pro/js/bootstrap.js"></script>
+<script src="/static/pro/js/summernote.min.js"></script>
+<script src="/static/pro/js/summernote-zh-CN.js"></script>
+<script language="javascript" type="text/javascript">
+    $(document).ready(function(){
+        $("#inputdiv").summernote({
+            height: 500,                 // set editor height
+            minHeight: null,             // set minimum height of editor
+            maxHeight: null,             // set maximum height of editor
+            focus: true,
+            lang : 'zh-CN',
+            onImageUpload: function(files,editor,$editable) {
+                sendFile(this,files[0], editor,$editable);
+            }
+
+        });
+
+    });
+
+    function sendFile(obj,file, editor,$editable) {
+        var  filename=false;
+        try{
+            filename=file['name'];
+        }catch(e){
+            filename=false;
+        }
+        if(!filename){
+            $(".note-alarm").remove();
+        }
+        //防止重复提交
+        var formData = new FormData();
+        formData.append("file", file);
+        //formData.append("key",filename);//唯一参数性
+        $.ajax({
+            url: "/articleImgUpLoad",//路径是你控制器中上传图片的方法
+            data: formData,
+            cache: false,
+            contentType: false,
+            processData: false,
+            type: 'post',
+            success: function (data) {
+                $(obj).summernote('insertImage', data.path);
+            }
+        });
+    }
+
+
+    $("#submit").on("click",function () {
+       var atid = $("#selectUl").select().val();
+       var title = $("#titleinput").val();
+       var descr = $("#inputdiv").code();
+       if (title.length == 0){
+           alert("标题不能为空");
+       }else {
+           $.post("/addArticle",{atid:atid,title:title,descr:descr},function (data) {
+               if (data){
+                   alert("文章上传成功");
+                   location.href="/consumer/toarticlemain";
+               }
+           })
+       }
+    });
+
+</script>
+<script>
+    cpic = "../uploads/allimg/190311/1-1Z311223425C7-lp.jpg"/*tpa=http://www.yinshiweb.com/uploads/allimg/190311/1-1Z311223425C7-lp.jpg*/;
+    window._bd_share_config = {
+        "common": {
+            "bdSnsKey": {},
+            "bdText": "",
+            "bdMini": "2",
+            "bdMiniList": ["qzone", "tsina", "bdysc", "weixin", "douban", "bdhome"],
+            "bdPic": cpic,
+            "bdStyle": "0",
+            "bdSize": "16"
+        }, "share": {}
+    };
+    with (document) 0[(getElementsByTagName('head')[0] || body).appendChild(createElement('script')).src = 'http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion=' + ~(-new Date() / 36e5)];
+    var fenx = document.getElementById("fenxiang");
+    fenx.onmouseover = function () {
+        document.getElementById("fenxiangbox").style.display = "block";
+    }
+    fenx.onmouseout = function () {
+        document.getElementById("fenxiangbox").style.display = "none";
+    }
+    var xiang = document.getElementById("xiangguanyuedu");
+    var a = xiang.getElementsByTagName("a");
+    if (!a.length > 0) {
+        document.getElementById("xiangguanyuedu").style.display = "none";
+    }
+    var xiangs = document.getElementById("xiangcaipu");
+    var ac = xiangs.getElementsByTagName("a");
+    if (!ac.length > 0) {
+        document.getElementById("xiangcaipu").style.display = "none";
+    }
+</script>
+</body>
+</html>

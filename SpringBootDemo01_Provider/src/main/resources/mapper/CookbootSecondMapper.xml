@@ -225,4 +225,10 @@
       cbid = #{cbid,jdbcType=INTEGER}
     where cbsid = #{cbsid,jdbcType=INTEGER}
   </update>
+  <select id="cookboot2" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from cookboot_second
+    where cbid=#{cbid}
+  </select>
 </mapper>
