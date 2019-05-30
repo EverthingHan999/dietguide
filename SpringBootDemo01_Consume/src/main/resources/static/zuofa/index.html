@@ -616,19 +616,20 @@
               var a1=""
               for (var key in list1){
                   console.log(list1[key].cbname);
-                   a1 += "<a href=''>"+list1[key].cbname+"</a>"
+                  console.log(list1[key].cbsid);
+                   a1 += "<a href='725-1.html?"+list1[key].cbsid+"'>"+list1[key].cbname+"</a>"
                     
               }
               ul.append(h4);
               ul.append(a1);
 
                var ul2 = $("<ul></ul>");
-               console.log(data[1].cbname);
+               /*console.log(data[1].cbname);*/
                var h42 = $("<h4><a href='#'>"+data[1].cbname+"</a></h4>");
                var list2 = data[1].cookbootSeconds;
                var a2=""
                for (var key in list2){
-                   console.log(list2[key].cbname);
+                  /* console.log(list2[key].cbname);*/
                    a2 += "<a href='33-1.html'>"+list2[key].cbname+"</a>"
 
                }
@@ -637,12 +638,12 @@
 
 
                var ul3 = $("<ul></ul>");
-               console.log(data[2].cbname);
+               /*console.log(data[2].cbname);*/
                var h43 = $("<h4><a href='#'>"+data[2].cbname+"</a></h4>");
                var list3 = data[2].cookbootSeconds;
                var a3=""
                for (var key in list3){
-                   console.log(list3[key].cbname);
+                   /*console.log(list3[key].cbname);*/
                    a3 += "<a href='33-1.html'>"+list3[key].cbname+"</a>"
 
                }
@@ -650,12 +651,12 @@
                ul3.append(a3);
 
                var ul4 = $("<ul></ul>");
-               console.log(data[3].cbname);
+              /* console.log(data[3].cbname);*/
                var h44 = $("<h4><a href='#'>"+data[3].cbname+"</a></h4>");
                var list4 = data[3].cookbootSeconds;
                var a4=""
                for (var key in list4){
-                   console.log(list4[key].cbname);
+                   /*console.log(list4[key].cbname);*/
                    a4 += "<a href='33-1.html'>"+list4[key].cbname+"</a>"
 
                }
@@ -676,7 +677,7 @@
                var li = "";
                for (var key in twos) {
                    li += "<li><a href='33-1.html'>" + twos[key].cbname + "</a></li>"
-                   console.log(twos[key].cbname)
+                  /* console.log(twos[key].cbname)*/
                }
                $("#d2").append(li)
            });

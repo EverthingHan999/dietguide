@@ -510,10 +510,27 @@
         var hm = document.createElement("script");
         hm.src = "../../hm.baidu.com/hm.js-e206e9bed3460b679e5f0986d1965342"/*tpa=https://hm.baidu.com/hm.js?e206e9bed3460b679e5f0986d1965342*/;
         var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
+       /* s.parentNode.insertBefore(hm, s);*/
     })();
 </script>
 <script type="text/javascript">
+    function parseUrl(){
+        var url=location.href;
+        var i=url.indexOf('?');
+        if(i==-1)return;
+        var querystr=url.substr(i+1);
+        var arr1=querystr.split('&');
+        var arr2=new Object();
+        for  (i in arr1){
+            var ta=arr1[i].split('=');
+            arr2[ta[0]]=ta[1];
+        }
+        console.log(arr2);
+        return arr2;
+    }
+    parseUrl();
+
+
     $(function () {
         $.get("/consume/getCookBookByCbid",function (data) {
             /* data[0].cookbootSeconds ;*/
@@ -524,7 +541,7 @@
             var list1 = data[0].cookbootSeconds;
             var a1 = ""
             for (var key in list1) {
-                console.log(list1[key].cbname);
+               // console.log(list1[key].cbname);
                 a1 += "<a href=''>" + list1[key].cbname + "</a>"
 
             }
@@ -532,12 +549,12 @@
             ul.append(a1);
 
             var ul2 = $("<ul></ul>");
-            console.log(data[1].cbname);
+            /*console.log(data[1].cbname);*/
             var h42 = $("<h4><a href='#'>" + data[1].cbname + "</a></h4>");
             var list2 = data[1].cookbootSeconds;
             var a2 = ""
             for (var key in list2) {
-                console.log(list2[key].cbname);
+                //console.log(list2[key].cbname);
                 a2 += "<a href='33-1.html'>" + list2[key].cbname + "</a>"
 
             }
@@ -546,12 +563,12 @@
 
 
             var ul3 = $("<ul></ul>");
-            console.log(data[2].cbname);
+           // console.log(data[2].cbname);
             var h43 = $("<h4><a href='#'>" + data[2].cbname + "</a></h4>");
             var list3 = data[2].cookbootSeconds;
             var a3 = ""
             for (var key in list3) {
-                console.log(list3[key].cbname);
+               // console.log(list3[key].cbname);
                 a3 += "<a href='33-1.html'>" + list3[key].cbname + "</a>"
 
             }
@@ -559,12 +576,12 @@
             ul3.append(a3);
 
             var ul4 = $("<ul></ul>");
-            console.log(data[3].cbname);
+            //console.log(data[3].cbname);
             var h44 = $("<h4><a href='#'>" + data[3].cbname + "</a></h4>");
             var list4 = data[3].cookbootSeconds;
             var a4 = ""
             for (var key in list4) {
-                console.log(list4[key].cbname);
+                //console.log(list4[key].cbname);
                 a4 += "<a href='33-1.html'>" + list4[key].cbname + "</a>"
 
             }
@@ -579,7 +596,10 @@
             $("#cpdq").append(ul3);
             $("#cpdq").append(ul4);
             $("#cpdq").append(h2);
+
         });
+
+
     })
 </script>
 </body>
