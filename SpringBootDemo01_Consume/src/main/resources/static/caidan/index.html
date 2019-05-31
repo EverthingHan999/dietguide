@@ -284,13 +284,29 @@
         var users = document.getElementById("uinfo");
         users.style.display = "none";
     }
+    //静态页面的跳转和传值
+    function parseUrl(){
+        var url=location.href;
+        var i=url.indexOf('?');
+        if(i==-1)return;
+        var querystr=url.substr(i+1);
+        var arr1=querystr.split('&');
+        var arr2=new Object();
+        for  (i in arr1){
+            var ta=arr1[i].split('=');
+            arr2[ta[0]]=ta[1];
+        }
+        return arr2;
+    }
     //获取所有的菜单种类
      function getAllMenuTypes() {
          $.get("/consumer/menuTypes",function (data) {
              var menuType = $("#menuType");
              var li = '';
              var data = eval(data);
+             console.log(data);
              for (var key in data) {
+
              li += '<li><a  class="SingleMenu" value="'+data[key].mtid+'">'+data[key].mtname+'</a></li>';
              }
              menuType.append(li);
@@ -304,9 +320,9 @@
             var ul1 = $(".caipulist_caidan");
            for(var key in data){
                var li1 = $('<li></li>');
-               var p1= $('<p><a href="getgetMenusBymtid?mtid="'+data[key].mtid+'><b>'+data[key].mname+'</b></a></p>');
+               var p1= $('<p><a href="202571.html?mid='+data[key].mid+'"><b>'+data[key].mname+'</b></a></p>');
                var p2 = $('<p>'+data[key].mdescr+'</p>');
-               var div1 = '<a href="getgetMenusBymtid?mtid="'+data[key].mtid+' ><div class="caipuimg"><img src="../img/grey.gif" data-original="/uploads/allimg/c170418/'+data[key].mimg+'.jpg" alt="<b>'+data[key].mname+'</b>" height="190" width="190"/></div></a>';
+               var div1 = '<a href="getMenusBymtid?mid="'+data[key].mid+' ><div class="caipuimg"><img src="../img/grey.gif" data-original="/uploads/allimg/c170418/'+data[key].mimg+'.jpg" alt="<b>'+data[key].mname+'</b>" height="190" width="190"/></div></a>';
                li1.append(div1);
                li1.append(p1);
                li1.append(p2);
@@ -322,7 +338,7 @@
             var ul1 = $(".chaocai");
             for(var key in data){
                 var li1 = $('<li></li>');
-                var p1 =$('<p><a class="ChaoCaiMenu" value="'+data[key].mid+'">'+data[key].mname+'</a></p>');
+                var p1 =$('<p><a href="202571.html?mid='+data[key].mid+'">'+data[key].mname+'</a></p>');
                 li1.append(p1);
                 ul1.append(li1);
             }
@@ -346,7 +362,7 @@
             var hotMenu = $("#hotMenu");
             for(var key in data){
                 var div1 = $('<div class="rl_img"><a href="#"><img src="../img/grey.gif" data-original="/uploads/allimg/c170616/'+data[key].mimg+'.jpg" alt="'+data[key].mname+'" height=\'140\' width=\'140\'/></a></div>');
-                var a1 = $('<a href="#">'+data[key].mname+'</a></li>');
+                var a1 = $('<a href="202571.html?mid='+data[key].mid+'">'+data[key].mname+'</a></li>');
                 var li1= $('<li></li>');
                 li1.append(div1);
                 li1.append(a1);
@@ -356,7 +372,7 @@
     }
     getHotMenus();
    /*========================================动态生成后的jquery=============================================*/
-    //菜单种类的动态生成
+    //某一菜单种类下的菜单的动态生成
     $("#menuType").on("click",".SingleMenu",function () {
         var mtid = $(this).attr("value");
         var mtname = $(this).text();
@@ -369,9 +385,9 @@
             ul1.append(haha);
             for (var key in data){
                 var li1 = $('<li></li>');
-                var p1= $('<p><a href="getgetMenusBymtid?mtid="'+data[key].mtid+'><b>'+data[key].mname+'</b></a></p>');
+                var p1= $('<p><a href="202571.html?mid='+data[key].mid+'"'+'><b>'+data[key].mname+'</b></a></p>');
                 var p2 = $('<p>'+data[key].mdescr+'</p>');
-                var div1 = '<a href="getgetMenusBymtid?mtid="'+data[key].mtid+' ><div class="caipuimg"><img src="../img/grey.gif" data-original="/uploads/allimg/c170418/'+data[key].mimg+'.jpg" alt="<b>'+data[key].mname+'</b>" height="190" width="190"/></div></a>';
+                var div1 = '<a href="202571.html?mid='+data[key].mid+'"'+' ><div class="caipuimg"><img src="../img/grey.gif" data-original="/uploads/allimg/c170418/'+data[key].mimg+'.jpg" alt="<b>'+data[key].mname+'</b>" height="190" width="190"/></div></a>';
                 li1.append(div1);
                 li1.append(p1);
                 li1.append(p2);
@@ -379,14 +395,7 @@
             }
         })
     })
-    //menu详情
-    $(".chaocai").on("click",".ChaoCaiMenu",function () {
-        var mid=$(this).attr("value");
-        alert(mid);
-        $.get("/consumer/getChaoCaiMenu",{mid:mid},function (data) {
-            console.log(data);
-        })
-    })
+
 
 
 

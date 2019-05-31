@@ -28,4 +28,5 @@ public class MenuTypeController {
         return restTemplate.getForObject(REST_URL_PREFIX+"/provider/menuTypes",List.class);
     }
 
+
 }

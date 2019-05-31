@@ -1,6 +1,7 @@
 package com.je1809.controller;
 
 import com.je1809.pojo.Menu;
+import com.je1809.pojo.MenuCook;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -9,6 +10,7 @@ import org.springframework.web.client.RestTemplate;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -58,10 +60,19 @@ public class MenuController {
         return restTemplate.getForObject(REST_URL_PREFIX+"/provider/getSingleMenu?mtid="+mtid,List.class);
     }
 
-    //获取某一菜单下的所有菜品
+    //获取某一菜单下的详情
     @ResponseBody
     @GetMapping("/consumer/getChaoCaiMenu")
-    public Menu getChaoCaiMenu(@RequestParam("mid") String mid){
-        return restTemplate.getForObject(REST_URL_PREFIX+"/provider/getChaoCaiMenu?mid="+mid,Menu.class);
+    public List<MenuCook> getChaoCaiMenu(@RequestParam("mid") String mid){
+
+        return restTemplate.getForObject(REST_URL_PREFIX+"/provider/getChaoCaiMenu?mid="+mid,List.class);
     }
+
+    //获取某一菜单下的所有菜品
+    @ResponseBody
+    @GetMapping("/consumer/getCooksByMid")
+    public List<MenuCook> getCooksByMid(@RequestParam("mid") String mid){
+        return restTemplate.getForObject(REST_URL_PREFIX+"/provider/getCooksByMid?mid="+mid,List.class);
+    }
+
 }
