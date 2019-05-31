@@ -131,5 +131,19 @@ public class ArticleController {
         return restTemplate.getForObject(REST_URL_PREFIX + "/provider/articleTypeByAtid/"+atid,ArticleType.class);
     }
 
+    @PostMapping("/consumer/articlesByAtidByPage")
+    @ResponseBody
+    public List<Article> articlesByAtidByPage(HttpServletRequest request){
+        int atid = Integer.parseInt(request.getParameter("atid"));
+        int page = Integer.parseInt(request.getParameter("page"));
+        int limit = Integer.parseInt(request.getParameter("limit"));
+
+        LinkedMultiValueMap<String, Integer> map = new LinkedMultiValueMap<>();
+        map.add("atid",atid);
+        map.add("page",page);
+        map.add("limit",limit);
+
+        return restTemplate.postForObject(REST_URL_PREFIX + "/provider/articlesByAtidByPage",map,List.class);
+    }
 
 }
