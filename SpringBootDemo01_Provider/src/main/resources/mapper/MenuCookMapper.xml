@@ -193,4 +193,17 @@
       remarks = #{remarks,jdbcType=VARCHAR}
     where mcid = #{mcid,jdbcType=INTEGER}
   </update>
+  <resultMap id="menuCook" type="com.je1809.pojo.MenuCook" >
+    <id column="mcid" property="mcid" jdbcType="INTEGER" />
+    <result column="mid" property="mid" jdbcType="INTEGER" />
+    <result column="cid" property="cid" jdbcType="INTEGER" />
+    <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+    <association column="mid" property="menu" select="com.je1809.mapper.MenuMapper.selectByPrimaryKey"/>
+    <collection column="cid" property="cooks" select="com.je1809.mapper.CookMapper.selectByPrimaryKey" ofType="com.je1809.pojo.Cook"/>
+  </resultMap>
+  <select id="getMenu" resultMap="menuCook">
+    select
+    <include refid="Base_Column_List" />
+    from menu_cook
+  </select>
 </mapper>
