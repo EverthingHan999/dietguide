@@ -125,8 +125,11 @@ public class ArticleController {
         article.setCreateTime(date);
         article.setLookcount(0);
         article.setRemarks(descr);
-
-        return articleService.insert(article) > 0;
+        boolean b = articleService.insert(article) > 0;
+        if (b){
+            articleService.dataFromDB2Solr();
+        }
+        return b;
     }
 
     @GetMapping("/provider/articleTypeByAtid/{atid}")
@@ -163,10 +166,14 @@ public class ArticleController {
         return cookService.dataFromDB2Solr();
     };
 
-    @GetMapping("/provider/searchByKeyWord")
+    @PostMapping("/provider/searchByKeyWord")
     @ResponseBody
-    public Map<String, List> searchByKeyWord(){
-        return articleService.searchByKeyWord("五花肉美食",0,10);
+    public Map<String, List> searchByKeyWord(HttpServletRequest request){
+        String keywords = request.getParameter("keywords");
+        int page = Integer.parseInt(request.getParameter("page"));
+        int limit = Integer.parseInt(request.getParameter("limit"));
+        Map<String, List> map = articleService.searchByKeyWord(keywords, page, limit);
+        return map;
     };
 
 }

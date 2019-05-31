@@ -5,7 +5,7 @@
     <title>生活读刊,饮食健康,生活技巧,厨房技巧,病理医疗等知识信息_饮食web</title>
     <meta name="keywords" content="生活读刊,饮食健康,厨房技巧,生活小贴士,生活常识,健康知识" />
     <meta name="description" content="生活读刊栏目提供：饮食健康,厨房制作技巧,生活小贴士,各地旅游美食,生活常识,健康生活知识,饮食知识,美食制作知识等信息,希望大家喜欢。" />
-    <link href="/static/img/style.css" tppabs="http://www.yinshiweb.com/img/style.css" rel="stylesheet" type="text/css" />
+    <link href="/static/img/style.css" rel="stylesheet" type="text/css" />
     <script language="javascript" type="text/javascript" src="/static/include/dedeajax2.js" tppabs="http://www.yinshiweb.com/include/dedeajax2.js"></script>
 </head>
 <body>
@@ -15,10 +15,11 @@
             <a href="../index.htm" tppabs="http://www.yinshiweb.com/" title="饮食web"><img src="/static/img/logo.png" tppabs="http://www.yinshiweb.com/img/logo.png" width="160" height="60" alt="饮食web" /></a>
         </div>
         <div id="search">
-            <form action="http://www.yinshiweb.com/search.php" method="GET">
+            <form>
                 <input type="text" id="bdcsMain" onFocus="oninp()" onblur="outinp()" class="search" placeholder="菜谱名或食材名" name="q">
-                <button id="sbutton">搜 索</button>
+                <button type="button" id="sbutton">搜 索</button>
             </form>
+
         </div>
         <div id="menu">
             <ul>
@@ -100,11 +101,9 @@
         </div>
 
         <div class="clearfix"></div>
-        <div id="leftbox1">
+        <div id="leftbox">
 
-
-
-
+        </div>
         <div id="rightBox" class="rightBox_shi">
             <script>h3001();</script>
 
@@ -171,7 +170,7 @@
                 }
                 divArticle.append(h2);
                 divArticle.append(ul);
-                $("#leftbox1").append(divArticle);
+                $("#leftbox").append(divArticle);
             }
         }
     });
@@ -195,6 +194,47 @@
 
             }
         }
+    });
+</script>
+<script language="javascript" type="text/javascript">
+    $("#sbutton").on("click",function () {
+        var keywords = $("#bdcsMain").val();
+        $.post("/consumer/searchByKeyWord",{keywords:keywords,page:0,limit:30},function (data) {
+            var map = eval(data);
+            $("#famenu").empty();
+            $("#famenu").append("<a href=\"\" >网站首页</a> > <a href=\"\" >搜索结果</a>");
+            $("#selectUl").empty();
+            $("#leftbox").empty();
+            var cookList = map.cookList;
+            var cookdivArticle = $("<div class=\"caipulist tuwen_box\"></div>");
+            var cookh2 = "<h2>美食大全<span><a>（共"+cookList.length+"条数据）</a></span></h2>";
+            cookdivArticle.append(cookh2);
+            for (var kk in cookList) {
+                cookdivArticle.append("<li><a href=''><div class='caipuimg'><img src='"+cookList[kk].cimg+"' width='195' height='195' />" +
+                    "</div></a><p><a href=''>"+cookList[kk].cname+"</a></p><p> <a class=\"zuozhe\" href=\"\">"+cookList[kk].uid+"</a></p></li>");
+            }
+            $("#leftbox").append(cookdivArticle);
+            var articleList= map.articleList;
+            var divArticle = $("<div class=\"tuwen_box\"></div>");
+            var h2 = "<h2>生活读刊<span><a>（共"+articleList.length+"条数据）</a></span></h2>";
+            var ul = $("<ul></ul>");
+            var divup = $("<div class=\"index_tuwen\"></div>");
+            var divdown = $("<div class=\"index_wens\"></div>");
+            for (var key in map.articleList){
+                if (map.articleList[key].aimg != null){
+                    var li2 = "<li><a href='/static/article/article_descr.html?aid="+map.articleList[key].aid+"' ><img src='"+map.articleList[key].aimg+"'/></a><h3><a href='/static/article/article_descr.html?aid="+map.articleList[key].aid+"'>"+map.articleList[key].aname+"</a></h3><span>"+map.articleList[key].lookcount+"次浏览</span></li>";
+                    divup.append(li2);
+                } else {
+                    var li2 = "<li><a href='/static/article/article_descr.html?aid="+map.articleList[key].aid+"'>"+map.articleList[key].aname+"</a></li>";
+                    divdown.append(li2);
+                }
+            }
+            ul.append(divup);
+            ul.append(divdown);
+            divArticle.append(h2);
+            divArticle.append(ul);
+            $("#leftbox").append(divArticle);
+        });
     });
 </script>
 </body>

@@ -1913,7 +1913,7 @@ a:hover img {
     margin-top: 6px;
 }
 
-#search form #soanniu {
+#search #soanniu {
     display: none;
 }
 
@@ -1932,7 +1932,7 @@ a:hover img {
     line-height: 1.2em;
 }
 
-#search form input {
+#bdcsMain {
     margin: 12px 0;
     font-size: 95%;
     padding: 10px 8px;
