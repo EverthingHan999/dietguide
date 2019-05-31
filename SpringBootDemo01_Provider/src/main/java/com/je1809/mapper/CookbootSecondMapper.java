@@ -1,5 +1,6 @@
 package com.je1809.mapper;
 
+import com.je1809.pojo.CookbookThird;
 import com.je1809.pojo.CookbootSecond;
 import com.je1809.pojo.CookbootSecondExample;
 import org.apache.ibatis.annotations.Mapper;
@@ -29,4 +30,6 @@ public interface CookbootSecondMapper {
     int updateByPrimaryKeySelective(CookbootSecond record);
 
     int updateByPrimaryKey(CookbootSecond record);
+
+    List<CookbootSecond> cooksencondthird();
 }

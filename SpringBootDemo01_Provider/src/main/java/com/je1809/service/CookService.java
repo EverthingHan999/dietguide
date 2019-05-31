@@ -32,5 +32,7 @@ public interface CookService {
 
     List<Cook> cook3();
 
+    Cook CookUsers(Integer cid);
+
     MsgResult dataFromDB2Solr();
 }

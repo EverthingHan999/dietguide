@@ -31,4 +31,6 @@ public interface CookMapper {
     int updateByPrimaryKey(Cook record);
 
     List<Cook> cook3();
+
+    Cook CookUsers(Integer cid);
 }

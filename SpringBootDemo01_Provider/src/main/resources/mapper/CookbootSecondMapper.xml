@@ -231,4 +231,18 @@
     from cookboot_second
     where cbid=#{cbid}
   </select>
+    <resultMap id="cookst" type="com.je1809.pojo.CookbootSecond" >
+        <id column="cbsid" property="cbsid" jdbcType="INTEGER" />
+        <result column="cbname" property="cbname" jdbcType="VARCHAR" />
+        <result column="cbimg" property="cbimg" jdbcType="VARCHAR" />
+        <result column="descr" property="descr" jdbcType="VARCHAR" />
+        <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+        <result column="cbid" property="cbid" jdbcType="INTEGER" />
+        <collection property="cookSencondThird" column="cbsid" select="com.je1809.mapper.CookbookThirdMapper.cookst2" />
+    </resultMap>
+    <select id="cooksencondthird" resultMap="cookst">
+      select
+      <include refid="Base_Column_List" />
+      from cookboot_second
+    </select>
 </mapper>
