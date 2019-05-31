@@ -1,6 +1,7 @@
 package com.je1809.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.je1809.pojo.CookbookExample;
 import com.je1809.pojo.CookbootSecond;
 import com.je1809.service.CookBookSecondService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,10 @@ public class CookBookSecondController {
     private CookBookSecondService cookBookSecondService;
     @Autowired
     private RedisTemplate<String,String> redisTemplate;
+    private static CookbookExample cookbookExample;
+    static {
+        cookbookExample = new CookbookExample();
+    }
 
     @ResponseBody
     @GetMapping("/provider/getAllCookBookSecond")
@@ -43,8 +48,15 @@ public class CookBookSecondController {
 
     @ResponseBody
     @GetMapping("/provider/getCookSecondById")
-    public CookbootSecond getCookSecondById(HttpServletRequest request){
+    public CookbootSecond getCookSecondById(HttpServletRequest request) {
         int cbsid = Integer.parseInt(request.getParameter("cbsid"));
         return cookBookSecondService.selectByPrimaryKey(cbsid);
+    }
+
+    @ResponseBody
+    @GetMapping("/provider/getCookSecondThird")
+    public List<CookbootSecond> getCookSecondThird() {
+        cookbookExample.clear();
+        return cookBookSecondService.cooksencondthird();
     }
 }

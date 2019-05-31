@@ -113,12 +113,12 @@
             <div id="famenu">
                 <a href="../index.html">网站首页 > <a href="index.html">菜谱大全</a> > <a id="fahover" href="725-1.html">炒菜</a>
             </div>
-            <ul>
+            <ul id="er">
 
-                <li><a>炒肉</a></li>
+               <!-- <li><a>炒肉</a></li>
                 <li><a>素炒</a></li>
                 <li><a>特色炒菜</a></li>
-                <li><a>粤菜小炒</a></li>
+                <li><a>粤菜小炒</a></li>-->
             </ul>
         </div>
 
@@ -527,6 +527,16 @@
         }
         console.log(arr2);
         return arr2;
+
+        $.get("/consume/getCookBookSecondById",{cbsid:arr2[0]},function (data) {
+
+            for (var key in data) {
+                console.log(data[key].cbname);
+                var li = $("<li><a>" + data[key].cbname + "</a></li>");
+
+                $("#er").append(li);
+            }
+        });
     }
     parseUrl();
 
@@ -598,7 +608,6 @@
             $("#cpdq").append(h2);
 
         });
-
 
     })
 </script>

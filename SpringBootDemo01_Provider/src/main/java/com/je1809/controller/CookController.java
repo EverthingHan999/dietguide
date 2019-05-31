@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springsource.loaded.C;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -84,5 +85,13 @@ public class CookController {
            /* redisTemplate.expire("cookList",5000, TimeUnit.MILLISECONDS);*/
             return cookList;
         }
+    }
+
+    @ResponseBody
+    @GetMapping("/provider/getCookPractice")
+    public Cook getCookPractice(HttpServletRequest request){
+        cookExample.clear();
+        Integer cid = Integer.valueOf(request.getParameter("cid"));
+        return cookService.selectByPrimaryKey(cid);
     }
 }

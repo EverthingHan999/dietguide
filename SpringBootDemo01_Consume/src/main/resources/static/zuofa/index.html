@@ -605,8 +605,10 @@
 </script>
 <script type="text/javascript">
    $(function () {
+
        function getType(){
-           $.get("/consume/getCookBookByCbid",function (data) {
+
+           $.get("/consume/getCookBookByCbid",{},function (data) {
              /* data[0].cookbootSeconds ;*/
                // console.log(data[0].cbname)
                //  console.log(data[0].cookbootSeconds[0].cbname)
@@ -615,9 +617,9 @@
               var list1 = data[0].cookbootSeconds;
               var a1=""
               for (var key in list1){
-                  console.log(list1[key].cbname);
-                  console.log(list1[key].cbsid);
-                   a1 += "<a href='725-1.html?"+list1[key].cbsid+"'>"+list1[key].cbname+"</a>"
+
+                 // console.log(list1[key].cbsid);
+                   a1 += "<a href='725-1.html?cbsid="+list1[key].cbsid+"'>"+list1[key].cbname+"</a>"
                     
               }
               ul.append(h4);
@@ -690,8 +692,9 @@
            for (var key in data) {
                var li = $("<li></li>");
                var imgs = data[key].cimg;
-               var img = $("<a><img src='img/+" + imgs + ".jpg' data-original='/uploads/userup/1692/1551a20U-2H5-lp.jpg' alt='港式脆皮烧肉'/></a>");
-               var p = $("<p><a>"+data[key].cname+"</a><br/>by <a class='zuozhe'>"+data[key].cookuser[0].uname+"</a></p>");
+               console.log(data[key].cid);
+               var img = $("<a href='../shipu/258845.html?cid="+data[key].cid+"'><img src='/img/+" + imgs + ".jpg' data-original='/uploads/userup/1692/1551a20U-2H5-lp.jpg' alt=''/></a>");
+               var p = $("<p><a href='static/shipu/258845.html'>"+data[key].cname+"</a><br/>by <a class='zuozhe'>"+data[key].cookuser[0].uname+"</a></p>");
                li.append(img);
                li.append(p);
 

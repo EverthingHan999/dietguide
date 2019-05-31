@@ -66,4 +66,9 @@ public class CookBookSecondServiceImpl implements CookBookSecondService {
     public int updateByPrimaryKey(CookbootSecond record) {
         return 0;
     }
+
+    @Override
+    public List<CookbootSecond> cooksencondthird() {
+        return cookbootSecondMapper.cooksencondthird();
+    }
 }
