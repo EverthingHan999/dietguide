@@ -1,6 +1,5 @@
 package com.je1809.controller;
 
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.je1809.pojo.Article;
 import com.je1809.pojo.ArticleDescr;
 import com.je1809.pojo.ArticleType;
@@ -57,7 +56,7 @@ public class ArticleController {
     @PostMapping("/consumer/articlesAllOrderByLookcount")
     @ResponseBody
     public List<Article> articlesAllOrderByLookcount(){
-        return restTemplate.getForObject(REST_URL_PREFIX + "/provider/redisArticlesAllOrderByLookcount/",List.class);
+        return restTemplate.getForObject(REST_URL_PREFIX + "/provider/redisArticlesAllOrderByLookcount",List.class);
     }
 
     @PostMapping("/articleImgUpLoad")
@@ -116,5 +115,35 @@ public class ArticleController {
         return restTemplate.postForObject(REST_URL_PREFIX + "/provider/addArticle",map,boolean.class);
     }
 
+    @PostMapping("/consumer/articlesByAtid")
+    @ResponseBody
+    public List<Article> articlesByAtid(HttpServletRequest request){
+        int atid = Integer.parseInt(request.getParameter("atid"));
+
+        return restTemplate.getForObject(REST_URL_PREFIX + "/provider/articlesByAtid/"+atid,List.class);
+    }
+
+    @PostMapping("/consumer/articleTypeByAtid")
+    @ResponseBody
+    public ArticleType articleTypeByAtid(HttpServletRequest request){
+        int atid = Integer.parseInt(request.getParameter("atid"));
+
+        return restTemplate.getForObject(REST_URL_PREFIX + "/provider/articleTypeByAtid/"+atid,ArticleType.class);
+    }
+
+    @PostMapping("/consumer/articlesByAtidByPage")
+    @ResponseBody
+    public List<Article> articlesByAtidByPage(HttpServletRequest request){
+        int atid = Integer.parseInt(request.getParameter("atid"));
+        int page = Integer.parseInt(request.getParameter("page"));
+        int limit = Integer.parseInt(request.getParameter("limit"));
+
+        LinkedMultiValueMap<String, Integer> map = new LinkedMultiValueMap<>();
+        map.add("atid",atid);
+        map.add("page",page);
+        map.add("limit",limit);
+
+        return restTemplate.postForObject(REST_URL_PREFIX + "/provider/articlesByAtidByPage",map,List.class);
+    }
 
 }

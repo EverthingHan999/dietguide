@@ -1,129 +1,317 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title><?php echo $username; ?>çš„å¨æˆ¿,<?php echo $username; ?>çš„ç¾é£Ÿåšå®¢,<?php echo $username; ?>çš„èœè°±_é¥®é£Ÿweb</title>
-    <meta name="keywords"
-          content="<?php echo $username; ?>çš„ç¾é£Ÿåšå®¢,<?php echo $username; ?>çš„ä¸ªäººä¸»é¡µ,<?php echo $username; ?>çš„å¨æˆ¿,<?php echo $username; ?>çš„åšå®¢,é¥®é£Ÿweb"/>
-    <meta name="description"
-          content="æ¬¢è¿æ¥åˆ°<?php echo $username; ?>çš„å¨æˆ¿ä¸»é¡µï¼Œ<?php echo $username; ?>çš„ç¾é£Ÿåšå®¢ï¼Œåœ¨è¿™é‡Œéƒ½æ˜¯<?php echo $username; ?>çš„èœè°±å’Œç¾é£Ÿå¿ƒå¾—ï¼Œå¤§å®¶å¯ä»¥æ›´å¥½çš„å’Œ<?php echo $username; ?>äº¤æµç¾é£Ÿï¼Œä»¥å¨äº¤å‹ï¼Œå¤šå¤šç›Šå–„ï¼Œè¿™é‡Œæœ‰å…¨éƒ¨å…³äº<?php echo $username; ?>çš„ä¿¡æ¯åŠ¨æ€"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+    <title>ÎÒµÄ³ø·¿ -ÒûÊ³web</title>
+    <meta name="keywords" content="ÎÒµÄ³ø·¿,¹ÜÀíÖĞĞÄ" />
+    <meta name="description" content="ÕâÊÇÎÒµÄ³ø·¿£¬ÓÃ»§µÄ¹ÜÀíÖĞĞÄ¡£" />
+    <link href="/static/img/layout.css" rel="stylesheet" type="text/css" />
+    <!--<script language="javascript" type="text/javascript" src="/static/include/dedeajax2.js"></script>-->
+    <script type="text/javascript" src="/static/pro/js/jquery-2.1.1.min.js"></script>
     <script type="text/javascript">
-        try {
-            var urlhash = window.location.hash;
-            if (!urlhash.match("fromapp")) {
-                if ((navigator.userAgent.match(/(iPhone|iPod|Android|ios|iPad)/i))) {
-                    window.location = "http://m.yinshiweb.com/user/<?php echo $id; ?>";
+        function logout() {
+            $.get("/consumer/logout",function (data) {
+                if (data == 1){
+                    location.href = "../login/login.html";
                 }
-            }
-        } catch (err) {
+            });
         }
+        function dateToStr(data) {
+            if (data != null){
+                var dt = new Date(data);
+                var year = dt.getFullYear();
+                var month = dt.getMonth() + 1;
+                var date = dt.getDate();
+/*                var hour = dt.getHours();
+                var minutes = dt.getMinutes();
+                var seconds = dt.getSeconds();*/
+                return year+"/"+month+"/"+date;
+            }else{
+                return "";
+            }
+        }
+        $(function () {
+            window.onload=function () {
+                $.post("/consumer/getUserInfo",function (data) {
+                    if (data != ""){
+                        uname = data.uname;
+                        var span = $("<span></span>");
+                        var a = $("<a href='#' onclick='logout()'>×¢Ïú</a>");
+                        span.append(a);
+                        $("#userlogin").append(span);
+                        $.get("/consumer/getIndexInfo",{uname:data.uname},function (data) {
+                            var cooks = data.cooks;
+                            var myConllections = data.myConllections;
+                            var myArticles = data.articles;
+                            //ÎÒµÄÊ³Æ×
+                            for (var key in cooks){
+                                var li =  $("<li></li>")
+                                var span = $("<span></span>");
+                                var a1 = $("<a></a>");
+                                var img = $("<img />");
+                                var p1 = $("<p></p>");
+                                var p2 = $("<p>"+dateToStr(cooks[key].createTime)+"</p>");
+                                var a2 = $("<a>"+cooks[key].cname+"</a>");
+                                img.prop("src","/static/m/img/"+cooks[key].cimg);
+                                a1.append(img);
+                                span.append(a1);
+                                p1.append(a2);
+                                li.append(span);
+                                li.append(p1);
+                                li.append(p2);
+                                $("#myCook").append(li);
+                            }
+                            //ÊÕ²Ø
+                            for (var key in myConllections){
+                                var li =  $("<li></li>")
+                                var span = $("<span></span>");
+                                var a1 = $("<a></a>");
+                                var img = $("<img />");
+                                var p1 = $("<p></p>");
+                                var p2 = $("<p>"+dateToStr(myConllections[key].cook.createTime)+"</p>");
+                                var a2 = $("<a>"+myConllections[key].cook.cname+"</a>");
+                                img.prop("src","/static/m/img/"+myConllections[key].cook.cimg);
+                                a1.append(img);
+                                span.append(a1);
+                                p1.append(a2);
+                                li.append(span);
+                                li.append(p1);
+                                li.append(p2);
+                                $("#myCollection").append(li);
+                            }
+                            //ÎÒµÄÎÄÕÂ
+                            for (var key in myArticles){
+                                var li =  $("<li></li>")
+                                var span = $("<span></span>");
+                                var a1 = $("<a></a>");
+                                var img = $("<img style='width: 137px;height: 137px'/>");
+                                var p1 = $("<p></p>");
+                                var p2 = $("<p>"+dateToStr(myArticles[key].createTime)+"</p>");
+                                var a2 = $("<a>"+myArticles[key].aname+"</a>");
+                                img.prop("src",myArticles[key].aimg);
+                                a1.append(img);
+                                span.append(a1);
+                                p1.append(a2);
+                                li.append(span);
+                                li.append(p1);
+                                li.append(p2);
+                                $("#myArticles").append(li);
+                            }
+                        });
+                    }
+                });
+            }
+
+        })
     </script>
 </head>
+<body>
 
-    <div id="container">
-        <div id="mainContent">
-            <script src="../plus/ad_js.php-aid=32.js" language='javascript'></script>
-            <div id="m_header">
+<div id="headerbox">
 
-                <div id="guanzhu">
+    <div class="header">
+        <div id="logo">
+            <a href="http://www.yinshiweb.com"><img src="/img/logo.png" width="160"  height="60" alt="ÒûÊ³web" /></a>
+        </div>
 
-                    <div id="newdigg<?php echo $id; ?>">
-                    </div>
-                    <script language="javascript" type="text/javascript">getDigg( < ? php echo
-                    $id;
-                        ?
-                    >)
-                    ;</script>
-                </div>
+        <div id="search">
+            <form action="/search.php" method="GET">
+                <input type="text" id="txt" onFocus="oninp()" onblur="outinp()" class="search" placeholder="²ËÆ×Ãû»òÊ³²ÄÃû" name="q">
+                <button id="sbutton">ËÑ Ë÷</button>
+            </form>
+        </div>
 
-                <img class="userblur"
-                     src="--php foreach ($menber as $men) { if(!$men[%27face%27]==%27%27) { echo $men[%27face%27]; }else {echo %27-member-templets-images-dfboy.png%27; }} --"
-                     alt="<?php echo $username; ?>çš„å¨æˆ¿èƒŒæ™¯"/>
-
-                <img class="imgtou"
-                     src="--php foreach ($menber as $men) { if(!$men[%27face%27]==%27%27) { echo $men[%27face%27]; }else {echo %27-member-templets-images-dfboy.png%27; }} --"
-                     alt="<?php echo $username; ?>çš„å¨æˆ¿"/>
-                <h2><?php echo $username; ?>'s å¨æˆ¿</h2>
-                <p><a>http://www.yinshiweb.com/m/<?php echo $id; ?></a></p>
-
-            </div>
-
-
-            <div id="leftBox">
-                <div id="m_box">
-                    <div id="m_muse">
-                        <li id="mu2"><a class="hover">å¨æˆ¿é¦–é¡µ</a></li>
-                        <li><a>TAçš„é£Ÿè°±</a></li>
-                        <li><a>TAçš„æ”¶è—</a></li>
-                        <li><a>TAå…³æ³¨çš„</a></li>
-                        <li><a>å…³æ³¨TAçš„</a></li>
-                    </div>
-
-                    <div class="stow_new">
+        <div id="menu">
+            <ul>
+                <li><a href="/"><span id="wuico">ÍøÕ¾Ê×Ò³</span></a></li>
+                <li><a href="/zuofa/"><span id="fenlei_hover">²ËÆ×´óÈ«</span></a>
+                    <div class="subNav">
                         <ul>
-                            <h3>TAå‘å¸ƒçš„é£Ÿè°±</h3>
-                            <?php
-foreach ($shipus as $shipu) {
-echo "<li>
-                            <div class='stow_img'><a id'].".html'><img src="-.$shipu[" litpic2']."'
-                                alt='".$shipu['title']."' /></a></div>
-                            <p><a id'].".html'>".$shipu['title']."</a><br/><span>on ".strftime("%Y/%m/%d",$shipu['pubdate'])."</span>
-                            </p></li>";
-                            }
-                            ?>
-                        </ul>
-                    </div>
-
-                    <script>h9703();</script>
-
-                    <div class="stow_new">
-                        <h3>TAæ”¶è—çš„é£Ÿè°±</h3>
-                        <ul>
-                            <?php
-foreach ($stows as $stow) {
-echo "<li>
-                            <div class='stow_img'><a aid'].".html'><img src="-.$stow[" litpic2']."'
-                                alt='".$stow['title']."' /></a></div>
-                            <p><a aid'].".html'>".$stow['title']."</a><br/><span>by <a href="-.$stow[" sid']."'>".$stow['writer']."</a></span>
-                            </p></li>";
-                            }
-                            ?>
-                        </ul>
-                    </div>
-                    <div class="fried_new">
-                        <h3>å…³æ³¨TAçš„å¨å‹</h3>
-                        <?php
-foreach ($friends as $fri) {
-echo "<li><a mid']."'><img src="-;if(!$fri[" face']=='') {
-                        echo $fri['face']; }else {
-                        echo '/member/templets/images/dfboy.png'; }
-                        echo "' alt='".$fri['uname']."' /></a><a mid']."'>".$fri['uname']."</a><br/><span>On ".strftime("%m/%d",$fri['addtime'])."</span></li>
-                        ";
+                            <h4>¼Ò³£Ê³²Ä</h4>
+                            <a href="/zuofa/33-1.html">ÈâÀà</a>
+                            <a href="/zuofa/35-1.html">Êß²Ë</a>
+                            <a href="/zuofa/36-1.html">Ë®²ú</a>
+                            <a href="/zuofa/158-1.html">¾ú¹½</a>
+                            <a href="/zuofa/135-1.html">Ë®¹û</a>
+                            <a href="/zuofa/358-1.html">Ã×Ãæ</a>
+                            <a href="/zuofa/424-1.html">¶¹ÖÆÆ·</a>
+                            <a href="/zuofa/383-1.html">¼á¹û</a>
+                        </ul><ul>
+                        <h4>²ËÉ«²ËÆ·</h4>
+                        <a href="/zuofa/563-1.html">Á¹²Ë</a>
+                        <a href="/zuofa/649-1.html">Öà¸ş</a>
+                        <a href="/zuofa/626-1.html">ÌğÆ·</a>
+                        <a href="/zuofa/595-1.html">ìÒÌÀ</a>
+                        <a href="/zuofa/575-1.html">±ıÀà</a>
+                        <a href="/zuofa/693-1.html">ºæ±º</a>
+                        <a href='/baobaofushi/'>±¦±¦</a>
+                        <a href="/zuofa/725-1.html">³´²Ë</a>
+                    </ul><ul>
+                        <h4><a href="/caixi/">²ËÏµ·ÖÀà</a></h4>
+                        <a href="/caixi/774-1.html">´¨²Ë</a>
+                        <a href="/caixi/775-1.html">ÔÁ²Ë</a>
+                        <a href="/caixi/779-1.html">Ïæ²Ë</a>
+                        <h4><a href="/chuju/">³ø·¿³ø¾ß</a></h4>
+                        <a href="/chuju/kaoxiangshipu/">¿¾Ïä</a>
+                        <a href="/chuju/weiboluzuocai/">Î¢²¨Â¯</a>
+                        <a href="/chuju/dianfanguozuocai/">µç·¹¹ø</a>
+                        <a href="/chuju/shaguocaipu/">É°¹ø</a>
+                    </ul>
+                        <h2><a href="/daquan/">È«²¿·ÖÀà</a></h2>
+                    </div></li>
+                <li><a href="/caidan/"><span>²Ëµ¥</span></a></li>
+                <li><a href="/zuopin/"><span>×÷Æ·</span></a></li>
+                <li><a href="/zhishi/"><span>Éú»î¶Á¿¯</span></a></li>
+                <script language="javascript">
+                    var nav=document.getElementById("menu").getElementsByTagName("li");
+                    for(i=0;i<nav.length;i++){
+                        nav[i].onmouseover=function(){
+                            this.style.overflow="visible";
                         }
-                        ?>
-                    </div>
-                    <div class="fried_new">
-                        <h3>TAå…³æ³¨çš„å¨å‹</h3>
-                        <?php
-foreach ($friendsto as $frito) {
-echo "<li><a mid']."'><img src="-;if(!$frito[" face']=='') {
-                        echo $frito['face']; }else {
-                        echo '/member/templets/images/dfboy.png'; }
-                        echo "' alt='".$frito['uname']."' /></a><a mid']."'>".$frito['uname']."</a><br/><span>On  ".strftime("%m/%d",$frito['addtime'])."</span></li>
-                        ";
+                        nav[i].onmouseout=function(){
+                            this.style.overflow="hidden";
                         }
-                        ?>
-                    </div>
+                    }
+                    function ucaidan() {
+                        var users=document.getElementById("uinfo");
+                        users.style.display="block";
+                    }
+                    function ucaidans() {
+                        var users=document.getElementById("uinfo");
+                        users.style.display="none";
+                    }
+                    var _hmt = _hmt || [];
+                    (function() {
+                        var hm = document.createElement("script");
+                        hm.src = "https://hm.baidu.com/hm.js?e206e9bed3460b679e5f0986d1965342";
+                        var s = document.getElementsByTagName("script")[0];
+                        s.parentNode.insertBefore(hm, s);
+                    })();
 
-                </div>
-
-            </div>
-
-            <script>h9701();</script>
-
+                </script>
+            </ul>
+        </div>
+        <div id="longindiv">
+            <div id="userlogin">
 
         </div>
     </div>
-    </body>
+
+
+
+</div>
+
+
+
+</div>
+<div class="clearfix"></div>
+<div id="container">
+    <div id="mainContent">
+        <div id="member">
+            <div id="caidan">
+                <h2>ÓÃ»§¹ÜÀíÖĞĞÄ</h2>
+                <ul>
+                    <li><a class="caidanhover" href='../m/index.html'>Ö÷Ò³</a></li>
+                    <li><a href='../m/caipu.html'>²ËÆ×</a></li>
+                    <li><a href='../m/zuopin.html'>×÷Æ·</a></li>
+                    <li><a href='../m/wenzhang.html'>ÎÄÕÂ</a></li>
+                    <li><a href='../m/shoucang.html'>ÊÕ²Ø</a></li>
+                    <li><a href='../m/guanzhu.html'>¹Ø×¢</a></li>
+                </ul>
+            </div>
+            <div id="welcome">
+                <img src="/member/templets/images/dfboy.png"/>
+                <ul>
+                    <li><a href='/member/content_list.php?channelid=2'>·¢²¼ÄúµÄÔ­´´Ê³Æ×</a></li>
+                    <li><a href="/zuofa/">ÕÒÕÒÄúÖÓÒâµÄÊ³Æ×</a></li>
+                </ul>
+                <p>´Ó½ñÌìÆğ£¬×öÒ»¸öĞÒ¸£µÄÈË<br />
+                    Î¹Âí£¬Åü²ñ£¬ÖÜÓÎÊÀ½ç<br />
+                    ´Ó½ñÌìÆğ£¬¹ØĞÄÁ¸Ê³ºÍÊß²Ë...</p>
+            </div>
+            <div class="admin_new">
+                <h3>ÎÒ×î½ü·¢²¼µÄÊ³Æ×...</h3><ul id="myCook"></ul>
+            </div>
+            <style>
+                .riji_new {
+                    width: 635px;
+                    float: left;
+                    padding: 0 0 26px 20px;
+                    font-size: 13px;
+                }
+                .riji_new h3 {
+                    font-size: 15px;
+                    margin-bottom: 18px;
+                    font-weight: normal;
+                    color: #54821e;
+                }
+                .riji_new li {
+                    float:left;
+                    width: 605px;
+                    line-height:2em;
+                    padding:8px 0;
+                    border-bottom:dashed 1px #ddd;
+                }
+                .rijibiaoti {
+                    float:left;
+                    width: 480px;
+                    font-size: 14px;
+                }
+                .rijitime {
+                    float:left;
+                    width: 120px;
+                    color:#999;
+                    text-align:right;
+                }
+            </style>
+            <div class="riji_new">
+                <h3>ÎÒ·¢²¼µÄÉú»îÎÄÕÂ...</h3><ul id="myArticles"></ul>
+            </div>
+            <div class="admin_new">
+                <h3>ÎÒ×î½üÊÕ²ØµÄÊ³Æ×...</h3><ul id="myCollection"></ul>
+            </div>
+        </div>
+
+        <div id="rightBox">
+            <div id="admin">
+                <img src="/member/templets/images/dfboy.png"/>
+                <span><a href="/m/2091">asdqweqwe</a></span>
+                <span>592445269@qq.com<br />2019-05-29¼ÓÈë</span>
+            </div>
+            <div id="admin_b">
+                <ul>
+                    <li><a href="content_list.php?channelid=2" title="¹ÜÀíÊ³Æ×">0</a><br />Ê³Æ×Êı</li>
+                    <li><a href="mystow.php" title="ÊÕ²Ø¼Ğ">2</a><br />ÊÕ²ØÊı</li>
+                    <li><a href="myfriend.php" title="¹Ø×¢µÄ³øÓÑ">0</a><br />¹Ø×¢Êı</li>
+                </ul>
+            </div>
+            <div id="admin_a">
+                <ul>
+                    <li><a href='/member/album_add.php'>·¢²¼Ô­´´Ê³Æ×</a></li>
+                    <li><a href='/member/zuopin_add.php'>·¢²¼ÃÀÊ³×÷Æ·</a></li>
+                    <li><a href='/member/article_add.php'>·¢²¼Éú»îÎÄÕÂ</a></li>
+                    <li><a href='/member/edit_face.php'>ÉÏ´«¸öÈËÍ·Ïñ</a></li>
+                    <li><a href='/member/edit_baseinfo.php'>ÉèÖÃÕË»§ĞÅÏ¢</a></li>
+                </ul>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<div id="footer">
+    <div id="zhiding">
+        <a class="noborder" rel="nofollow" href="/info/3050.html">¹ØÓÚÎÒÃÇ</a>
+        <a rel="nofollow" href="/info/18573.html">Ê¹ÓÃĞ­Òé</a>
+        <a rel="nofollow" href="/info/3048.html">°æÈ¨ÃâÔğ</a>
+        <a rel="nofollow" href="/info/18572.html">ÒşË½È¨Õş²ß</a>
+        <a rel="nofollow" href="/info/3049.html">ÁªÏµÎÒÃÇ</a>
+        <a rel="nofollow" href="/info/18576.html">ÍøÕ¾·¢Õ¹</a>
+        <a href="/new/">×îĞÂ¸üĞÂ</a>
+    </div>
+    <div id="copys">
+        &#169; www.yinshiweb.com  All Rights Reserved. ËÕICP±¸17020194ºÅ-2.
+    </div>
+</div></body>
 </html>

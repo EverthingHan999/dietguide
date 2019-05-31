@@ -144,24 +144,25 @@
         success:function (data) {
             var dataList = eval(data);
             for (var key in dataList){
-                var li = "<li><a href=''>"+dataList[key].atname+"</a></li>";
+                var li = "<li><a href='/static/article/articleType.html?atid="+dataList[key].atid+"'>"+dataList[key].atname+"</a></li>";
                 $("#selectUl").append(li);
 
                 var divArticle = $("<div class=\"tuwen_box\"></div>");
-                var h2 = "<h2>"+dataList[key].atname+"<span><a href=''>全部</a></span></h2>";
+                var h2 = "<h2>"+dataList[key].atname+"<span><a href='/static/article/articleType.html?atid="+dataList[key].atid+"'>全部</a></span></h2>";
                 var ul = $("<ul></ul>");
                 var divup = $("<div class=\"index_tuwen\"></div>");
                 var divdown = $("<div class=\"index_wens\"></div>");
 
                 var dataListKey = dataList[key].articleList;
                 var count = 0;
+                var count1 = 0;
                 for (var key2 in dataListKey){
                     console.log();
                     if (dataListKey[key2].aimg != null && count<4){
                         var li2 = "<li><a href='/static/article/article_descr.html?aid="+dataListKey[key2].aid+"' ><img src='"+dataListKey[key2].aimg+"'/></a><h3><a href='/static/article/article_descr.html?aid="+dataListKey[key2].aid+"'>"+dataListKey[key2].aname+"</a></h3><span>"+dataListKey[key2].lookcount+"次浏览</span></li>";
                         divup.append(li2);
                         count++;
-                    } else {
+                    } else if (count1 < 10) {
                         var li2 = "<li><a href='/static/article/article_descr.html?aid="+dataListKey[key2].aid+"'>"+dataListKey[key2].aname+"</a></li>";
                         divdown.append(li2);
                     }
@@ -185,7 +186,7 @@
                 if (count<6 && list[key].aimg != null){
                     $("#hotArticle").append("<li class=\"host_img\">\n" +
                         "                        <div class=\"rl_img\">\n" +
-                        "                            <a href='/static/article/article_descr.html?aid="+list[key].aid+"' ><img src='"+list[key].aimg+"' /></a>\n" +
+                        "                            <a href='/static/article/article_descr.html?aid="+list[key].aid+"' ><img style='width: 140px;height: 130px' src='"+list[key].aimg+"' /></a>\n" +
                         "                        </div>\n" +
                         "                        <a href='/static/article/article_descr.html?aid="+list[key].aid+"' >"+list[key].aname+"</a>\n" +
                         "                    </li>");

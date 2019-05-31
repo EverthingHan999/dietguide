@@ -28,4 +28,6 @@ public interface MenuCookService {
     int updateByPrimaryKeySelective(MenuCook record);
 
     int updateByPrimaryKey(MenuCook record);
+
+    List<MenuCook> getMenu(Integer mid);
 }

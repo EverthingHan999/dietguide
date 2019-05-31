@@ -1,9 +1,13 @@
 package com.je1809.impl;
 
 import com.je1809.mapper.CookMapper;
+import com.je1809.pojo.Article;
 import com.je1809.pojo.Cook;
 import com.je1809.pojo.CookExample;
 import com.je1809.service.CookService;
+import com.je1809.util.MsgResult;
+import org.apache.solr.client.solrj.impl.HttpSolrServer;
+import org.apache.solr.common.SolrInputDocument;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -14,6 +18,8 @@ public class CookServiceImpl implements CookService {
 
     @Resource
     private CookMapper cookMapper;
+
+    private String url = "http://localhost:8082/solr";
 
     @Override
     public int countByExample(CookExample example) {
@@ -73,5 +79,47 @@ public class CookServiceImpl implements CookService {
     @Override
     public List<Cook> cook3() {
         return cookMapper.cook3();
+    }
+
+    @Override
+    public MsgResult dataFromDB2Solr() {
+        MsgResult msg = new MsgResult();
+
+        List<Cook> cooks = cookMapper.selectByExample(null);
+
+        HttpSolrServer server = new HttpSolrServer(url);
+
+        SolrInputDocument sidoc = null;
+
+        try {
+
+            for(Cook s : cooks){
+                sidoc = new SolrInputDocument();
+
+                sidoc.setField("id", "cook_"+s.getCid());
+                sidoc.setField("cook_cid", s.getCid());
+                sidoc.setField("cook_uid", s.getUid());
+                sidoc.setField("cook_cimg", s.getCimg());
+                sidoc.setField("cook_descr", s.getDescr());
+                sidoc.setField("cook_create_time", s.getCreateTime());
+                sidoc.setField("cook_copycount", s.getCopycount());
+                sidoc.setField("cook_lookcount", s.getLookcount());
+                sidoc.setField("cook_remarks", s.getRemarks());
+                sidoc.setField("cook_cbtid", s.getCbtid());
+                sidoc.setField("cook_cname", s.getCname());
+
+                server.add(sidoc);
+            }
+
+            server.commit();
+
+            msg.setMsg("success");
+            msg.setStatus(200);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return msg;
     }
 }

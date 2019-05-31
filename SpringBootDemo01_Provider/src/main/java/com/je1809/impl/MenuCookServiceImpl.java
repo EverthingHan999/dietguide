@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.util.List;
 @Service
-public class MenuCookServiceImpl implements MenuCookService {
+public class MenuCookServiceImpl implements MenuCookService{
     @Resource
     private MenuCookMapper menuCookMapper;
     @Override
@@ -66,5 +66,10 @@ public class MenuCookServiceImpl implements MenuCookService {
     @Override
     public int updateByPrimaryKey(MenuCook record) {
         return 0;
+    }
+
+    @Override
+    public List<MenuCook> getMenu(Integer mid) {
+        return menuCookMapper.getMenu(mid);
     }
 }
