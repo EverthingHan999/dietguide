@@ -146,4 +146,19 @@ public class ArticleController {
         return restTemplate.postForObject(REST_URL_PREFIX + "/provider/articlesByAtidByPage",map,List.class);
     }
 
+    @PostMapping("/consumer/searchByKeyWord")
+    @ResponseBody
+    public Map<String,List> searchByKeyWord(HttpServletRequest request){
+        String keywords = request.getParameter("keywords");
+        String page = request.getParameter("page");
+        String limit = request.getParameter("limit");
+
+        LinkedMultiValueMap<String, String> map = new LinkedMultiValueMap<>();
+        map.add("keywords",keywords);
+        map.add("page",page);
+        map.add("limit",limit);
+
+        return restTemplate.postForObject(REST_URL_PREFIX + "/provider/searchByKeyWord", map, Map.class);
+    }
+
 }

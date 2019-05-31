@@ -32,7 +32,7 @@ public class ArticleServiceImpl implements ArticleService {
     @Resource
     private CookMapper cookMapper;
 
-    private String url = "http://localhost:8082/solr";
+    private String url = "http://10.12.159.35:8082/solr";
 
     @Override
     public int countByExample(ArticleExample example) {
@@ -162,9 +162,9 @@ public class ArticleServiceImpl implements ArticleService {
         query.addHighlightField("cook_cname");
         query.addHighlightField("article_aname");
         // 设置高亮显示的前缀
-        query.setHighlightSimplePre("<em>");
+        query.setHighlightSimplePre("<font color='blue'>");
         // 设置高亮显示的后缀
-        query.setHighlightSimplePost("</em>");
+        query.setHighlightSimplePost("</font>");
         // 执行查询，得到queryResponse对象
         QueryResponse queryResponse = null;
         try {
