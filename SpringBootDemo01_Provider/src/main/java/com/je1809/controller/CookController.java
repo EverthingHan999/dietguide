@@ -65,8 +65,17 @@ public class CookController {
         return cooks;
     }
 
-
     @ResponseBody
+    @GetMapping("/provider/getCookUsers")
+    public Cook getCookUsers(HttpServletRequest request){
+        cookExample.clear();
+        Integer cid = Integer.valueOf(request.getParameter("cid"));
+        Cook cook = cookService.CookUsers(cid);
+        return cook;
+    }
+
+
+    /*@ResponseBody
     @GetMapping("/provider/redisCookUser")
     public List<Cook> redisCookUser(){
         cookExample.clear();
@@ -82,10 +91,10 @@ public class CookController {
             }
             String s = JSON.toJSONString(cookList);
             redisTemplate.opsForValue().set("cook1",s);
-           /* redisTemplate.expire("cookList",5000, TimeUnit.MILLISECONDS);*/
+           *//* redisTemplate.expire("cookList",5000, TimeUnit.MILLISECONDS);*//*
             return cookList;
         }
-    }
+    }*/
 
     @ResponseBody
     @GetMapping("/provider/getCookPractice")

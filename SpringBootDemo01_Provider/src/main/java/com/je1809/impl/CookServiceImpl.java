@@ -19,7 +19,7 @@ public class CookServiceImpl implements CookService {
     @Resource
     private CookMapper cookMapper;
 
-    private String url = "http://localhost:8082/solr";
+    private String url = "http://10.12.159.35:8082/solr";
 
     @Override
     public int countByExample(CookExample example) {
@@ -79,6 +79,11 @@ public class CookServiceImpl implements CookService {
     @Override
     public List<Cook> cook3() {
         return cookMapper.cook3();
+    }
+
+    @Override
+    public Cook CookUsers(Integer cid) {
+        return cookMapper.CookUsers(cid);
     }
 
     @Override

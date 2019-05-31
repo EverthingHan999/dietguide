@@ -130,6 +130,7 @@
         <div id="leftbox">
             <div id="caipuneirong">
                 <div id="caiputext">
+                    <div id="d1">
                     <!--<h1><strong><a href="258845.html"
                                    >煎元宵的做法</a></strong></h1>
 
@@ -138,22 +139,24 @@
                              data-original="/uploads/allimg/190318/1552T94a1IZ-33cR.jpg" style="top:-20px"
                              alt="煎元宵怎么做好吃" class="photo"/>
                     </div>-->
-
+                    </div>
                     <div id="gongju">
 
 <span>
 
 
-<em><i>19/03/18</i>发布</em><em><i><script src="../plus/count.php-view=yes&aid=258845&mid=1967.js"
+<em id="em1"><!--<i>19/03/18</i>发布--></em>
+    <em id="em2"><!--<i><script src="../plus/count.php-view=yes&aid=258845&mid=1967.js"
                                          
-                                         type='text/javascript' language="javascript"></script></i>人做过</em>
+                                         type='text/javascript' language="javascript"></script></i>-->
+    </em>
 
 
-<em>
-    <div id="uface">
+<em id="em3">
+   <!-- <div id="uface">
     <a><img src="../img/grey.gif"
          data-original="/uploads/userup/1967/myface.jpg" width=25 height=25/>广州厨师</a>
-    </div>
+    </div>-->
 </em>
 </span>
 
@@ -774,16 +777,33 @@
     var v = parseUrl();
     var cid = v['cid'];
     $.get("/consume/getCookPractice",{cid:cid},function (data) {
-
+            var em1=$("#em1");
             var h1 = $("<h1><strong><a href='258845.html'>"+data.cname+"作法</a></strong></h1>");
             var div1 = $("<div id='fengmian'></div>");
             var img = $(" <img src='../img/grey.gif' data-original='/uploads/allimg/190318/1552T94a1IZ-33cR.jpg' style='top:-20px' alt='煎元宵怎么做好吃' class='photo'/>")
             div1.append(img);
-            $("#caiputext").append(h1);
-            $("#caiputext").append(div1);
-            var em1 = $("<em><i>19/03/18</i>发布</em>");
-            var em2 = $("<em></em>");
+            $("#d1").append(h1);
+            $("#d1").append(div1);
+            var time = getDateStr(data.createTime);
+            var i1 = $('<i>'+time+'</i>发布');
+            em1.append(i1);
+
     });
+
+    $.get("/consume/getCookUsers",{cid:cid},function (data) {
+        var div1 = $('<div id="uface"></div>');
+        var user = data[0].cookuser.uname;
+        console.log(user);
+        var a = $('<a><img src="../img/grey.gif" data-original="/uploads/userup/1967/myface.jpg" width=25 height=25/>'+user+'</a>');
+        div1.append(a);
+        $("#em3").append(div1);
+    });
+    //转换时间格式
+    function getDateStr(str){
+        var strDate = new Date(str);
+        var sDate = strDate.toLocaleString().split(' ')[0];
+        return sDate.replace(/年|月/g, '-').replace(/日/g, '');
+    }
 </script>
 </body>
 </html>
