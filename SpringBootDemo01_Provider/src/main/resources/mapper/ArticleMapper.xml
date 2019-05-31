@@ -281,4 +281,16 @@
     from article
     where aid = #{aid,jdbcType=INTEGER}
   </select>
+    <!--通过用户查用户所属的文章-->
+    <sql id="Base_Column_List2" >
+    aid, atid, uid, aname, aimg, create_time, lookcount
+  </sql>
+   <select id="selectByUid" resultMap="BaseResultMap">
+       select
+       <include refid="Base_Column_List2"/>
+       from article
+       where uid = #{uid}
+       order by create_time
+       limit 0,3
+   </select>
 </mapper>

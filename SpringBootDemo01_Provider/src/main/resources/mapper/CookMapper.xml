@@ -305,4 +305,13 @@
         <include refid="Base_Column_List" />
         from cook
     </select>
+    <!--用户联查-->
+    <select id="selectCookByUid" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from cook
+        where uid = #{uid}
+        order by create_time
+        limit 0,3
+    </select>
 </mapper>

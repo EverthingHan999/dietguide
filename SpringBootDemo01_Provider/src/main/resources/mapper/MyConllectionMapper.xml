@@ -193,4 +193,19 @@
       remarks = #{remarks,jdbcType=VARCHAR}
     where ucid = #{ucid,jdbcType=INTEGER}
   </update>
+    <resultMap id="BaseResultMap2" type="com.je1809.pojo.MyConllection" >
+        <id column="ucid" property="ucid" jdbcType="INTEGER" />
+        <result column="uid" property="uid" jdbcType="INTEGER" />
+        <result column="cid" property="cid" jdbcType="INTEGER" />
+        <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+        <association property="cook" column="cid" select="com.je1809.mapper.CookMapper.selectByPrimaryKey"/>
+    </resultMap>
+    <select id="selectCoollectionByUid" resultMap="BaseResultMap2">
+        select
+        <include refid="Base_Column_List"/>
+        from my_conllection
+        where uid = #{uid}
+        order by ucid
+        limit 0,3
+    </select>
 </mapper>
