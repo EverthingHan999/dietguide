@@ -8,5 +8,6 @@
     <file url="file://$PROJECT_DIR$/SpringBootDemo01_Consume/src/main/resources/static/m/shoucang.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/SpringBootDemo01_Consume/src/main/resources/static/m/wenzhang.html" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/SpringBootDemo01_Consume/src/main/resources/static/m/zuopin.html" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/SpringBootDemo01_Provider/src/main/resources/db.properties" charset="UTF-8" />
   </component>
 </project>

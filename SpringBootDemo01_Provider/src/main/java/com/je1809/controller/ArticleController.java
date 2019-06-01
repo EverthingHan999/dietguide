@@ -5,6 +5,12 @@ import com.je1809.pojo.*;
 import com.je1809.service.ArticleDescrService;
 import com.je1809.service.ArticleService;
 import com.je1809.service.ArticleTypeService;
+import com.je1809.service.CookService;
+import com.je1809.util.MsgResult;
+import org.apache.solr.client.solrj.SolrServer;
+import org.apache.solr.client.solrj.impl.HttpSolrServer;
+import org.apache.solr.common.SolrDocument;
+import org.apache.solr.common.SolrDocumentList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
@@ -15,7 +21,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
 
 @Controller
@@ -29,6 +37,8 @@ public class ArticleController {
     private ArticleDescrService articleDescrService;
     @Autowired
     private RedisTemplate<String,String> redisTemplate;
+    @Autowired
+    private CookService cookService;
 
     @ResponseBody
     @GetMapping("/provider/redisArticleTypesAll")
@@ -115,8 +125,17 @@ public class ArticleController {
         article.setCreateTime(date);
         article.setLookcount(0);
         article.setRemarks(descr);
+        boolean b = articleService.insert(article) > 0;
+        if (b){
+            articleService.dataFromDB2Solr();
+        }
+        return b;
+    }
 
-        return articleService.insert(article) > 0;
+    @GetMapping("/provider/articleTypeByAtid/{atid}")
+    @ResponseBody
+    public ArticleType articleTypeByAtid(@PathVariable int atid){
+        return articleTypeService.selectByPrimaryKey(atid);
     }
 
     @GetMapping("/provider/articlesByAtid/{atid}")
@@ -125,9 +144,36 @@ public class ArticleController {
         return articleService.selectByAtid(atid);
     }
 
-    @GetMapping("/provider/articleTypeByAtid/{atid}")
+    @PostMapping("/provider/articlesByAtidByPage")
     @ResponseBody
-    public ArticleType articleTypeByAtid(@PathVariable int atid){
-        return articleTypeService.selectByPrimaryKey(atid);
+    public List<Article> articlesByAtidByPage(HttpServletRequest request){
+        int atid = Integer.parseInt(request.getParameter("atid"));
+        int page = Integer.parseInt(request.getParameter("page"));
+        int limit = Integer.parseInt(request.getParameter("limit"));
+
+        return articleService.selectByAtidByPage(atid,page,limit);
     }
+
+    @GetMapping("/provider/articlesInput")
+    @ResponseBody
+    public MsgResult articlesInput(){
+        return articleService.dataFromDB2Solr();
+    };
+
+    @GetMapping("/provider/cooksInput")
+    @ResponseBody
+    public MsgResult cooksInput(){
+        return cookService.dataFromDB2Solr();
+    };
+
+    @PostMapping("/provider/searchByKeyWord")
+    @ResponseBody
+    public Map<String, List> searchByKeyWord(HttpServletRequest request){
+        String keywords = request.getParameter("keywords");
+        int page = Integer.parseInt(request.getParameter("page"));
+        int limit = Integer.parseInt(request.getParameter("limit"));
+        Map<String, List> map = articleService.searchByKeyWord(keywords, page, limit);
+        return map;
+    };
+
 }

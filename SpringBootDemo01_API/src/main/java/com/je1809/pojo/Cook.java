@@ -27,6 +27,18 @@ public class Cook implements Serializable {
 
     private List<Users> cookuser;
 
+    public Users getCookUsers() {
+        return CookUsers;
+    }
+
+    public void setCookUsers(Users cookUsers) {
+        CookUsers = cookUsers;
+    }
+
+    private Users CookUsers;
+
+
+
     public List<Users> getCookuser() {
         return cookuser;
     }

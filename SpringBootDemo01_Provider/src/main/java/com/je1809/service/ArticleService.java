@@ -2,8 +2,12 @@ package com.je1809.service;
 
 import com.je1809.pojo.Article;
 import com.je1809.pojo.ArticleExample;
+import com.je1809.util.DataGridUtils;
+import com.je1809.util.MsgResult;
+import org.apache.solr.common.SolrDocumentList;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ArticleService {
     int countByExample(ArticleExample example);
@@ -20,6 +24,8 @@ public interface ArticleService {
 
     List<Article> selectByAtid(Integer atid);
 
+    List<Article> selectByAtidByPage(Integer atid,Integer page,Integer limit);
+
     Article selectByPrimaryKey(Integer aid);
 
     Article selectByPrimaryKeyConnect(Integer aid);
@@ -32,4 +38,7 @@ public interface ArticleService {
 
     int updateByPrimaryKey(Article record);
 
+    MsgResult dataFromDB2Solr();
+
+    Map<String, List> searchByKeyWord(String keyword, int pageNum, int pageSize);
 }

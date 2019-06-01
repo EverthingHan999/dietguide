@@ -99,6 +99,14 @@
     where atid = #{atid,jdbcType=INTEGER}
     order by lookcount desc
   </select>
+    <select id="selectByAtidByPage" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from article
+        where atid = #{arg0,jdbcType=INTEGER}
+        order by lookcount desc
+        limit #{arg1,jdbcType=INTEGER},#{arg2,jdbcType=INTEGER}
+    </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from article
     where aid = #{aid,jdbcType=INTEGER}

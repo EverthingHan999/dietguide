@@ -1,6 +1,7 @@
 package com.je1809.pojo;
 
 import java.io.Serializable;
+import java.util.List;
 
 public class CookbootSecond implements Serializable {
     private Integer cbsid;
@@ -15,6 +16,15 @@ public class CookbootSecond implements Serializable {
 
     private Integer cbid;
 
+    private List<CookbookThird> cookSencondThird;
+
+    public List<CookbookThird> getCookSencondThird() {
+        return cookSencondThird;
+    }
+
+    public void setCookSencondThird(List<CookbookThird> cookSencondThird) {
+        this.cookSencondThird = cookSencondThird;
+    }
     private static final long serialVersionUID = 1L;
 
     public Integer getCbsid() {

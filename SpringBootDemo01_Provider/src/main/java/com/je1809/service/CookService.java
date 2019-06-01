@@ -2,6 +2,7 @@ package com.je1809.service;
 
 import com.je1809.pojo.Cook;
 import com.je1809.pojo.CookExample;
+import com.je1809.util.MsgResult;
 
 import java.util.List;
 
@@ -31,4 +32,7 @@ public interface CookService {
 
     List<Cook> cook3();
 
+    Cook CookUsers(Integer cid);
+
+    MsgResult dataFromDB2Solr();
 }

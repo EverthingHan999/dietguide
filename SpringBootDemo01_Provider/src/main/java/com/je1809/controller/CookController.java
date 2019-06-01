@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springsource.loaded.C;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -64,8 +65,17 @@ public class CookController {
         return cooks;
     }
 
-
     @ResponseBody
+    @GetMapping("/provider/getCookUsers")
+    public Cook getCookUsers(HttpServletRequest request){
+        cookExample.clear();
+        Integer cid = Integer.valueOf(request.getParameter("cid"));
+        Cook cook = cookService.CookUsers(cid);
+        return cook;
+    }
+
+
+    /*@ResponseBody
     @GetMapping("/provider/redisCookUser")
     public List<Cook> redisCookUser(){
         cookExample.clear();
@@ -81,8 +91,16 @@ public class CookController {
             }
             String s = JSON.toJSONString(cookList);
             redisTemplate.opsForValue().set("cook1",s);
-           /* redisTemplate.expire("cookList",5000, TimeUnit.MILLISECONDS);*/
+           *//* redisTemplate.expire("cookList",5000, TimeUnit.MILLISECONDS);*//*
             return cookList;
         }
+    }*/
+
+    @ResponseBody
+    @GetMapping("/provider/getCookPractice")
+    public Cook getCookPractice(HttpServletRequest request){
+        cookExample.clear();
+        Integer cid = Integer.valueOf(request.getParameter("cid"));
+        return cookService.selectByPrimaryKey(cid);
     }
 }

@@ -314,4 +314,24 @@
         order by create_time
         limit 0,3
     </select>
+
+    <resultMap id="cookuser" type="com.je1809.pojo.Cook" >
+        <id column="cid" property="cid" jdbcType="INTEGER" />
+        <result column="uid" property="uid" jdbcType="INTEGER" />
+        <result column="cimg" property="cimg" jdbcType="VARCHAR" />
+        <result column="descr" property="descr" jdbcType="VARCHAR" />
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+        <result column="copycount" property="copycount" jdbcType="INTEGER" />
+        <result column="lookcount" property="lookcount" jdbcType="INTEGER" />
+        <result column="remarks" property="remarks" jdbcType="VARCHAR" />
+        <result column="cbtid" property="cbtid" jdbcType="INTEGER" />
+        <result column="cname" property="cname" jdbcType="VARCHAR" />
+        <association property="CookUsers" column="uid" select="com.je1809.mapper.UsersMapper.selectByPrimaryKey" />
+    </resultMap>
+    <select id="CookUsers" resultMap="cookuser">
+      select
+      <include refid="Base_Column_List" />
+      from cook
+      where cid=#{cid}
+    </select>
 </mapper>

@@ -6,7 +6,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
+import org.springsource.loaded.C;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
@@ -25,5 +28,19 @@ public class CookController {
     @GetMapping("/consume/redisCookUser")
     public List<Cook> redisCookUser(){
         return restTemplate.getForObject(REST_URL_PREFIX+"/provider/getCookUser",List.class);
+    }
+
+    @ResponseBody
+    @GetMapping("/consume/getCookUsers")
+    public Cook getCookUser(HttpServletRequest request){
+        Integer cid = Integer.valueOf(request.getParameter("cid"));
+        return restTemplate.getForObject(REST_URL_PREFIX+"/provider/getCookUsers?cid="+cid,Cook.class);
+    }
+
+    @ResponseBody
+    @GetMapping("/consume/getCookPractice")
+    public Cook getCookPractice(HttpServletRequest request){
+        Integer cid = Integer.valueOf(request.getParameter("cid"));
+        return restTemplate.getForObject(REST_URL_PREFIX+"/provider/getCookPractice?cid="+cid,Cook.class);
     }
 }

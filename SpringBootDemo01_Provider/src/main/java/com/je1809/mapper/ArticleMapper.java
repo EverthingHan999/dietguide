@@ -22,6 +22,8 @@ public interface ArticleMapper {
 
     List<Article> selectByAtid(Integer atid);
 
+    List<Article> selectByAtidByPage(Integer atid,Integer page,Integer limit);
+
     Article selectByPrimaryKey(Integer aid);
 
     Article selectByPrimaryKeyConnect(Integer aid);

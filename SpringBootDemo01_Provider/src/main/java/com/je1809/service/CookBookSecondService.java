@@ -28,4 +28,6 @@ public interface CookBookSecondService {
     int updateByPrimaryKeySelective(CookbootSecond record);
 
     int updateByPrimaryKey(CookbootSecond record);
+
+    List<CookbootSecond> cooksencondthird();
 }

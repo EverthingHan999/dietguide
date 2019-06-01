@@ -93,7 +93,7 @@
 
         <div id="cimenu">
             <div id="famenu">
-                <a href="" >网站首页</a> > <a href="" >生活文刊</a>
+                <a href="" >网站首页</a> > <a href="/consumer/toarticlemain" >生活文刊</a>
             </div>
             <ul id="selectUl">
             </ul>
@@ -206,10 +206,10 @@
             }
             for (var i=1;i<=count;i++){
                 if (i == 1){
-                    var li = $("<li class=\"thisclass\"><a>"+i+"</a>");
+                    var li = $("<li id='pageLi"+i+"' class='thisclass pageLi'><a>"+i+"</a>");
                     $("#pageUl").append(li);
                 } else {
-                    var li = $("<li><a>"+i+"</a>");
+                    var li = $("<li id='pageLi"+i+"' class='pageLi'><a>"+i+"</a>");
                     $("#pageUl").append(li);
                 }
             }
@@ -228,18 +228,65 @@
                 }
             });
 
+            $(".pageLi").on("click",function () {
+                var ii = parseInt($(this).attr("id").substring(6));
+                var pageLi = (ii-1)*6;
+                console.log(pageLi);
+                $(".pageLi").attr("class","pageLi");
+                $(this).attr("class","thisclass pageLi");
+                $("#tuwen_list").empty();
+                $.ajax({
+                    url:"/consumer/articlesByAtidByPage",
+                    type:"post",
+                    data:{atid:atid,page:pageLi,limit:6},
+                    dataType:"json",
+                    success:function (data) {
+                        var obj = eval(data);
+                        for (var key in obj) {
+                            var descr = obj[key].remarks;
+                            var arr = new Array();
+                            arr = descr.split("<img");
+                            var str = "";
+                            str += arr[0];
+                            if (arr.length > 1) {
+                                for (var i=0;i<arr.length;i++){
+                                    if (i>0){
+                                        str += arr[i].substring(arr[i].indexOf(";\">")+3);
+                                    }
+                                }
+                            }
+                            var newStr = str.replace(/<[^>]+>/g,"").substring(0,140)+"...";
+                            var li = $("<li></li>");
+                            var h3 = $("<h3><b><a href='/static/article/article_descr.html?aid="+obj[key].aid+"'>"+obj[key].aname+"</a></b></h3>");
+                            li.append(h3);
+                            var p1 = $("<p></p>");
+                            if (obj[key].aimg!=null){
+                                var imga = $("<a href='/static/article/article_descr.html?aid="+obj[key].aid+"'><img style='width: 157px;height: 157px' src='"+obj[key].aimg+"'/></a>");
+                                p1.append(imga);
+                            }
+                            p1.append(newStr);
+                            var time = new Date(obj[key].createTime);
+                            var time1 = timefamt(time);
+                            var span = $("<span>"+time1+"发布 "+obj[key].lookcount+"人浏览</span>");
+                            p1.append(span);
+                            li.append(p1);
+                            $("#tuwen_list").append(li);
+                        }
+                    }
+                });
+            });
+
         }
     });
 
 
     $.ajax({
-        url:"/consumer/articlesByAtidBylimit",
+        url:"/consumer/articlesByAtidByPage",
         type:"post",
-        data:{atid:atid,page:1,limit:6},
+        data:{atid:atid,page:0,limit:6},
         dataType:"json",
         success:function (data) {
             var obj = eval(data);
-            $("#countem").append("（共"+data.length+"条数据）");
             for (var key in obj) {
                 var descr = obj[key].remarks;
                 var arr = new Array();
