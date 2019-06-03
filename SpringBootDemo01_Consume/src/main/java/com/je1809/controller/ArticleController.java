@@ -3,6 +3,7 @@ package com.je1809.controller;
 import com.je1809.pojo.Article;
 import com.je1809.pojo.ArticleDescr;
 import com.je1809.pojo.ArticleType;
+import com.je1809.pojo.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
@@ -104,7 +105,8 @@ public class ArticleController {
         String atid = request.getParameter("atid");
         String title = request.getParameter("title");
         String descr = request.getParameter("descr");
-        String uid = request.getParameter("uid");
+        Users user = (Users) request.getSession().getAttribute("user");
+        String uid = user.getUid().toString();
 
         LinkedMultiValueMap<String, String> map = new LinkedMultiValueMap<>();
 
