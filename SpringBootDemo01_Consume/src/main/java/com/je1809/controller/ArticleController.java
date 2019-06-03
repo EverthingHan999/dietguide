@@ -76,7 +76,6 @@ public class ArticleController {
             String sj = UUID.randomUUID().toString();
             String replace = sj.replace("-", "");
             String newFileName = replace + suffix;
-
             String forObject = restTemplate.getForObject(REST_URL_PREFIX + "/provider/getRealPath", String.class);
             //D:\AAA\stsTest\SpringBootDemo01\SpringBootDemo01_Consume\src\main\resources\static\article\img
             forObject = forObject.substring(0,forObject.lastIndexOf("SpringBootDemo01_Provider"))+"SpringBootDemo01_Consume\\src\\main\\resources\\static\\article\\img\\";

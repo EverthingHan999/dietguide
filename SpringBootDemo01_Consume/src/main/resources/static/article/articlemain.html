@@ -210,6 +210,7 @@
             var cookh2 = "<h2>美食大全<span><a>（共"+cookList.length+"条数据）</a></span></h2>";
             cookdivArticle.append(cookh2);
             for (var kk in cookList) {
+                console.log(cookList[kk].cookuser);
                 cookdivArticle.append("<li><a href=''><div class='caipuimg'><img src='"+cookList[kk].cimg+"' width='195' height='195' />" +
                     "</div></a><p><a href=''>"+cookList[kk].cname+"</a></p><p> <a class=\"zuozhe\" href=\"\">"+cookList[kk].uid+"</a></p></li>");
             }
