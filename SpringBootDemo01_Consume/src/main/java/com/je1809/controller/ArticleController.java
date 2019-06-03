@@ -104,12 +104,14 @@ public class ArticleController {
         String atid = request.getParameter("atid");
         String title = request.getParameter("title");
         String descr = request.getParameter("descr");
+        String uid = request.getParameter("uid");
 
         LinkedMultiValueMap<String, String> map = new LinkedMultiValueMap<>();
 
         map.add("atid",atid);
         map.add("title",title);
         map.add("descr",descr);
+        map.add("uid",uid);
 
         return restTemplate.postForObject(REST_URL_PREFIX + "/provider/addArticle",map,boolean.class);
     }

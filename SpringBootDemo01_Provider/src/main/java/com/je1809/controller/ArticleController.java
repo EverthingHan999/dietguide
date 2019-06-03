@@ -108,13 +108,14 @@ public class ArticleController {
     @ResponseBody
     public boolean addArticle(HttpServletRequest request){
         int atid = Integer.parseInt(request.getParameter("atid"));
+        int uid = Integer.parseInt(request.getParameter("uid"));
         String title = request.getParameter("title");
         String descr = request.getParameter("descr");
 
         Article article = new Article();
 
         article.setAtid(atid);
-        article.setUid(1);
+        article.setUid(uid);
         article.setAname(title);
         if (descr.contains("<img")){
             String substring = descr.substring(descr.indexOf("src=")+5, descr.indexOf(".jpg")+4);
