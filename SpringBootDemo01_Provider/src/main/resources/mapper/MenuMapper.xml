@@ -171,6 +171,13 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+    <!--对数据进行分页-->
+    <select id="selectByPage" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from menu
+        limit #{arg0,jdbcType=INTEGER},#{arg1,jdbcType=INTEGER}
+    </select>
   <update id="updateByExampleSelective" parameterType="map" >
     update menu
     <set >

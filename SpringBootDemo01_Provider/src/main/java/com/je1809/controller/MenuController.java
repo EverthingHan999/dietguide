@@ -107,7 +107,7 @@ public class MenuController {
         return menuList;
     }
 
-    //获取某一菜单下详情
+    //获取某一菜单下详情,并对其进行浏览量增加操作
     @ResponseBody
     @GetMapping("/provider/getChaoCaiMenu")
     public Menu getChaoCaiMenu(HttpServletRequest request){
@@ -119,9 +119,20 @@ public class MenuController {
         lookcount=lookcount+1;
         menu1.setLookcount(lookcount);
         menuService.updateByPrimaryKeySelective(menu1);
-
         return menu;
     }
+    //分页
+    @ResponseBody
+    @GetMapping("/provider/getMenusByFenye")
+    public List<Menu> getMenusByFenye(HttpServletRequest request){
+
+        int limit = Integer.parseInt(request.getParameter("limit"));
+        int curpage = Integer.parseInt(request.getParameter("curpage"));
+        List<Menu> menus = menuService.selectByPage(curpage, limit);
+        return menus;
+
+    }
+
 
 
 }

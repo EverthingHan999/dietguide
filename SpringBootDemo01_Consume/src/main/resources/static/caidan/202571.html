@@ -176,62 +176,6 @@
 
                 </ul>
 
-      <!--              <li class="host_img">
-                        <div class="rl_img"><a
-                                
-                               ><img src="../img/grey.gif"
-                                                                                         
-                                                                                          data-original="/uploads/allimg/c160701/14C3256102Z60-2219A-lp.jpg"
-                                                                                          alt="酷热难耐：下午茶来一波冰凉解暑的饮品"/></a>
-                        </div>
-                        <a 
-                          >酷热难耐：下午茶来一波冰凉解暑的饮品</a></li>
-                    <li class="host_img">
-                        <div class="rl_img"><a
-                                
-                               ><img src="../img/grey.gif"
-                                                                                         
-                                                                                          data-original="/uploads/allimg/c170511/14944963Z94010-394927-lp.jpg"
-                                                                                          alt="男人保护前列腺吃什么：不饱和脂肪酸食物"/></a>
-                        </div>
-                        <a 
-                          >男人保护前列腺吃什么：不饱和脂肪酸食物</a></li>
-                    <li class="host_img">
-                        <div class="rl_img"><a href="200603.html"
-                                              ><img
-                                src="../img/grey.gif"
-                                data-original="/uploads/allimg/c170616/14a604L14N60-163H5-lp.jpg"
-                                alt="冬天减肥吃什么？精美的冬天减肥菜谱集"/></a></div>
-                        <a href="200603.html"
-                          >冬天减肥吃什么？精美的冬天减肥菜谱集</a></li>
-                    <li class="host_img">
-                        <div class="rl_img"><a href="198064.html"
-                                              ><img
-                                src="../img/grey.gif"
-                                data-original="/uploads/allimg/c170728/150120432Y4620-216104-lp.jpg"
-                                alt="冷冷的天气吃一份豆腐汤暖身又防癌"/></a></div>
-                        <a href="198064.html">冷冷的天气吃一份豆腐汤暖身又防癌</a>
-                    </li>
-                    <li class="host_img">
-                        <div class="rl_img"><a
-                                
-                               ><img src="../img/grey.gif"
-                                                                                         
-                                                                                          data-original="/uploads/allimg/c160105/145192Z9615640-1K464-lp.jpg"
-                                                                                          alt="秋冬天炖羊肉才是真菜，保暖养生全靠羊肉"/></a>
-                        </div>
-                        <a 
-                          >秋冬天炖羊肉才是真菜，保暖养生全靠羊肉</a></li>
-                    <li class="host_img">
-                        <div class="rl_img"><a
-                                
-                               ><img src="../img/grey.gif"
-                                                                                         
-                                                                                          data-original="/uploads/allimg/c160503/146225S30614P-2394G-lp.jpg"
-                                                                                          alt="情侣约会的甜品菜单，不仅美味更是浪漫"/></a>
-                        </div>
-                        <a 
-                          >情侣约会的甜品菜单，不仅美味更是浪漫</a></li>-->
 
                 </ul>
             </div>
@@ -531,12 +475,12 @@
 
             var caidanrs = $('<div id="caidanrs"></div>');
 
-            var caiback =$('<div id="caiback"><img src="../img/grey.gif"\n' +
+            var caiback =$('<div id="caiback"><img src="../img/'+data.mimg+'.jpg" \n' +
                 '                                               data-original="/uploads/allimg/c170418/'+data.mimg+'.jpg"\n' +
                 '                                               class="blurs"/></div>');
 
             var  caibiaoti = $('<div id="caibiaoti">\n' +
-                '                            <img src="../img/grey.gif"\n' +
+                '                            <img src="../img/'+data.mimg+'.jpg"\n' +
                 '                                 data-original="/uploads/allimg/c170418/'+data.mimg+'.jpg" class="caidantou"/></div>');
 
             var mname=$('<h1>'+data.mname+'</h1>');
@@ -562,25 +506,14 @@
             var caidanlist =$("#caidanlist");
             for(var key in data){
                 var li =$('<li></li>');
-                var em = $('<em><a><img src="../img/grey.gif" data-original="/uploads/allimg/180304/'+data[key].cooks[0].cimg+'" alt="'+data[key].cooks[0].cname+'"/></a></em>\n');
+                var em = $('<em><a><img src="../img/'+data[key].cooks[0].cimg+'.jpg" data-original="/uploads/allimg/180304/'+data[key].cooks[0].cimg+'" alt="'+data[key].cooks[0].cname+'"/></a></em>\n');
                 var p=$('<p>\n' +
                     '                            <a href="../shipu/258845.html?cid='+data[key].cooks[0].cid+'">'+data[key].cooks[0].cname+'</a>\n' +
-                    '                            <br/>\n' +
-                    '                            食材：\n' +
-                    '                            莴笋适量 腐竹适量 胡萝卜适量 盐适量 油适量 蚝油一茶勺 蒜一瓣 葱一根 鸡精半调料勺\n' +
-                    '                            <br/>\n' +
-                    '                            <br/>发布于18/03/04 by 妹妹哒\n' +
-                    '                        </p>');
-
-
-
+                    '                            <br/> </p>');
                 li.append(em);
                 li.append(p);
                 caidanlist.append(li);
-
             }
-
-
         })
 
     }
@@ -591,7 +524,7 @@
         $.get("/consumer/getHotMenus",function (data) {
             var hotMenu = $("#hotMenu");
             for(var key in data){
-                var div1 = $('<div class="rl_img"><a href="#"><img src="../img/grey.gif" data-original="/uploads/allimg/c170616/'+data[key].mimg+'.jpg" alt="'+data[key].mname+'" height=\'140\' width=\'140\'/></a></div>');
+                var div1 = $('<div class="rl_img"><a href="#"><img src="../img/'+data[key].mimg+'.jpg" data-original="/uploads/allimg/c170616/'+data[key].mimg+'.jpg" alt="'+data[key].mname+'" height=\'140\' width=\'140\'/></a></div>');
                 var a1 = $('<a href="202571.html?mid='+data[key].mid+'">'+data[key].mname+'</a></li>');
                 var li1= $('<li></li>');
                 li1.append(div1);
