@@ -792,7 +792,7 @@
 
     $.get("/consume/getCookUsers",{cid:cid},function (data) {
         var div1 = $('<div id="uface"></div>');
-        var user = data[0].cookuser.uname;
+        var user = data.cookUsers.uname;
         console.log(user);
         var a = $('<a><img src="../img/grey.gif" data-original="/uploads/userup/1967/myface.jpg" width=25 height=25/>'+user+'</a>');
         div1.append(a);

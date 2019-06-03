@@ -24,15 +24,7 @@ public class MenuCookController {
     static {
         example = new MenuCookExample();
     }
-    //获取某一菜单下详情
-    @ResponseBody
-    @GetMapping("/provider/getChaoCaiMenu")
-    public List<MenuCook> getChaoCaiMenu(HttpServletRequest request){
-        int mid = Integer.parseInt(request.getParameter("mid"));
-        List<MenuCook> menus = menuCookService.getMenu(mid);
-        return menus;
 
-    }
     //获取某一菜单下的所有菜品
     @ResponseBody
     @GetMapping("/provider/getCooksByMid")

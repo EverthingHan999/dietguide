@@ -63,9 +63,9 @@ public class MenuController {
     //获取某一菜单下的详情
     @ResponseBody
     @GetMapping("/consumer/getChaoCaiMenu")
-    public List<MenuCook> getChaoCaiMenu(@RequestParam("mid") String mid){
+    public Menu getChaoCaiMenu(@RequestParam("mid") String mid){
 
-        return restTemplate.getForObject(REST_URL_PREFIX+"/provider/getChaoCaiMenu?mid="+mid,List.class);
+        return restTemplate.getForObject(REST_URL_PREFIX+"/provider/getChaoCaiMenu?mid="+mid,Menu .class);
     }
 
     //获取某一菜单下的所有菜品

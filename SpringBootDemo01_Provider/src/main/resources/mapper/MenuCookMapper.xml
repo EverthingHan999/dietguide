@@ -205,5 +205,6 @@
     select
     <include refid="Base_Column_List" />
     from menu_cook
+    where mid = #{mid}
   </select>
 </mapper>

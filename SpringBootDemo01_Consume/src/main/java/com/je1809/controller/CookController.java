@@ -34,7 +34,7 @@ public class CookController {
     @GetMapping("/consume/getCookUsers")
     public Cook getCookUser(HttpServletRequest request){
         Integer cid = Integer.valueOf(request.getParameter("cid"));
-        return restTemplate.getForObject(REST_URL_PREFIX+"/provider/getCookUsers+cid="+cid,Cook.class);
+        return restTemplate.getForObject(REST_URL_PREFIX+"/provider/getCookUsers?cid="+cid,Cook.class);
     }
 
     @ResponseBody
