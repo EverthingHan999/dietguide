@@ -129,15 +129,11 @@
             </div>
 
             <div id="listpages">
-                <ul>
-                    <li class="thisclass"><a>1</a></li>
-                    <li><a>2</a></li>
-                    <li><a>3</a></li>
-                    <li><a>4</a></li>
-                    <li><a>5</a></li>
-                    <li><a>6</a></li>
-                    <li><a>7</a></li>
-                    <li><a>下一页</a></li>
+                <ul id="listpage">
+                    <li class="thisclass"><a class="curPage">1</a></li>
+                    <li><a class="curPage">2</a></li>
+                    <li><a class="curPage">3</a></li>
+                    <li><a class="curPage">4</a></li>
 
                 </ul>
             </div>
@@ -259,6 +255,7 @@
     </div>
 </div>
 <script type="text/javascript" src="../img/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="../img/pagination.js"></script>
 <script type="text/javascript" src="../img/jquery.lazyload.min.js"></script>
 <script language="javascript" type="text/javascript">
     /*CheckLogina();*/
@@ -304,7 +301,6 @@
              var menuType = $("#menuType");
              var li = '';
              var data = eval(data);
-             console.log(data);
              for (var key in data) {
 
              li += '<li><a  class="SingleMenu" value="'+data[key].mtid+'">'+data[key].mtname+'</a></li>';
@@ -314,31 +310,15 @@
      }
     getAllMenuTypes();
 
-    //获取所有的菜单
-    function getAllMenus() {
-        $.get("/consumer/getAllMenus",function (data) {
-            var ul1 = $(".caipulist_caidan");
-           for(var key in data){
-               var li1 = $('<li></li>');
-               var p1= $('<p><a href="202571.html?mid='+data[key].mid+'"><b>'+data[key].mname+'</b></a></p>');
-               var p2 = $('<p>'+data[key].mdescr+'</p>');
-               var div1 = '<a href="getMenusBymtid?mid="'+data[key].mid+' ><div class="caipuimg"><img src="../img/grey.gif" data-original="/uploads/allimg/c170418/'+data[key].mimg+'.jpg" alt="<b>'+data[key].mname+'</b>" height="190" width="190"/></div></a>';
-               li1.append(div1);
-               li1.append(p1);
-               li1.append(p2);
-               ul1.append(li1);
-           }
-        })
-    }
-    getAllMenus();
-
-   //获取所有的菜单2
+   //获取菜单种类下的菜单
     function getAllMenus2() {
         $.get("/consumer/getAllMenus2",function (data) {
             var ul1 = $(".chaocai");
             for(var key in data){
+                var div1 = '<a href="202571.html?mid='+data[key].mid+'"'+' ><div class="caipuimg"><img src="../img/'+data[key].mimg+'.jpg" data-original="/uploads/allimg/c170418/'+data[key].mimg+'.jpg" alt="<b>'+data[key].mname+'</b>" height="190" width="190"/></div></a>';
                 var li1 = $('<li></li>');
                 var p1 =$('<p><a href="202571.html?mid='+data[key].mid+'">'+data[key].mname+'</a></p>');
+                li1.append(div1);
                 li1.append(p1);
                 ul1.append(li1);
             }
@@ -361,7 +341,7 @@
         $.get("/consumer/getHotMenus",function (data) {
             var hotMenu = $("#hotMenu");
             for(var key in data){
-                var div1 = $('<div class="rl_img"><a href="#"><img src="../img/grey.gif" data-original="/uploads/allimg/c170616/'+data[key].mimg+'.jpg" alt="'+data[key].mname+'" height=\'140\' width=\'140\'/></a></div>');
+                var div1 = $('<div class="rl_img"><a href="#"><img src="../img/'+data[key].mimg+'.jpg" data-original="/uploads/allimg/c170616/'+data[key].mimg+'.jpg" alt="'+data[key].mname+'" height=\'140\' width=\'140\'/></a></div>');
                 var a1 = $('<a href="202571.html?mid='+data[key].mid+'">'+data[key].mname+'</a></li>');
                 var li1= $('<li></li>');
                 li1.append(div1);
@@ -371,6 +351,7 @@
         })
     }
     getHotMenus();
+
    /*========================================动态生成后的jquery=============================================*/
     //某一菜单种类下的菜单的动态生成
     $("#menuType").on("click",".SingleMenu",function () {
@@ -387,7 +368,7 @@
                 var li1 = $('<li></li>');
                 var p1= $('<p><a href="202571.html?mid='+data[key].mid+'"'+'><b>'+data[key].mname+'</b></a></p>');
                 var p2 = $('<p>'+data[key].mdescr+'</p>');
-                var div1 = '<a href="202571.html?mid='+data[key].mid+'"'+' ><div class="caipuimg"><img src="../img/grey.gif" data-original="/uploads/allimg/c170418/'+data[key].mimg+'.jpg" alt="<b>'+data[key].mname+'</b>" height="190" width="190"/></div></a>';
+                var div1 = '<a href="202571.html?mid='+data[key].mid+'"'+' ><div class="caipuimg"><img src="../img/'+data[key].mimg+'.jpg" data-original="/uploads/allimg/c170418/'+data[key].mimg+'.jpg" alt="<b>'+data[key].mname+'</b>" height="190" width="190"/></div></a>';
                 li1.append(div1);
                 li1.append(p1);
                 li1.append(p2);
@@ -395,9 +376,37 @@
             }
         })
     })
+    var limit = '3';
+    var curpage = '0';
+    //分页
 
+    function fenye() {
+        var listpage = $("#listpage");
+        var ul1 = $(".caipulist_caidan");
+        $.get("/consumer/getMenusByFenye",{limit:limit,curpage:curpage},function (data) {
+            for(var key in data){
+                var li1 = $('<li></li>');
+                var p1= $('<p><a href="202571.html?mid='+data[key].mid+'"><b>'+data[key].mname+'</b></a></p>');
+                var p2 = $('<p>'+data[key].mdescr+'</p>');
+                var div1 = '<a href="202571.html?mid='+data[key].mid+'"><div class="caipuimg"><img src="../img/'+data[key].mimg+'.jpg" data-original="/uploads/allimg/c170418/'+data[key].mimg+'.jpg" alt="<b>'+data[key].mname+'</b>" height="190" width="190"/></div></a>';
+                li1.append(div1);
+                li1.append(p1);
+                li1.append(p2);
+                ul1.append(li1);
+            }
+        },'json')
+    }
+    fenye();
 
-
+    //获取当前页的页码
+    function getCurPage() {
+        $(".curPage").on("click",function () {
+            curpage=$(this).text()-1;
+            console.log(curpage);
+        })
+        return curpage;
+    }
+    curpage=getCurPage();
 
     var _hmt = _hmt || [];
     (function () {

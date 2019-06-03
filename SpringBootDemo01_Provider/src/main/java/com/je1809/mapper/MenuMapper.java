@@ -20,6 +20,8 @@ public interface MenuMapper {
 
     List<Menu> selectByExample(MenuExample example);
 
+    List<Menu> selectByPage(Integer curpage,Integer limit);
+
     Menu selectByPrimaryKey(Integer mid);
 
     int updateByExampleSelective(@Param("record") Menu record, @Param("example") MenuExample example);

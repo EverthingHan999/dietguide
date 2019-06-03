@@ -1,5 +1,6 @@
 package com.je1809.service;
 
+import com.je1809.pojo.Menu;
 import com.je1809.pojo.MenuExample;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,4 +28,7 @@ public interface MenuService {
     int updateByPrimaryKeySelective(com.je1809.pojo.Menu record);
 
     int updateByPrimaryKey(com.je1809.pojo.Menu record);
+
+    /*分页*/
+    List<Menu> selectByPage(Integer curpage, Integer limit);
 }

@@ -75,4 +75,12 @@ public class MenuController {
         return restTemplate.getForObject(REST_URL_PREFIX+"/provider/getCooksByMid?mid="+mid,List.class);
     }
 
+    //分页
+    @ResponseBody
+    @GetMapping("/consumer/getMenusByFenye")
+    public List<Menu> getMenusByFenye(@RequestParam("limit") String limit,@RequestParam("curpage") String curpage){
+        System.out.println(limit+"+++++++++++++++++++++"+curpage);
+        return restTemplate.getForObject(REST_URL_PREFIX+"/provider/getMenusByFenye?curpage="+curpage+"&limit="+limit,List.class);
+    }
+
 }
