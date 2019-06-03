@@ -66,4 +66,9 @@ public class MenuServiceImpl implements MenuService {
     public int updateByPrimaryKey(Menu record) {
         return menuMapper.updateByPrimaryKey(record);
     }
+
+    @Override
+    public List<Menu> selectByPage(Integer curpage, Integer limit) {
+        return menuMapper.selectByPage(curpage,limit );
+    }
 }

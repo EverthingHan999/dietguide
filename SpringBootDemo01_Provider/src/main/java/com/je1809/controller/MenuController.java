@@ -1,10 +1,7 @@
 package com.je1809.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.je1809.pojo.Menu;
-import com.je1809.pojo.MenuExample;
-import com.je1809.pojo.MenuType;
-import com.je1809.pojo.MenuTypeExample;
+import com.je1809.pojo.*;
 import com.je1809.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -108,6 +105,32 @@ public class MenuController {
         criteria.andMtidEqualTo(mtid);
         List<Menu> menuList = menuService.selectByExample(example);
         return menuList;
+    }
+
+    //获取某一菜单下详情,并对其进行浏览量增加操作
+    @ResponseBody
+    @GetMapping("/provider/getChaoCaiMenu")
+    public Menu getChaoCaiMenu(HttpServletRequest request){
+        int mid = Integer.parseInt(request.getParameter("mid"));
+        Menu menu = menuService.selectByPrimaryKey(mid);
+        Integer lookcount = menu.getLookcount();
+        Menu menu1 = new Menu();
+        menu1.setMid(mid);
+        lookcount=lookcount+1;
+        menu1.setLookcount(lookcount);
+        menuService.updateByPrimaryKeySelective(menu1);
+        return menu;
+    }
+    //分页
+    @ResponseBody
+    @GetMapping("/provider/getMenusByFenye")
+    public List<Menu> getMenusByFenye(HttpServletRequest request){
+
+        int limit = Integer.parseInt(request.getParameter("limit"));
+        int curpage = Integer.parseInt(request.getParameter("curpage"));
+        List<Menu> menus = menuService.selectByPage(curpage, limit);
+        return menus;
+
     }
 
 

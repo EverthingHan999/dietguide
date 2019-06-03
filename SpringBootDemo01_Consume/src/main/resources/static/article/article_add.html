@@ -191,6 +191,7 @@
 <script src="/static/pro/js/summernote.min.js"></script>
 <script src="/static/pro/js/summernote-zh-CN.js"></script>
 <script language="javascript" type="text/javascript">
+
     $(document).ready(function(){
         $("#inputdiv").summernote({
             height: 500,                 // set editor height
@@ -234,20 +235,27 @@
     }
 
 
+
     $("#submit").on("click",function () {
        var atid = $("#selectUl").select().val();
        var title = $("#titleinput").val();
        var descr = $("#inputdiv").code();
+
        if (title.length == 0){
            alert("标题不能为空");
        }else {
-           $.post("/addArticle",{atid:atid,title:title,descr:descr},function (data) {
-               if (data){
-                   alert("文章上传成功");
-                   location.href="/consumer/toarticlemain";
+           $.ajax({
+               url: "/addArticle",
+               data: {atid:atid,title:title,descr:descr},
+               dataType:"json",
+               type: 'post',
+               success: function (data) {
+
                }
-           })
+           });
        }
+        alert("文章上传成功");
+        location.href="/consumer/toarticlemain";
     });
 
 </script>

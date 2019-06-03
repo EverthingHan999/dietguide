@@ -161,9 +161,10 @@
                         var li2 = "<li><a href='/static/article/article_descr.html?aid="+dataListKey[key2].aid+"' ><img src='"+dataListKey[key2].aimg+"'/></a><h3><a href='/static/article/article_descr.html?aid="+dataListKey[key2].aid+"'>"+dataListKey[key2].aname+"</a></h3><span>"+dataListKey[key2].lookcount+"次浏览</span></li>";
                         divup.append(li2);
                         count++;
-                    } else if (count1 < 10) {
+                    } else if (dataListKey[key2].aimg == null &&count1 < 10) {
                         var li2 = "<li><a href='/static/article/article_descr.html?aid="+dataListKey[key2].aid+"'>"+dataListKey[key2].aname+"</a></li>";
                         divdown.append(li2);
+                        count1++;
                     }
                     ul.append(divup);
                     ul.append(divdown);
@@ -210,6 +211,7 @@
             var cookh2 = "<h2>美食大全<span><a>（共"+cookList.length+"条数据）</a></span></h2>";
             cookdivArticle.append(cookh2);
             for (var kk in cookList) {
+                console.log(cookList[kk].cookuser);
                 cookdivArticle.append("<li><a href=''><div class='caipuimg'><img src='"+cookList[kk].cimg+"' width='195' height='195' />" +
                     "</div></a><p><a href=''>"+cookList[kk].cname+"</a></p><p> <a class=\"zuozhe\" href=\"\">"+cookList[kk].uid+"</a></p></li>");
             }

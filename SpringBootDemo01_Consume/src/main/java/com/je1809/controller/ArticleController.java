@@ -3,6 +3,7 @@ package com.je1809.controller;
 import com.je1809.pojo.Article;
 import com.je1809.pojo.ArticleDescr;
 import com.je1809.pojo.ArticleType;
+import com.je1809.pojo.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.LinkedMultiValueMap;
@@ -76,7 +77,6 @@ public class ArticleController {
             String sj = UUID.randomUUID().toString();
             String replace = sj.replace("-", "");
             String newFileName = replace + suffix;
-
             String forObject = restTemplate.getForObject(REST_URL_PREFIX + "/provider/getRealPath", String.class);
             //D:\AAA\stsTest\SpringBootDemo01\SpringBootDemo01_Consume\src\main\resources\static\article\img
             forObject = forObject.substring(0,forObject.lastIndexOf("SpringBootDemo01_Provider"))+"SpringBootDemo01_Consume\\src\\main\\resources\\static\\article\\img\\";
@@ -105,14 +105,18 @@ public class ArticleController {
         String atid = request.getParameter("atid");
         String title = request.getParameter("title");
         String descr = request.getParameter("descr");
+        Users user = (Users) request.getSession().getAttribute("user");
+        System.out.println(user.getUid());
+        String uid = user.getUid().toString();
 
         LinkedMultiValueMap<String, String> map = new LinkedMultiValueMap<>();
 
         map.add("atid",atid);
         map.add("title",title);
         map.add("descr",descr);
-
-        return restTemplate.postForObject(REST_URL_PREFIX + "/provider/addArticle",map,boolean.class);
+        map.add("uid",uid);
+        restTemplate.postForObject(REST_URL_PREFIX + "/provider/addArticle",map,boolean.class);
+        return true;
     }
 
     @PostMapping("/consumer/articlesByAtid")
