@@ -1,14 +1,34 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!DOCTYPE html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=gb2312"/>
     <title>我的厨房 -饮食web</title>
     <meta name="keywords" content="我的厨房,管理中心"/>
     <meta name="description" content="这是我的厨房，用户的管理中心。"/>
     <link href="../img/layout.css" rel="stylesheet" type="text/css"/>
-    <script language="javascript" type="text/javascript" src="../include/dedeajax2.js"></script>
-
+    <!--<script language="javascript" type="text/javascript" src="../include/dedeajax2.js"></script>-->
+    <script type="text/javascript" src="/static/pro/js/jquery-2.1.1.min.js"></script>
+    <script type="text/javascript">
+        function logout() {
+            $.get("/consumer/logout",function (data) {
+                if (data == 1){
+                    location.href = "../login/login.html";
+                }
+            });
+        }
+        $(function () {
+            window.onload=function () {
+                $.post("/consumer/getUserInfo", function (data) {
+                    if (data != "") {
+                        uname = data.uname;
+                        var span = $("<span></span>");
+                        var a = $("<a href='#' onclick='logout()'>注销</a>");
+                        span.append(a);
+                        $("#userlogin").append(span);
+                    }
+                })
+            }
+        })
+    </script>
 </head>
 <body>
 
@@ -105,7 +125,7 @@
         </div>
         <div id="longindiv">
             <div id="userlogin">
-                <span><a href="">注销</a></span>
+
             </div>
         </div>
     </div>
