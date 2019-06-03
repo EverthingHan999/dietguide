@@ -3254,7 +3254,7 @@ a:hover img {
 #gongju {
     float: left;
     width: 100%;
-    font-size: 100%;
+    font-size: 80%;
     margin-top: 25px;
 }
 
@@ -3385,7 +3385,7 @@ a:hover img {
 .instructions {
     width: 630px;
     float: left;
-    font-size: 95%;
+    font-size: 60%;
 }
 
 .instructions h2 {
