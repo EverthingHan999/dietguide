@@ -691,9 +691,8 @@
            var p ="";*/
            for (var key in data) {
                var li = $("<li></li>");
-               var imgs = data[key].cimg;
                console.log(data[key].cid);
-               var img = $("<a href='../shipu/258845.html?cid="+data[key].cid+"'><img src='/img/+" + imgs + ".jpg' data-original='/uploads/userup/1692/1551a20U-2H5-lp.jpg' alt=''/></a>");
+               var img = $("<a href='../shipu/258845.html?cid="+data[key].cid+"'><img src='../img/imgss/"+data[key].cimg+".jpg' data-original='/uploads/userup/1692/"+data.cimg+".jpg' alt=''/></a>");
                var p = $("<p><a href='static/shipu/258845.html'>"+data[key].cname+"</a><br/>by <a class='zuozhe'>"+data[key].cookuser[0].uname+"</a></p>");
                li.append(img);
                li.append(p);
