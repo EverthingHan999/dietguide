@@ -106,6 +106,7 @@ public class ArticleController {
         String title = request.getParameter("title");
         String descr = request.getParameter("descr");
         Users user = (Users) request.getSession().getAttribute("user");
+        System.out.println(user.getUid());
         String uid = user.getUid().toString();
 
         LinkedMultiValueMap<String, String> map = new LinkedMultiValueMap<>();
@@ -114,8 +115,8 @@ public class ArticleController {
         map.add("title",title);
         map.add("descr",descr);
         map.add("uid",uid);
-
-        return restTemplate.postForObject(REST_URL_PREFIX + "/provider/addArticle",map,boolean.class);
+        restTemplate.postForObject(REST_URL_PREFIX + "/provider/addArticle",map,boolean.class);
+        return true;
     }
 
     @PostMapping("/consumer/articlesByAtid")
