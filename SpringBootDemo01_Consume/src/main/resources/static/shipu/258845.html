@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>煎元宵的做法,煎元宵怎么做好吃,广州厨师_饮食web</title>
+    <title>做法详情</title>
     <meta name="keywords" content="煎元宵的做法,煎元宵怎么做,煎元宵怎么做好吃,煎元宵,煎元宵的家常做法"/>
     <meta name="description"
           content="这道煎元宵的菜谱是由广州厨师发布，让大家学会煎元宵的做法,煎元宵怎么做好吃，详细的菜谱食材列表和制作步骤图文教大家煎元宵的家常做法，让大家更好的学习煎元宵的做法，做起来也更简单更美味！"/>
@@ -163,7 +163,8 @@
 
                         <div class="stowing" id="newdigg258845"></div>
                        <!-- <script language="javascript" type="text/javascript">getDigg(258845);</script>-->
-                        <div id="fenxiang"><a id="fenan"> </a>
+                        <div id="fenxiang">
+                            <a id="fenan"> </a>
                             <div id="fenxiangbox">
                                 <div class="bdsharebuttonbox"><a href="#" class="bds_qzone" data-cmd="qzone"
                                                                  title="QQ空间"></a><a href="#" class="bds_weixin"
@@ -181,20 +182,23 @@
 
 
                 </div>
-                <div class='shipubody'><p>
-                    家里有一包元宵，家里人口都比较重，只有我喜欢煮的元宵，他们都喜欢吃油大的。所以今天就给他们炸着吃了，我觉得很腻，可是他们吃得超香。后来我尝了一下，确实要比煮着吃要香得多呢。</p></div>
+                <div class='shipubody'>
+                    <!--<p>家里有一包元宵，家里人口都比较重，只有我喜欢煮的元宵，他们都喜欢吃油大的。所以今天就给他们炸着吃了，我觉得很腻，可是他们吃得超香。后来我尝了一下，确实要比煮着吃要香得多呢。</p>-->
+                </div>
 
 
                 <div class='ingredients'>
-                    <h2>煎元宵的食材</h2>
+                    <!--<h2>煎元宵的食材</h2>
                     <ul>
-                        <p class='ingredient'><span class='name'>元宵<em>5个</em></span></p></ul>
-                    <h2>配料</h2>
+                        <p class='ingredient'><span class='name'>元宵<em>5个</em></span></p>
+                    </ul>-->
+                    <!--<h2>配料</h2>
                     <ul><p class='ingredient'><span class='name'>豆油<em>适量</em></span></p>
-                        <p class='ingredient'><span class='name'>黑芝麻<em>适量</em></span></p></ul>
+                        <p class='ingredient'><span class='name'>黑芝麻<em>适量</em></span></p>
+                    </ul>-->
                 </div>
 
-                <div class="instructions">
+                <div class="instructions"><!--
                     <h2>煎元宵的做法</h2>
                     <span class="instruction"><span>1.</span><img src="../img/grey.gif"
                                                                   
@@ -237,13 +241,16 @@
                                                                    
                                                                    data-original='/uploads/allimg/190318/1552T949EHP-323296.jpg'
                                                                    alt='煎元宵的做法第10步图示' width='220' height='220'/>洒上黑芝麻即可。</span>
+                    -->
                 </div>
 
-                <div class='xiaotieshi'><h2>制作小贴士</h2>
+                <div class='xiaotieshi'>
+                    <!--<h2>制作小贴士</h2>
                     <p>1 元宵也可以改用汤圆，做法一样。<br/>
-                        2 盛元宵的盘子要涂油，防止元宵粘在盘子上。<br/>
-                        3 元宵放入油锅时一定要轻轻滑入。<br/>
-                        4 喜欢两面焦香的，可以煎两面。</p></div>
+                    2 盛元宵的盘子要涂油，防止元宵粘在盘子上。<br/>
+                    3 元宵放入油锅时一定要轻轻滑入。<br/>
+                    4 喜欢两面焦香的，可以煎两面。</p>-->
+                </div>
 
                 <div id="caipuguilei">
 
@@ -738,7 +745,7 @@
         var hm = document.createElement("script");
         hm.src = "../../hm.baidu.com/hm.js-75d0e185b9c0f75227fbb485dfb865a1"/*tpa=https://hm.baidu.com/hm.js?75d0e185b9c0f75227fbb485dfb865a1*/;
         var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
+       /* s.parentNode.insertBefore(hm, s);*/
     })();
 </script>
 <script language="javascript" type="text/javascript" src="../img/side.js"
@@ -778,17 +785,78 @@
     var cid = v['cid'];
     $.get("/consume/getCookPractice",{cid:cid},function (data) {
             var em1=$("#em1");
+            var em2=$("#em2");
+           // alert(JSON.stringify(data));
             var h1 = $("<h1><strong><a href='258845.html'>"+data.cname+"作法</a></strong></h1>");
             var div1 = $("<div id='fengmian'></div>");
-            var img = $(" <img src='../img/grey.gif' data-original='/uploads/allimg/190318/1552T94a1IZ-33cR.jpg' style='top:-20px' alt='煎元宵怎么做好吃' class='photo'/>")
+            var img = $(" <img src='../img/imgss/"+data.cimg+"' data-original='/uploads/allimg/190318/1552T94a1IZ-33cR.jpg' style='top:-20px' alt='' class='photo'/>")
             div1.append(img);
             $("#d1").append(h1);
             $("#d1").append(div1);
             var time = getDateStr(data.createTime);
-            var i1 = $('<i>'+time+'</i>发布');
+            var i1 = $('<i>'+time+'</i><em>发布</em>');
             em1.append(i1);
+            var i2 = $('<i>'+data.copycount+'</i><em>人做过</em>');
+            em2.append(i2);
+            var p = $("<p>"+data.descr+"</p>");
+            $(".shipubody").append(p);
+            var h2 = $("<h2>"+data.cname+"的食材</h2>");
+            $(".ingredients").append(h2);
+            var hh = $("<h2>"+data.cname+"的做法</h2>");
+            $(".instructions").append(hh);
+
 
     });
+
+    $.get("/consume/getCookStuffs",{cid:cid},function (data) {
+        for (var key in data) {
+            //alert(JSON.stringify(data));
+            console.log(data[key].cstname);
+            var ul = $("<ul><p class='ingredient'><span class='name'>" + data[key].cstname + "<em>" + data[key].cstamount + "</em></span></p></ul>");
+            $(".ingredients").append(ul);
+        }
+    });
+
+    $.get("/consume/getCookSeasoningById",{cid:cid},function (data) {
+        var h = $('<h2>配料</h2>');
+        var ul = $('<ul></ul>');
+        for (var key in data) {
+            var p1 = $("<p class='ingredient'><span class='name'>"+data[key].cksename+"<em>"+data[key].cksamount+"</em></span></p>");
+            ul.append(p1);
+            $(".ingredients").append(h);
+            $(".ingredients").append(ul);
+        }
+    });
+
+    $.get("/consume/getCookMakeMethodById",{cid:cid},function (data) {
+        for (var key in data){
+            var span = $('<span class="instruction"></span>');
+            var span1 = $("<span>"+data[key].cmmid+".</span>");
+            console.log(data[key].descr);
+            console.log(data[key].cookimg);
+            var img1 = $("<img src='../img/imgss/"+data[key].cookimg+".jpg' data-original='<!--/uploads/allimg/190318/1552T94952RZ-23bb.jpg-->' alt='' width='220' height='220'/><em>"+data[key].descr+"</em>");
+            /*var a = $("<a>"+data[key].descr+"</a>");*/
+            span1.append(img1);
+            //span1.append(a);
+            span.append(span1);
+            $(".instructions").append(span);
+
+        }
+        var h2 = $("<h2>制作小贴士</h2>");
+        $(".xiaotieshi").append(h2);
+        var p = $("<p>"+data[key].remarks+"</p>");
+        $(".xiaotieshi").append(p);
+
+
+
+    })
+
+    //转换时间格式
+    function getDateStr(str){
+        var strDate = new Date(str);
+        var sDate = strDate.toLocaleString().split(' ')[0];
+        return sDate.replace(/年|月/g, '-').replace(/日/g, '');
+    }
 
     $.get("/consume/getCookUsers",{cid:cid},function (data) {
         var div1 = $('<div id="uface"></div>');
@@ -798,12 +866,6 @@
         div1.append(a);
         $("#em3").append(div1);
     });
-    //转换时间格式
-    function getDateStr(str){
-        var strDate = new Date(str);
-        var sDate = strDate.toLocaleString().split(' ')[0];
-        return sDate.replace(/年|月/g, '-').replace(/日/g, '');
-    }
 </script>
 </body>
 </html>

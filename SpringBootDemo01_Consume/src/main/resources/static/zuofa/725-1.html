@@ -125,7 +125,7 @@
         <div class="clearfix"></div>
         <div id="leftbox">
             <div class="caipulist">
-                <h1><a href="725-1.html">炒菜的做法大全</a><em>（共550条记录）</em></h1>
+                <!--<h1><a href="725-1.html">炒菜的做法大全</a><em>（共550条记录）</em></h1>
                 <li><a>
                     <div class='caipuimg'><img src="../img/grey.gif"
                                                data-original="/uploads/userup/2062/1536419443-2455-lp.jpg" alt="西兰花炒舞菇"
@@ -314,7 +314,7 @@
                                                alt="黄瓜木耳炒香肠" width="195" height="195"/></div>
                 </a>
                     <p><a>黄瓜木耳炒香肠</a></p>
-                    <p><a class="zuozhe">女煮角</a></p></li>
+                    <p><a class="zuozhe">女煮角</a></p></li>-->
             </div>
 
             <div id="listpages">
@@ -528,17 +528,18 @@
         console.log(arr2);
         return arr2;
 
-        $.get("/consume/getCookBookSecondById",{cbsid:arr2[0]},function (data) {
+    }
+    var v = parseUrl();
+    var cbsid = v['cbsid'];
+    $.get("/consume/getCookSecondThird",{cbsid:cbsid},function (data) {
 
             for (var key in data) {
-                console.log(data[key].cbname);
-                var li = $("<li><a>" + data[key].cbname + "</a></li>");
+                console.log(data[key].cbtname);
+                var li = $("<li><a>" + data[key].cbtname + "</a></li>");
 
                 $("#er").append(li);
             }
-        });
-    }
-    parseUrl();
+    });
 
 
     $(function () {
@@ -608,6 +609,7 @@
             $("#cpdq").append(h2);
 
         });
+
 
     })
 </script>

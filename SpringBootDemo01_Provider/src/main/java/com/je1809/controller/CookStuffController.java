@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
@@ -29,4 +30,13 @@ public class CookStuffController {
         return cookStuffService.selectByExample(null);
     }
 
+    @ResponseBody
+    @GetMapping("/provider/getCookStuffs")
+    public List<CookStuff> getCookStuffs(HttpServletRequest request){
+        example.clear();
+        Integer cid = Integer.valueOf(request.getParameter("cid"));
+        CookStuffExample.Criteria criteria = example.createCriteria();
+        criteria.andCidEqualTo(cid);
+        return cookStuffService.selectByExample(example);
+    }
 }
