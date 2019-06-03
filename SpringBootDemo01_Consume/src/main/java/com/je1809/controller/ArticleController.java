@@ -76,7 +76,6 @@ public class ArticleController {
             String sj = UUID.randomUUID().toString();
             String replace = sj.replace("-", "");
             String newFileName = replace + suffix;
-
             String forObject = restTemplate.getForObject(REST_URL_PREFIX + "/provider/getRealPath", String.class);
             //D:\AAA\stsTest\SpringBootDemo01\SpringBootDemo01_Consume\src\main\resources\static\article\img
             forObject = forObject.substring(0,forObject.lastIndexOf("SpringBootDemo01_Provider"))+"SpringBootDemo01_Consume\\src\\main\\resources\\static\\article\\img\\";
@@ -105,12 +104,14 @@ public class ArticleController {
         String atid = request.getParameter("atid");
         String title = request.getParameter("title");
         String descr = request.getParameter("descr");
+        String uid = request.getParameter("uid");
 
         LinkedMultiValueMap<String, String> map = new LinkedMultiValueMap<>();
 
         map.add("atid",atid);
         map.add("title",title);
         map.add("descr",descr);
+        map.add("uid",uid);
 
         return restTemplate.postForObject(REST_URL_PREFIX + "/provider/addArticle",map,boolean.class);
     }
